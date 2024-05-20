@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <header class="text-white body-font bg-green-600">
+    <button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button>
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow ">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#command">よく使うコマンド</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#command2">コマンドを使ってみよう</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#check1">つくったファイルをブラウザで確認</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#program1">プログラムを作ってみる</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#programsshfs">ssh fsでつないでサーバ上にファイルを作成</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#omake">vscode-iconsをインストール</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#exec1">作ったプログラムを実行してみる</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#mkdir">mkdir.shの改造</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#javascript">JavaScript の書き方</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#javascriptbasic">JavaScriptの基本</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#javascriptcomment">JavaScriptのコメント文</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#javascriptsrc">JavaScriptはブラウザで実行されるので、プログラムが見えてしまう</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#php">phpの基本</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#phpcomment">phpのコメント文</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#phpsrc">phpはサーバ側で実行されるので、ソースが見えない</a></li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">プログラミングの基礎、JavaScript と php</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第3回 5月7日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">復習</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">プログラムはどうやって動くのか</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">JavaScriptの書き方</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">phpの書き方</h3>
+        </div>
+      </div>
+    </div>
+
+    <section class="text-gray-600 body-font">
+      <div class="container p-5 mx-auto">
+
+        <h2 class="text-2xl title-font" id="command">よく使うコマンド</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <dl class="flex flex-wrap items-start">
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              pwd
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                現在のディレクトリ
+              </div>
+              <div class="mt-2">
+                ディレクトリの区切り
+                <dl class="flex">
+                  <dt class="ml-10 w-2/5 sm:w-1/5">Windows</dt>
+                  <dd>¥</dd>
+                </dl>
+                <dl class="flex">
+                  <dt class="ml-10 w-2/5 sm:w-1/5">Mac</dt>
+                  <dd>/</dd>
+                </dl>
+              </div>
+
+              <div class="mt-2">
+                ドライブの概念
+                <dl class="flex">
+                  <dt class="ml-10 w-2/5 sm:w-1/5">Windows</dt>
+                  <dd>あり （C:）</dd>
+                </dl>
+                <dl class="flex">
+                  <dt class="ml-10 w-2/5 sm:w-1/5">Mac</dt>
+                  <dd>なし （/Volumes/)</dd>
+                </dl>
+              </div>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              ls
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                現在のディレクトリ内の一覧
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              cd &lt;dir&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ディレクトリを移動
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">cd public_html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">public_htmlディレクトリへ移動</dd>
+                </dl>
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">cd ..</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">1つ上のディレクトリに移動する</dd>
+                </dl>
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">cd ../..</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">2つ上のディレクトリに移動する</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              mkdir &lt;dir&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ディレクトリを作成
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">mkdir 20240507</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">20240507ディレクトリを作成</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              rmdir &lt;dir&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ディレクトリを削除<br>
+                （ディレクトリの中身が空でないと削除できない）
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">rmdir 20240507</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">20240507ディレクトリを削除</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              ni &lt;file&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ファイルを作成(Windows)
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">ni index.html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">空のindex.htmlファイルを作成</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              touch &lt;file&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ファイルを作成(Mac/Linux)
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">touch index.html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">空のindex.htmlファイルを作成</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              rm &lt;file&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ファイルを削除
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">rm index.html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">index.htmlファイルを削除</dd>
+                </dl>
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">rm -rf 20240507</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">20240507フォルダとその中身をすべて削除</dd>
+                </dl>
+              </div>
+            </dd>
+
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              type &lt;file&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ファイルの中身を表示(Windows)
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              cat &lt;file&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ファイルの中身を表示(Mac/Linux)
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              echo &lt;文字&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                文字を出力
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">echo hello</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">helloと表示される</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-3/5 p-2 mt-2">
+              man &lt;コマンド&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                マニュアルを見る
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">man rm</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">rmコマンドのマニュアルを表示</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-4/5 p-2 mt-2">
+              cp &lt;コピー元&gt; &lt;コピー先&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                ファイルをコピー
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">cp index.html
+                      index2.html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">index.htmlをコピーしてindex2.htmlを作成</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              &gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                リダイレクト（出力をファイルに保存）
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">echo hello &gt;
+                      index.html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">index.htmlにhelloを書き込む</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              &gt;&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                リダイレクト（出力をファイルに追記）
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1">echo hello &gt;&gt;
+                      index.html</span></dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">index.htmlにhelloを追記する</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              chmod &lt;アクセス権&gt; &lt;file&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                アクセス権を設定(Mac/Linux)
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1"> chmod 755 mkdir.sh</span>
+                  </dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">mkdir.shに実行権を設定する</dd>
+                </dl>
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white sm:w-1/5 w-2/5 p-2 mt-2">
+              which &lt;コマンド&gt;
+            </dt>
+            <dd class="p-2 sm:w-4/5 mt-2 w-full">
+              <div>
+                コマンドのありか(PATH)を表示する(Mac/Linux)
+              </div>
+              <div class="mt-2">
+                例)
+                <dl class="flex flex-wrap mt-2">
+                  <dt class="pl-10 w-full sm:w-2/5"><span class="bg-black text-white p-1"> which bash</span>
+                  </dt>
+                  <dd class="pl-10 sm:pl-0 w-full sm:w-3/5">bashのありか(PATH)を表示する</dd>
+                </dl>
+              </div>
+            </dd>
+
+
+          </dl>
+        </div>
+
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+
+        <h2 class="text-2xl title-font" id="command2">コマンドを使ってみよう<br class="sm:hidden">（サーバ上での操作）</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <dl class="flex flex-wrap items-start">
+            <dt class="bg-black text-white w-3/5 sm:w-2/5 p-2 mt-2">
+              cd public_html
+            </dt>
+            <dd class="p-2 sm:w-3/5 mt-2 w-full">
+              <div>
+                public_html フォルダの中に移動
+              </div>
+            </dd>
+
+
+            <dt class="bg-black text-white w-3/5 sm:w-2/5 p-2 mt-2">
+              pwd
+            </dt>
+            <dd class="p-2 sm:w-3/5 mt-2 w-full">
+              <div>
+                public_html フォルダの中に居ることを確認
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white w-3/5 sm:w-2/5 p-2 mt-2">
+              mkdir 20240507
+            </dt>
+            <dd class="p-2 sm:w-3/5 mt-2 w-full">
+              <div>
+                public_html フォルダの中に20240507フォルダを作成
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white w-3/5 sm:w-2/5 p-2 mt-2">
+              cd 20240507
+            </dt>
+            <dd class="p-2 sm:w-3/5 mt-2 w-full">
+              <div>
+                20240507 フォルダの中に移動
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white w-3/5 sm:w-2/5 p-2 mt-2">
+              echo hello > index.html
+            </dt>
+            <dd class="p-2 sm:w-3/5 mt-2 w-full">
+              <div>
+                helloと書き込んだ index.htmlファイルを作成
+              </div>
+            </dd>
+
+            <dt class="bg-black text-white w-3/5 sm:w-2/5 p-2 mt-2">
+              echo hi! >> index.html
+            </dt>
+            <dd class="p-2 sm:w-3/5 mt-2 w-full">
+              <div>
+                index.html に hi! を追記
+              </div>
+            </dd>
+
+
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="container p-5 mx-auto">
+
+        <h2 class="text-2xl title-font" id="check1">つくったファイルをブラウザで確認
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <span class="break-words">https://bp2022.tama.net/~<span
+              class="bg-yellow-200">p222C2222</span>/20240507/</span>
+
+          <img src="03/03-01.png">
+
+        </div>
+
+      </div>
+
+
+
+      <h1 class="text-3xl title-font text-center my-32" id="program1">プログラムを作ってみる</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="programsshfs">ssh fsでつないで<br class="sm:hidden">サーバ上にファイルを作成
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <img src="03/03-02.png">
+
+          <div class="mt-8">
+            mkdir.sh の中身
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              cd public_html<br>
+              pwd<br>
+              mkdir 20240507<br>
+              cd 20240507<br>
+              echo hello &gt; index.html<br>
+              echo hi! &gt;&gt; index.html<br>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="omake">(おまけ) vscode-iconsをインストールすると見やすくなる
+        </h2>
+        <div class="border-4 border-gray-100 bg-gray-100 rounded px-5 py-5 ">
+          <img src="03/03-03.png">
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="exec1">作ったプログラムを実行してみる
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            実行
+            <div class="my-2 p-5 bg-black text-white">
+              bash mkdir.sh<br>
+            </div>
+          </div>
+
+          <img src="03/03-04.png">
+          20240507ディレクトリがすでにあるのでエラーになる
+
+          <div class="mt-8">
+            ディレクトリを削除して、再度実行
+            <div class="my-2 p-5 bg-black text-white">
+              rm -rf public_html/20240507<br>
+              bash mkdir.sh<br>
+            </div>
+          </div>
+
+          <img src="03/03-05.png">
+          今度は実行できた
+
+          <img src="03/03-06.png">
+          VS Codeでも、20240507フォルダが作成されて、その中に、index.htmlができているのがわかる
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="mkdir">mkdir.shの改造
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            mkdir.sh の中身 (黄色の部分を追記)<br>
+            ここに実行するプログラムのPATHを指定することができる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              <span class="bg-yellow-200">#!/bin/bash</span><br>
+              cd public_html<br>
+              pwd<br>
+              mkdir 20240507<br>
+              cd 20240507<br>
+              echo hello &gt; index.html<br>
+              echo hi! &gt;&gt; index.html<br>
+            </div>
+          </div>
+
+
+          <div class="mt-8">
+            プログラムに実行権限を付与
+            <div class="my-2 p-5 bg-black text-white">
+              chmod 755 mkdir.sh<br>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            プログラムを実行してみる<br>
+            （今度はファイル名の前に bash と書かなくてもよくなった）
+            <div class="my-2 p-5 bg-black text-white">
+              ./mkdir.sh<br>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            mkdir.sh の中身 (黄色の部分を変更)<br>
+            20240507を$1に変更することで、実行時に好きなフォルダをつくれるようになる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              #!/bin/bash<br>
+              cd public_html<br>
+              pwd<br>
+              mkdir <span class="bg-yellow-200">$1</span><br>
+              cd <span class="bg-yellow-200">$1</span><br>
+              echo hello &gt; index.html<br>
+              echo hi! &gt;&gt; index.html<br>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            プログラムを実行してみる<br>
+            （今度はファイル名の前に bash と書かなくてもよくなった）
+            <div class="my-2 p-5 bg-black text-white">
+              ./mkdir.sh 20240507b<br>
+            </div>
+          </div>
+          <img src="03/03-07.png">
+          20240507bフォルダが作成されて、そのなかに、index.htmlができている
+
+        </div>
+      </div>
+
+
+      <h1 class="text-3xl title-font text-center my-32">Chat-GPTに聞いてみる</h1>
+
+      <div class="container p-5 mx-auto">
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            Chat-GPTに聞いてみた
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              bashで、今日の日付のフォルダを作って、その中に、hi! と書いた index.htmlというファイルを作成するためのscriptを教えてください
+            </div>
+          </div>
+
+          <img src="03/03-08.png">
+
+          <div class="mt-8">
+            Chat-GPTが生成したプログラム
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              #!/bin/bash<br>
+              <br>
+              # 今日の日付を取得<br>
+              today=$(date +"%Y-%m-%d")<br>
+              <br>
+              # フォルダを作成<br>
+              mkdir "$today"<br>
+              <br>
+              # index.htmlを作成<br>
+              echo
+              "&lt;html&gt;&lt;head&gt;&lt;title&gt;Hi!&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;hi!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;"
+              &gt; "$today/index.html"<br>
+              <br>
+              echo "フォルダ '$today' とファイル '$today/index.html' が作成されました。"<br>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <h1 class="text-3xl title-font text-center my-32">プログラミング言語の種類</h1>
+
+      <div class="container p-5 mx-auto">
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <table class="table-auto border-collapse border border-slate-400 w-full">
+            <thead>
+              <tr>
+                <th class="border border-slate-300 p-3 bg-slate-100">
+                  コンパイラー方式
+                </th>
+                <th class="border border-slate-300 p-3 bg-slate-100">
+                  インタープリター方式
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-slate-300 p-3">C</td>
+                <td class="border border-slate-300 p-3">JavaScript</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 p-3">C++</td>
+                <td class="border border-slate-300 p-3">PHP</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 p-3">C#</td>
+                <td class="border border-slate-300 p-3">Python</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 p-3">Java</td>
+                <td class="border border-slate-300 p-3">Ruby</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 p-3">Swift</td>
+                <td class="border border-slate-300 p-3">(bash)</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 p-3">Go</td>
+                <td class="border border-slate-300 p-3"></td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 p-3">Kotlin</td>
+                <td class="border border-slate-300 p-3"></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+
+
+      <h1 class="text-3xl title-font text-center my-32">Chat-GPTに聞いてみる 2</h1>
+
+      <div class="container p-5 mx-auto">
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            Chat-GPTに聞いてみた
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              C言語で今日の日付のフォルダを作って、その中に、hi! と書いた index.htmlというファイルを作成するためのプログラムを教えてください
+            </div>
+          </div>
+
+          <img src="03/03-09.png">
+
+          <div class="mt-8">
+            Chat-GPTが生成したCプログラム
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50 break-words">
+              #include &lt;stdio.h&gt;<br>
+              #include &lt;stdlib.h&gt;<br>
+              #include &lt;time.h&gt;<br>
+              #include &lt;sys/stat.h&gt;<br>
+              #include &lt;sys/types.h&gt;<br>
+              <br>
+              int main() {<br>
+              time_t t = time(NULL);<br>
+              struct tm *tm = localtime(&t);<br>
+              <br>
+              char folder_name[20];<br>
+              sprintf(folder_name, "%d-%02d-%02d", tm-&gt;tm_year + 1900, tm-&gt;tm_mon + 1, tm-&gt;tm_mday);<br>
+              <br>
+              // フォルダを作成<br>
+              if (mkdir(folder_name, 0777) == -1) {<br>
+              perror("mkdir error");<br>
+              return EXIT_FAILURE;<br>
+              }<br>
+              <br>
+              // index.htmlファイルを作成<br>
+              char file_path[50];<br>
+              sprintf(file_path, "%s/index.html", folder_name);<br>
+              <br>
+              FILE *file = fopen(file_path, "w");<br>
+              if (file == NULL) {<br>
+              perror("fopen error");<br>
+              return EXIT_FAILURE;<br>
+              }<br>
+              <br>
+              fprintf(file,
+              "&lt;html&gt;&lt;head&gt;&lt;title&gt;Hi!&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;hi!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;");<br>
+              <br>
+              fclose(file);<br>
+              <br>
+              printf("フォルダ '%s' とファイル '%s' が作成されました。\n", folder_name, file_path);<br>
+              <br>
+              return EXIT_SUCCESS;<br>
+              }<br>
+            </div>
+          </div>
+
+          <div class="mt-20">
+            VS Codeで、mkdir.c という名前で作成
+            <img src="03/03-10.png">
+          </div>
+
+          <div class="mt-8">
+            Cはコンパイラー方式なので、ccコマンドでコンパイルする
+            <div class="my-2 p-5 bg-black text-white">
+              cc mkdir.c<br>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            a.outという実行可能ファイルができたので実行してみる
+            <div class="my-2 p-5 bg-black text-white">
+              ./a.out<br>
+            </div>
+          </div>
+
+          <img src="03/03-11.png">
+
+
+        </div>
+      </div>
+
+
+      <h1 class="text-3xl title-font text-center my-32" id="javascript">JavaScript の書き方</h1>
+
+      <div class="container p-5 mx-auto">
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            JavaScript はブラウザ上で動くので、htmlの中に書く
+          </div>
+
+          <div class="mt-8">
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              &lt;script&gt;<br>
+              ここにプログラムを書く<br>
+              &lt;/script&gt;<br>
+
+            </div>
+          </div>
+
+          <div class="mt-8">
+            index.htmlの中に書いてみる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              TEST!<br>
+              <br>
+              &lt;script&gt;<br>
+              alert("TEST");<br>
+              &lt;/script&gt;<br>
+            </div>
+          </div>
+
+          <img src="03/03-12.png">
+
+          ブラウザで確認してみる<br>
+          <span class="break-words">https://bp2022.tama.net/~<span
+              class="bg-yellow-200">p222C2222</span>/20240507/</span>
+          <img src="03/03-13.png">
+          TESTという文字のアラートボックスが表示されるようになった
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="javascriptbasic">JavaScriptの基本
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            <ul class="text-3xl">
+              <li class="mt-2">
+                1行1命令
+              </li>
+              <li class="mt-2">
+                命令 ＝ 文
+              </li>
+              <li class="mt-2">
+                セミコロン( ; ) で区切る
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="mt-8">
+            index.htmlの中を編集してみる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              TEST2!<br>
+              <br>
+              &lt;script&gt;<br>
+              alert("TEST");<br>
+              <span class="bg-yellow-200">alert("TEST2");</span><br>
+              &lt;/script&gt;<br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="javascriptcomment">JavaScriptのコメント文
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            <ul class="text-3xl">
+              <li class="mt-2">
+                //1行のコメント
+              </li>
+              <li class="mt-2">
+                /*　複数行の<br>
+                コメント */
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="mt-8">
+            index.htmlの中を編集してみる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              TEST2!<br>
+              <br>
+              &lt;script&gt;<br>
+              <span class="bg-yellow-200">//alert("TEST");</span><br>
+              alert("TEST2");<br>
+              &lt;/script&gt;<br>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="javascriptsrc">JavaScriptはブラウザで実行されるので、プログラムが見えてしまう
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+
+          <img src="03/03-20.png">
+        </div>
+
+      </div>
+
+
+
+      <h1 class="text-3xl title-font text-center my-32">php の書き方</h1>
+
+      <div class="container p-5 mx-auto">
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            php はサーバ上で動く
+          </div>
+
+          <div class="mt-8">
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              &lt;?php<br>
+              ここにプログラムを書く<br>
+              ?&gt;<br>
+
+            </div>
+          </div>
+
+          <div class="mt-8">
+            index.phpの中に書いてみる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              TEST!<br>
+              <br>
+              &lt;?php echo date("Y-m-d H:i:s"); ?&gt;
+            </div>
+          </div>
+
+
+          ブラウザで確認してみる<br>
+          <span class="break-words">https://bp2022.tama.net/~<span
+              class="bg-yellow-200">p222C2222</span>/20240507/index.php</span>
+          <img src="03/03-21.png">
+          今の時間が表示されるようになった
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="php">phpの基本
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            <ul class="text-3xl">
+              <li class="mt-2">
+                1行1命令
+              </li>
+              <li class="mt-2">
+                命令 ＝ 文
+              </li>
+              <li class="mt-2">
+                セミコロン( ; ) で区切る
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="mt-8">
+            index.htmlの中を編集してみる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              TEST2!<br>
+              <br>
+              &lt;?php<br>
+              echo date("Y-m-d H:i:s");<br>
+              echo rand();<br>
+              ?&gt;<br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="phpcomment">phpのコメント文
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-8">
+            <ul class="text-3xl">
+              <li class="mt-2">
+                //1行のコメント
+              </li>
+              <li class="mt-2">
+                /*　複数行の<br>
+                コメント */
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="mt-8">
+            index.htmlの中を編集してみる
+            <div class="border-2 border-gray-200 my-2 p-5 bg-gray-50">
+              TEST2!<br>
+              <br>
+              &lt;?php<br>
+              //echo date("Y-m-d H:i:s");<br>
+              echo rand();<br>
+              ?&gt;<br>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl title-font" id="phpsrc">phpはサーバ側で実行されるので、ソースが見えない
+        </h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+
+          <img src="03/03-22.png">
+        </div>
+
+      </div>
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+</body>
+
+</html>

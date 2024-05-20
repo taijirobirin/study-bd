@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <header class="text-white body-font bg-green-600">
+    <button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button>
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#html">HTMLの書き方</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#html1">書いてみる</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#html2">HTMLの書式</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#html3">HTMLの構造</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#html4">HTMLのタグ</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable">変数</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable1">変数の種類</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable2">数値型</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable3">文字列型</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable4">真偽値</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable5">配列</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable6">オブジェクト</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable7">javscriptの変数の宣言</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable8">phpの変数の宣言</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable9">javscriptの変数の代入</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable10">phpの変数の代入</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#variable11">変数の名前付けのルール</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator">演算子</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator1">演算子の種類</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator2">代入演算子</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator3">比較演算子</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator4">算術演算子</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator5">文字列演算子</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator6">javascriptのサンプルプログラム</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#operator7">phpのサンプルプログラム</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#array1">javascriptの配列と乱数</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#array2">phpの配列と乱数</a></li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#array3">演習</a></li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">変数、式と演算子</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第4回 5月14日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">HTML</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">変数</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">演算子</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">プログラムを書いてみる</h3>
+        </div>
+      </div>
+    </div>
+
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="html">HTMLの書き方</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="html1">書いてみる</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <h3 class="text-xl">public_htmlの中に、今日のフォルダをつくって、その中に index.htmlを作成</h3>
+          <img src="04/04-01.png">
+          <h3 class="text-xl">index.htmlの先頭で ! だけ入力すると HTMLの雛形が自動で作成される</h3>
+          <img src="04/04-02.png">
+
+          index.htmlの中身
+          <pre data-line="2,6,9"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  てすと
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">2行目</dt>
+            <dd>lang="en" になっているので、lang="ja"に変更</dd>
+          </dl>
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">6行目</dt>
+            <dd>titleタグの中は自由に（ブラウザのタブに表示される）</dd>
+          </dl>
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">9行目</dt>
+            <dd>実際に表示される文字</dd>
+          </dl>
+
+          <div class="mt-8">
+            <h3 class="text-xl">ブラウザで確認してみる</h3>
+            <span class="break-words">https://bp2022.tama.net/~<span class="bg-yellow-200">p222C2222</span>/20240514/</span>
+            <img src="04/04-03.png">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="html2">HTMLの書式</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">HTMLファイルのはじまり</h3>
+          <pre><code class="lang-html">&lt;!DOCTYPE html&gt;</code></pre>
+          このファイルはHTML5だという宣言。<br>
+          必ずこの文字で始まる。
+
+          <div class="mt-8">
+            <h3 class="text-xl">HTMLはタグでできている</h3>
+            <pre><code class="lang-html">&lt;XXX&gt;〜&lt;/XXX&gt;</code></pre>
+            タグで囲うことで文字に意味を持たせられる。<br>
+            それがマークアップ。
+          </div>
+
+          <div class="mt-8">
+            <h3 class="text-xl">タイトルには、タイトルタグ</h3>
+            <pre><code class="lang-html">&lt;title&gt;HTML5HTML5サンプル&lt;/title&gt;</code></pre>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="text-xl">閉じタグのない単体のタグもある</h3>
+            <pre><code class="lang-html">&lt;meta charset="UTF-8"&gt;</code></pre>
+            メタタグ（ファイルの情報を記述するときに使用。画面に表示されない）<br>
+            <br>
+            <pre><code class="lang-html">&lt;img src="XXX"&gt;</code></pre>
+            画像を表示する単体タグ<br>
+            <br>
+            <pre><code class="lang-html">&lt;br&gt;</code></pre>
+            改行を示す単体タグ<br>
+            <br>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="text-xl">タグには属性を持たせられる</h3>
+            <pre><code class="lang-html">&lt;meta charset="UTF-8"&gt;</code></pre>
+            「charset="UTF-8"」の部分が属性<br>
+            英語では attribute<br>
+            <br>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="text-xl">タグは入れ子にできる</h3>
+            <pre><code class="lang-html">&lt;head&gt;
+    &lt;title&gt;～&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            <br>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="text-xl">HTMLでは、改行やスペースは意味を持たないので見やすく成型するとよい
+              </h3>
+            <pre><code class="lang-html">&lt;head&gt;&lt;title&gt;～&lt;/title&gt;&lt;/head&gt;</code></pre>
+            <pre><code class="lang-html">&lt;head&gt;
+&lt;title&gt;～&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            <pre><code class="lang-html">&lt;head&gt;
+  &lt;title&gt;～&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            意味的にはすべて同じだが、下に行くほど見やすい
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="html3">HTMLのHTMLの構造</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div>
+              <pre data-line="2,4-8,10-12,14"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;HTML5サンプル&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;p&gt;HTML5で作成しました！&lt;/p&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">2,14行目</dt>
+            <dd>全体が&lt;html&gt;で囲まれている
+            </dd>
+          </dl>
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">4-8行目</dt>
+            <dd>
+              &lt;head&gt;は文章の属性など<br>
+              (表示されないもの)
+            </dd>
+          </dl>
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">10-12行目</dt>
+            <dd>
+              &lt; body&gt;は文章の本体<br>
+              (表示するもの)
+            </dd>
+          </dl>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="html4">HTMLのタグ</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <dl>
+            <dt class="font-bold whitespace-nowrap">&lt;h1&gt; 〜 &lt;/h1&gt; </dt>
+            <dd class="ms-4 mb-2">
+              大見出しを付ける
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;h2&gt; 〜 &lt;/h2&gt; </dt>
+            <dd class="ms-4 mb-2">
+              中見出しを付ける
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;h3&gt; 〜 &lt;/h3&gt; </dt>
+            <dd class="ms-4 mb-2">
+              小見出しを付ける
+            </dd>
+          </dl>
+          ：
+          <dl>
+            <dt class="font-bold whitespace-nowrap">&lt;h6&gt; 〜 &lt;/h6&gt; </dt>
+            <dd class="ms-4 mb-2">
+              小小小見出しを付ける
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;p&gt 〜 &lt;/p&gt;</dt>
+            <dd class="ms-4 mb-2">
+              ひとつの段落（パラグラフ）であることを表す
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;dl&gt; 〜 &lt;/dl&gt; </dt>
+            <dd class="ms-4 mb-2">
+              定義・説明リストを表す
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;dt&gt; 〜 &lt;/dt&gt; </dt>
+            <dd class="ms-4 mb-2">
+              定義・説明される言葉を表す
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;dd&gt; 〜 &lt;/dd&gt; </dt>
+            <dd class="ms-4 mb-2">
+              定義用語や言葉の説明をする
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">&lt;br&gt; </dt>
+            <dd class="ms-4 mb-2">
+              改行
+            </dd>
+          </dl>
+          
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="http://www.htmq.com/html5/" target="_blank">http://www.htmq.com/html5/</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <h1 class="text-3xl font-bold text-center my-32" id="variable">変数</h1>
+
+
+      <div class="container p-5 mx-auto">
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <h2 class="text-2xl font-bold" id="variable1">変数とは</h2>
+          <div class="m-2">
+            変数は値の入れものです。数を合計したり、ある文章の一部を格納するのに使用します。変数が特別なのは、変数が持っている値を変更できることにあります。
+          </div>
+          <img src="https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/Variables/boxes.png">
+          
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/Variables" target="_blank">https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/Variables</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable1">変数の種類</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li class="list-disc">数値型</li>
+            <li class="list-disc">文字列型</li>
+            <li class="list-disc">真偽型</li>
+            <li class="list-disc">配列</li>
+            <li class="list-disc">オブジェクト</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable2">数値型</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li>37</li>
+            <li>1.0</li>
+            <li>2000</li>
+            <li>0.25</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable3">文字列型</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li>"山本"</li>
+            <li>'Hello'</li>
+            <li>"It's my book"</li>
+            <li>'It¥'s my book'<br>
+              ( Macの場合 ¥ は \ )
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable4">真偽値</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li>true</li>
+            <li>false</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable5">配列</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li>[ 0, 1, 2, 10, 100 ]</li>
+            <li>['apple', 'orange', 'tomato']</li>
+            <li>[2, 'three', 4]</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable6">オブジェクト</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li>{ firstname: 'taijiro', lastname:'yamamoto' }</li>
+            <li>{ kokugo: 80, rika: 90, sugaku: 100 }</li>
+            <li>{ name: 'ポチ', age:10 }</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable7">javscriptの変数の宣言</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <dl>
+            <dt class="font-bold whitespace-nowrap">var</dt>
+            <dd class="ms-4 mb-2">
+              今は使わない。letとほぼ同じ
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">let</dt>
+            <dd class="ms-4 mb-2">
+              中身を変更できる
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">const</dt>
+            <dd class="ms-4 mb-2">
+              中身を変更できない
+            </dd>
+          </dl>
+
+          <div class="mt-8">
+            例)
+            <pre><code class="lang-js">let year;</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable8">phpの変数の宣言</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          特に宣言は必要ないが、変数名に「＄」をつける必要がある。
+
+          <div class="mt-8">
+            例)
+            <pre><code class="lang-php">$year</code></pre>
+          </div>
+
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable9">javscriptの変数の代入</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <pre><code class="lang-js">let year;
+year = 2024;</code></pre>
+
+          <pre><code class="lang-js">let year=2024;
+const pi = 3.14;</code></pre>
+
+        </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable10">phpの変数の代入</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <pre><code class="lang-php">$year = 2024;</code></pre>
+            
+          <pre><code class="lang-php">$pi = 3.14;</code></pre>
+
+          </div>
+      </div>
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="variable11">変数の名前付けのルール</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          変数には制限はあるものの、大体どんな名前を付けることができます。ただし、一般的に、アルファベットと数字 (0-9, a-z, A-Z) やアンダースコアだけを使用すべきでしょう。
+
+          <ul class="ms-4">
+            <li class="list-disc m-2">上記以外の文字を使用するのはやめましょう。環境によってはエラーとなったり、他の国の人々にとって理解しがたいものとなります。</li>
+            <li class="list-disc m-2">変数名の先頭にアンダースコアは使用してはいけません。一部の JavaScript のコンストラクターにとっては特別な意味を持つため、問題となることがあります。</li>
+            <li class="list-disc m-2">変数名の先頭に数字を使用してはいけません。これは JavaScript の文法エラーとなります。</li>
+            <li class="list-disc m-2">複数の単語をつなげる場合は、<a class="text-blue-600 hover:underline" href="https://developer.mozilla.org/ja/docs/Glossary/Camel_case">小文字で始まるキャメルケース</a>と呼ばれる書き方に従いましょう。最初の単語を全て小文字で書いて、その後に続く単語の最初の文字を大文字にする記法です。この記事ではこの書き方を採用しています。</li>
+            <li class="list-disc m-2">保持するデータを説明する、分かりやすい名前を付けましょう。1 つの文字・数字や、長すぎる命名はしないようにしましょう。</li>
+            <li class="list-disc m-2">変数名は大文字・小文字を区別します。<code>myage</code> と <code>myAge</code> は違うものになります。</li>
+            <li class="list-disc m-2">最後に、JavaScript の予約語 ( これは JavaScript の文法を構成する単語のことです) を変数名には付けないようにしましょう。<code>var</code>、<code>function</code>、<code>let</code>、<code>for</code> 等を変数名として使用することは出来ません。ブラウザーはそれを異なるように解釈し、結果としてエラーとなるでしょう。</li>
+          </ul>
+
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/Variables#変数の名前付けのルール" target="_blank">https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/Variables#変数の名前付けのルール</a>
+          </div>
+          
+        </div>
+      </div>
+
+
+
+      <h1 class="text-3xl font-bold text-center my-32" id="operator">演算子</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator1">演算子の種類</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <ul class="ms-4">
+            <li class="list-disc m-2">代入演算子</li>
+            <li class="list-disc m-2">比較演算子</li>
+            <li class="list-disc m-2">算術演算子</li>
+            <li class="list-disc m-2">文字列演算子</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator2">代入演算子</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mt-0">
+            javascriptの例)
+            <pre><code class="lang-js">year = 2024;
+pi = 3.14;</code></pre>
+          </div>
+
+          <div class="mt-8">
+            phpの例)  
+            <pre><code class="lang-php">$year = 2024;
+$pi = 3.14;</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator3">比較演算子</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-0">
+            javascriptの例)
+            <pre><code class="lang-js">year == 2020
+year != 2020
+year > 2020
+year < 2020
+year >= 2020
+year <= 2020
+year === 2020
+year !== 2020</code></pre>
+          </div>
+
+          <div class="mt-8">
+            phpの例)
+            <pre><code class="lang-php">$year == 2020
+$year != 2020
+$year > 2020
+$year < 2020
+$year >= 2020
+$year <= 2020
+$year === 2020
+$year !== 2020</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator4">算術演算子</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-0">
+            javascriptの例)
+            <pre><code class="lang-js">year + 2020
+year - 2020
+2020 - 1
+2020 * 10
+2020 / 2
+2020 % 100</code></pre>
+          </div>
+
+          <div class="mt-8">
+            phpの例)
+            <pre><code class="lang-php">$year + 2020
+$year - 2020
+2020 - 1
+2020 * 10
+2020 / 2
+2020 % 100</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator5">文字列演算子</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-0">
+            javascriptの例)
+            <pre><code class="lang-js">'yamamoto' + 'taijiro'
+year + '年'</code></pre>
+          </div>
+
+          <div class="mt-8">
+            phpの例)
+            <pre><code class="lang-php">'yamamoto' . 'taijiro'
+$year . '年'</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator6">javascriptのサンプルプログラム</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mt-0">
+            sample1.html
+            <pre><code class="lang-js">&lt;h1>javascript&lt;/h1&gt;
+&lt;script&gt;
+  a=500;
+
+  b= a * 5;
+
+  document.write(b);
+&lt;/script&gt;</code></pre>
+          </div>
+            
+          <div class="mt-8">
+            sample2.html
+            <pre><code class="lang-js">&lt;h1>javascript&lt;/h1&gt;
+&lt;script&gt;
+  a="yamamoto";
+
+  b="taijiro";
+
+  c = a + b;
+
+  document.write(c);
+&lt;/script&gt;</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="operator7">phpのサンプルプログラム</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-0">
+            sample1.php
+            <pre><code class="lang-php">&lt;h1>php&lt;/h1&gt;
+&lt;?php
+  $a = 500;
+  $b = $a * 5;
+  echo $b;
+?&gt;</code></pre>
+          </div>
+            
+          <div class="mt-8">
+            sample2.php
+            <pre><code class="lang-php">&lt;h1>php&lt;/h1&gt;
+&lt;?php
+  $a = 'yamamoto';
+  $b = 'taijiro';
+  $c = $a . $b;
+  echo $c;
+?&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="array1">javascriptの配列と乱数</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mt-0">
+            sample3.html
+            <pre><code class="lang-js">&lt;h1>javascript&lt;/h1&gt;
+&lt;script&gt;
+  const hand = ['ぐー','ちょき','ぱー'];
+  document.write( hand[0] );
+&lt;/script&gt;</code></pre>
+          </div>
+
+          <dl>
+            <dt class="font-bold whitespace-nowrap">乱数を得る命令 Math.random()</dt>
+            <dd class="ms-4 mb-2">
+              <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random</a>
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">整数を得る命令 Math.floor()</dt>
+            <dd class="ms-4 mb-2">
+              <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/floor" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/floor</a>
+            </dd>
+          </dl>
+
+
+          <div class="mt-8">
+            sample4.html
+            <pre><code class="lang-js">&lt;h1>javascript&lt;/h1&gt;
+&lt;script&gt;
+  const hand = ['ぐー','ちょき','ぱー'];
+  const rand = Math.random() * 3;
+  const num = Math.floor(rand);
+
+  document.write( hand[num] );
+&lt;/script&gt;</code></pre>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="array2">phpの配列と乱数</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-0">
+            sample3.php
+            <pre><code class="lang-php">&lt;h1>php&lt;/h1&gt;
+&lt;?php
+  $hand = ['ぐー','ちょき','ぱー'];
+  echo $hand[0];
+  echo "&lt;br&gt;";
+?&gt;</code></pre>
+          </div>
+
+          <dl>
+            <dt class="font-bold whitespace-nowrap">乱数を得る命令 rand</dt>
+            <dd class="ms-4 mb-2">
+              <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.rand.php" target="_blank">https://www.php.net/manual/ja/function.rand.php</a>
+            </dd>
+          </dl>
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="array3">演習</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          配列とrand関数を使ってphpでじゃんけんプログラムをつくってみよう
+
+
+        </div>
+      </div>
+
+
+
+    </section>
+
+
+
+
+</body>
+
+</html>
