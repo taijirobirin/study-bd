@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button>
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdio">入出力</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdio1">入出力とは</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdioPHP1">phpの標準出力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdioPHP2">phpの標準入力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdioPHP3">phpのエラー出力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdiobash">標準入出力のいろいろ</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdioJS1">javascriptの標準出力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdioJS2">javascriptの標準入力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#stdioJS3">javascriptのエラー出力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#webio">Webの入出力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#webioPHP">phpの入出力</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#webioJS">javascriptの入出力</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#flow">プログラムの制御</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#flow1">if 文</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#flow2">for 文</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#flow3">while 文</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#submission">提出物について</a></li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">入出力、プログラムの制御</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第5回 5月21日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">入出力</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">プログラムの制御</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">提出物について</h3>
+        </div>
+      </div>
+    </div>
+
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="stdio">入出力</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdio1">入出力とは</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          プログラムの入出力
+          <pre class="mermaid">
+                  graph LR 
+                  A[キーボード] -->|標準入力| C
+                  B[ファイル] -->|標準入力| C
+                  C(プログラム) 
+                  C -->|標準出力| D[画面] 
+                  C -->|標準出力| E[ファイル]
+                  C -->|標準エラー出力| F[ファイル]
+          </pre>
+
+          <dl>
+            <dt class="font-bold whitespace-nowrap">標準入力</dt>
+            <dd class="ms-4 mb-2">
+              コンピュータ上で実行されているプログラムが、特に何も指定されていない場合に標準的に利用するデータ入力元<br>
+              ターミナルからのキーボード入力
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">標準出力</dt>
+            <dd class="ms-4 mb-2">
+              コンピュータ上で実行されているプログラムが、特に何も指定されていない場合に標準的に利用するデータ出力先<br>
+              ターミナルへの画面出力
+            </dd>
+
+            <dt class="font-bold whitespace-nowrap">標準エラー出力</dt>
+            <dd class="ms-4 mb-2">
+              コンピュータ上で実行されているプログラムが、特に何も指定されていない場合に標準的に利用するエラーの出力先<br>
+              ターミナルへの画面出力
+            </dd>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdioPHP1">phpの標準出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">phpの標準出力は、echoコマンド</h3>
+
+          <div class="mt-4">
+          work01.php
+          <pre><code class="lang-php">&lt;?php
+echo "こんにちは\n";
+</code></pre>
+          </div>
+
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              phpでは、標準出力の結果をブラウザに送っている
+            </figcaption>
+            <img src="./05/05-01.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              ターミナルからphpのプログラムを実行すると、ターミナルに出力される
+            </figcaption>
+            <img src="./05/05-02.png" />
+          </figure>
+
+          <div class="mt-4">
+            php をターミナルで実行するときは、php のあとにスペースをあけて、実行したいphpファイル名を指定する
+            <pre><code class="lang-bash">php work01.php</code></pre>
+          </div>
+  
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdioPHP2">phpの標準入力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">phpの標準入力は、STDIN</h3>
+
+          <div class="mt-4">
+            fgetsはファイルから内容を読み込むコマンド<br>
+            (STDINは、コマンドではなく、ファイル名)
+          </div>
+          <div class="mt-4">
+          work02.php
+          <pre><code class="lang-php">&lt;?php
+$name = fgets(STDIN);
+
+echo "こんにちは" . $name ."\n";</code></pre>
+          </div>
+
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              phpでは、標準入力から入力を得られないのでエラーになる
+            </figcaption>
+            <img src="./05/05-03.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              ターミナルからphpのプログラムを実行すると、入力を受け付ける状態になる。<br>
+              「やまもと」と入力してenterキーを押すと、入力した内容が $name 変数に入るので、それを使って標準出力へ文字を送る
+            </figcaption>
+            <img src="./05/05-04.png" />
+          </figure>
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdioPHP3">phpのエラー出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">phpのエラー出力は error_log</h3>
+
+          <div class="mt-4">
+          work03.php
+          <pre><code class="lang-php">&lt;?php
+echo "こんにちは\n";
+error_log("残念エラーです\n");</code></pre>
+          </div>
+
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              phpでは、標準出力の結果をブラウザに送っているが、エラー出力はブラウザには送らない<br>
+              (サーバ上のログファイルには記録される)
+            </figcaption>
+            <img src="./05/05-05.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              ターミナルには、標準出力もエラー出力も表示される
+            </figcaption>
+            <img src="./05/05-06.png" />
+          </figure>
+
+          <div class="mt-4">
+            php をターミナルで実行するときに &gt; をつけると、標準出力の出力先をファイルに変更できる
+            <pre><code class="lang-bash">php work03.php &gt; log.txt</code></pre>
+          </div>
+
+          <div class="mt-4">
+            php をターミナルで実行するときに 2&gt; をつけると、エラー 標準出力の出力先をファイルに変更できる
+            <pre><code class="lang-bash">php work03.php 2&gt; err.txt</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdiobash">標準入出力のいろいろ</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-4">
+            cat コマンドは、ファイルの内容を標準出力に送る<br>
+            &gt; をつけると、標準出力の出力先をファイルに変更できる<br>
+            cat コマンドは、ファイル名を指定しないと、標準入力から読み込む<br>
+            <br>
+            ターミナルで下記のように実行すると、標準入力から読み込んだ内容を name.txt ファイルに書き込む
+            <pre><code class="lang-bash">cat &gt; name.txt</code></pre>
+          </div>
+
+
+          <div class="mt-8">
+            cat コマンドは、ファイルの内容を標準出力に送る<br>
+            | をつけると、標準出力の出力先を、次のコマンドの標準入力につなげる(パイプ)<br>
+            <br>
+            ターミナルで下記のように実行すると、name.txtファイルから読み込んだ内容を phpの work02.phpプログラムの標準入力として渡す
+            <pre><code class="lang-bash">cat name.txt | php work02.php</code></pre>
+          </div>
+
+          <pre class="mermaid">
+            graph LR 
+            A[cat name.txt] -->|標準出力| B
+            B["| (パイプ)"] -->|標準入力| C
+            C[php work02.php]
+    </pre>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdioJS1">javascriptの標準出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">javascriptの標準出力は console.log</h3>
+
+          <div class="mt-4">
+          work04.html
+          <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    console.log("こんにちは");
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              javascriptの標準出力は画面には表示されない
+            </figcaption>
+            <img src="./05/05-07.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              右クリックで「検証」を開くと
+            </figcaption>
+            <img src="./05/05-08.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              consoleに出力されているのが確認できる
+            </figcaption>
+            <img src="./05/05-09.png" />
+          </figure>
+
+
+
+          <div class="mt-4">
+            work05.js
+            <pre><code class="lang-js">console.log("こんにちは");</code></pre>
+          </div>
+
+          <div class="mt-4">
+            javascript をターミナルで実行するときは、node のあとにスペースをあけて、実行したいjavascriptファイル名を指定する
+            <pre><code class="lang-bash">node work05.js</code></pre>
+          </div>
+  
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              ターミナルから javascriptのプログラムを実行すると、ターミナルに出力される
+            </figcaption>
+            <img src="./05/05-10.png" />
+          </figure>
+
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdioJS2">javascriptの標準入力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <p>
+            javascriptはブラウザ上で動作する目的で作られた言語なので、<b>標準入力は無い。</b><br>
+            ただサーバ上では標準入力をファイルとして扱えるので、ファイルから読み込むのと同じ仕組みで、標準入力の内容を取得できる
+          </p>
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="stdioJS3">javascriptのエラー出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">javascriptのエラー出力は console.warn</h3>
+
+          <div class="mt-4">
+          work06.html
+          <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    console.warn("エラーです");
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              consoleにエラーっぽく出力されているのが確認できる
+            </figcaption>
+            <img src="./05/05-11.png" />
+          </figure>
+
+
+
+          <div class="mt-4">
+            work07.js
+            <pre><code class="lang-js">console.warn("エラーです");</code></pre>
+          </div>
+
+          <div class="mt-4">
+            javascript をターミナルで実行するときは、node のあとにスペースをあけて、実行したいjavascriptファイル名を指定する
+            <pre><code class="lang-bash">node work07.js</code></pre>
+          </div>
+  
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              ターミナルから javascriptのプログラムを実行すると、ターミナルに出力される
+            </figcaption>
+            <img src="./05/05-12.png" />
+          </figure>
+
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="webio">Webの入出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <p>
+            プログラムは、ターミナルを前提とした入出力から、Webを利用する時代になった。<br>
+            Webでの入出力は、どうするべきなのか。<br>
+          </p>
+          <p class="mt-4">
+            Webからの入力を受け付けるために、&lt;form&gt;タグを使う
+          </p>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="webioPHP">phpの入出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-4">
+          work08.php
+          <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    &lt;input name="name"&gt;
+    &lt;input type="submit"&gt;
+  &lt;/form&gt;
+  &lt;?php echo $_REQUEST['name'] ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            &lt;form&gt;〜&lt;/form&gt;タグで、フォームを囲む<br>
+            &lt;input&gt;タグで入力欄を作成<br>
+            name属性で名前をつけておくと、phpからデータを拾いやすい<br>
+            type="submit"の&lt;input&gt;タグは送信ボタン<br>
+            phpからは、$_REQUEST['name'] で、name="name"のinputタグに入力された内容を取得できる<br>
+          </div>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              まだ、フォームの送信ボタンを押していないので $_REQUEST['name'] が存在しないのでメッセージが表示される<br>
+              （エラーでは無い）
+            </figcaption>
+            <img src="./05/05-13.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              送信ボタンを押すと、$_REQUEST['name'] に、入力した内容が入るので、それを出力
+            </figcaption>
+            <img src="./05/05-14.png" />
+          </figure>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="webioJS">javascriptの入出力</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-4">
+          work09.html
+          <pre><code class="lang-javascript">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    &lt;input name="name" id="name"&gt;
+    &lt;input type="submit" id="button"&gt;
+    &lt;div id="output"&gt;&lt;/div&gt;
+  &lt;/form&gt;
+  &lt;script&gt;
+    const name=document.getElementById("name");
+    const button=document.getElementById("button");
+    const output=document.getElementById("output");
+    button.onclick = function(){
+      output.innerHTML=name.value;
+      return false;
+    }
+  &lt;/script&gt;  
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            &lt;form&gt;〜&lt;/form&gt;タグで、フォームを囲む<br>
+            &lt;input&gt;タグで入力欄を作成<br>
+            id属性でIDをつけておくと、javascriptからデータを拾いやすい<br>
+            type="submit"の&lt;input&gt;タグは送信ボタン<br>
+            javascriptからは、document.getElementById("name") で、ID が name のノードを取得できる<br>
+            ノードの onclick イベントで、ボタンを押した時の動作を指定できる。<br>
+            ノードの .innnerHTML で、ノード内のhtmlを書き換えられる<br>
+            ボタンを押した時に return false を指定しないと、ページが読み込み直されてしまうので、実行結果を確認できなくなってしまう。
+          </div>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              送信ボタンを押すと、入力した内容が表示される
+            </figcaption>
+            <img src="./05/05-15.png" />
+          </figure>
+
+
+        </div>
+      </div>
+
+
+      <h1 class="text-3xl font-bold text-center my-32" id="flow">プログラムの制御</h1>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="flow1">if 文</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="m-2">
+            if 構文は、PHP を含む全ての言語において最も重要な 機能の一つです。 この構文は、命令の条件実行を可能にします。 PHP では、C 言語に似た次のような if 構文が使用されます。<br>
+            <pre><code class="lang-php">if (式)
+  文</code></pre>
+            式は論理値で評価されます。 式が true と評価された場合、 PHP は文を実行します。false と評価された場合は、これを無視します。(phpサイトより)<br>
+          </div>
+          <div class="m-2">
+            if...else 文は、指定された条件が真値ならば文を実行します。条件が偽値なら、オプションの else 節にあるもう一方の文を実行します。(javascriptサイトより)<br>
+          </div>
+          
+          <div class="mt-4">
+            (phpサンプル) $a が $b より大きい場合、aはbより大きい を表示します
+            <pre><code class="lang-php">&lt;?php
+if ($a &gt; $b) {
+  echo "aはbより大きい";
+}
+?&gt;</code></pre>
+          </div>
+  
+          <div class="mt-4">
+            (phpサンプル) $a が $b より大きい場合、aはbより大きい を表示し、それ以外の場合は aはbより大きくない を表示します
+            <pre><code class="lang-php">&lt;?php
+if ($a &gt; $b) {
+  echo "aはbより大きい";
+} else {
+  echo "aはbより大きくない";
+}
+?&gt;</code></pre>
+          </div>
+
+          <div class="mt-4">
+            (javascriptサンプル) $a が $b より大きい場合、aはbより大きい をconsoleに出力し、それ以外の場合は aはbより大きくない をconsoleに出力します
+            <pre><code class="lang-javascript">&lt;script&gt;
+if ($a &gt; $b) {
+  console.log("aはbより大きい");
+} else {
+  console.log("aはbより大きくない");
+}
+&lt;/script&gt;</code></pre>
+          </div>
+
+
+          <div class="mt-8">
+            php 参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/control-structures.if.php" target="_blank">https://www.php.net/manual/ja/control-structures.if.php</a>
+          </div>
+          <div class="mt-8">
+            javascript 参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/if...else</a>
+          </div>
+          
+
+          <div class="mt-12">
+            work08.php 改良版(if文を使って、nameが入力されていない時にメッセージが表示されないようにする)
+            <pre data-line="14-16"><code class="lang-php">&lt;!DOCTYPE html&gt;
+  &lt;html lang="ja"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Form&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form&gt;
+      &lt;input name="name"&gt;
+      &lt;input type="submit"&gt;
+    &lt;/form&gt;
+    &lt;?php
+    if( isset($_REQUEST['name']) ) {
+      echo $_REQUEST['name'];
+    }
+    ?&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+              isset() で、データがセットされているか判定できる<br>
+              $_REQUEST['name']にデータがセットされていれば、echoで出力する
+            </div>
+  
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="flow2">for 文</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="m-2">
+            for ループは、PHPで最も複雑なループです。 for は、Cのforループと同様に動作します。 forループの構文は、次のようになります。<br>
+            <pre><code class="lang-php">for (式1; 式2; 式3)
+  文</code></pre>
+            最初の式(式1)は、ループ開始時に無条件に 評価(実行)されます。<br>
+            各繰り返しの開始時に、式2が評価されます。 その式の値がtrueが場合、ループは継続され、括弧 内の文が実行されます。値がfalseの場合、ループの 実行は終了します。<br>
+            各繰り返しの後、式3が評価(実行)されます。(phpサイトより)<br>
+          </div>
+          <div class="m-2">
+            for 文は、括弧で囲みセミコロンで区切った 3 つの引数と、続いてループ内で実行される文（ふつうはブロック文）から成るループを構成します。(javascriptサイトより)<br>
+          </div>
+          
+          <div class="mt-4">
+            (phpサンプル) $i に最初に 1 を入れて、$i++ で、$i を 1づつ増やして、$i が 10以下の間繰り返す
+            <pre><code class="lang-php">&lt;?php
+for ($i = 1; $i <= 10; $i++) {
+  echo $i;
+}
+?&gt;</code></pre>
+          </div>
+  
+          <div class="mt-4">
+            (javascriptサンプル)
+            <pre><code class="lang-javascript">&lt;script&gt;
+let str = '';
+
+for (let i = 0; i < 9; i++) {
+  str = str + i;
+}
+&lt;/script&gt;</code></pre>
+          </div>
+
+
+          <div class="mt-8">
+            php 参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/control-structures.for.php" target="_blank">https://www.php.net/manual/ja/control-structures.for.php</a>
+          </div>
+          <div class="mt-8">
+            javascript 参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for</a>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="flow3">while 文</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="m-2">
+            whileループは、PHPで最も簡単なタイプのループです。 このループは、CのWHILEループと同様の動作をします。 whileループの基本形は次のようになります。<br>
+            <pre><code class="lang-php">while (式)
+  文</code></pre>
+            while文の意味は簡単です。 while文は、式の値がtrueである間、 入れ子の文を繰り返し実行することをPHPに指示します。 式の値は各反復処理の開始時にチェックされるので、ループ内の文の実行により この値が変わった場合でもループ実行は各ループを終るまで終わりません。 (PHPによるループ内の文の実行が1回分の反復に相当します) while式の値がはじめからfalseの 場合は、内部の文は一回も実行されません。(phpサイトより)
+          </div>
+          <div class="m-2">
+            while 文は、テスト条件が真と評価されている間、指定された文を実行するループを作成します。条件はその文を実行する前に評価されます。(javascriptサイトより)<br>
+          </div>
+          
+          <div class="mt-4">
+            (phpサンプル)
+            <pre><code class="lang-php">&lt;?php
+$i = 1;
+while ($i <= 10) {
+    echo $i++;  /* 出力される値は、足される前の
+                    $iの値です。
+                    (後置加算) */
+}
+?&gt;</code></pre>
+          </div>
+  
+          <div class="mt-4">
+            (javascriptサンプル)
+            <pre><code class="lang-javascript">&lt;script&gt;
+let n = 0;
+
+while (n < 3) {
+  n++;
+}
+
+console.log(n);
+&lt;/script&gt;</code></pre>
+          </div>
+
+
+          <div class="mt-8">
+            php 参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/control-structures.while.php" target="_blank">https://www.php.net/manual/ja/control-structures.while.php</a>
+          </div>
+          <div class="mt-8">
+            javascript 参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/while" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/while</a>
+          </div>
+          
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="submission">提出物について</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          配列とrand関数とformを使っておみくじプログラムをつくって提出してください。<br>
+
+
+          <div class="mt-4">
+            omikuji.php
+            <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;おみくじ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前:&lt;input name="name"&gt;&lt;br&gt;
+    年齢:&lt;input name="age"&gt;&lt;br&gt;
+    &lt;input type="submit" value="占う"&gt;
+  &lt;/form&gt;
+  &lt;?php
+  if( isset($_REQUEST['name']) &amp;&amp; isset($_REQUEST['age']) ) {
+    $unsei = ['大吉','中吉','小吉','吉','凶','大凶'];
+
+    $rand = rand(0,5);
+  
+    echo $_REQUEST['name'],"さん&lt;br&gt;";
+    echo $_REQUEST['age'],"歳のあなたの今日の運勢は&lt;br&gt;";
+    echo $unsei[$rand], "です&lt;br&gt;";
+  }
+  ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                動作サンプル
+              </figcaption>
+              <img src="./05/05-16.png" />
+            </figure>
+  
+
+
+            <div>
+              <h2 class="text-xl tracking-widest font-medium title-font mb-1">提出はMoodleから</h2>
+              <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+                作成したおみくじのURLと、加点項目やアピールポイントを提出してください。<br>
+                採点基準（20点満点）<br>
+                <br>
+                下記の条件を満たして10点<br>
+                <ul class="ms-8">
+                  <li class="list-disc">提出したURLからおみくじのページが見える</li>
+                  <li class="list-disc">正しいHTML形式になっている</li>
+                  <li class="list-disc">「占う」ボタンを押してランダムな結果が表示される</li>
+                  <li class="list-disc">占い結果に、inputタグで入力した名前と年齢が含まれている</li>
+                </ul>
+
+                <br>
+                加点項目(最大10点)<br>
+                <ul class="ms-8">
+                  <li class="list-disc">名前、年齢以外の入力欄を作成し、占い結果に反映させる +5点</li>
+                  <li class="list-disc">プログラムを変更して「大吉」より「吉」が出やすくなるようにする +5点</li>
+                  <li class="list-disc">if文を使って、20歳以下の場合は必ず「大吉」になるようにする +5点</li>
+                  <li class="list-disc">その他アピールポイントがあれば記載してください。内容を見て、加点する場合もあります。</li>
+                </ul>
+
+                <br>
+                減点項目<br>
+                <ul class="ms-8">
+                  <li class="list-disc">提出が1日遅れるごとに -1点</li>
+                </ul>
+              </div>
+
+              <div class="mt-4 border-4 border-gray-100 bg-gray-100 rounded px-5 py-5 ">
+                <div class="bg-gray-300 tracking-widest font-medium title-font mb-1 p-2">提出例</div>
+                https://bp2022.tama.net/~p222C2222/20240521/omikuji.php<br>
+                「大吉」より「吉」が出やすくした<br>
+                「おみくじ」の文字に背景色を設定した<br>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+
+
+    </section>
+
+
+
+
+</body>
+
+</html>
