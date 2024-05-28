@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button>
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#submission">課題の講評</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#submission1">「大吉」より「吉」が出やすくなるようにする</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#submission2">if文を使って、20歳以下の場合は必ず「大吉」になるようにする</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#submission3">すごかったひと</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#function">関数</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#function1">関数とは</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#function2">phpの関数</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#function3">php関数の引数と返り値</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#function4">関数をつかっておみくじを書き換える</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#jsfunction1">javascriptの関数</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#jsfunction2">javascript関数の引数と返り値</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#jsfunction3">javascript関数の宣言方法のいろいろ</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#jsfunction4">引数に変数を渡す</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#work">おみくじを javascript で、書き直してみる</a></li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">関数</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第6回 5月28日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">課題の講評</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">関数</h3>
+        </div>
+      </div>
+    </div>
+
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="submission">課題の講評</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="submission1">「大吉」より「吉」が出やすくなるようにする</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mb-4">
+            例1)
+            <pre class="mb-4"><code class="lang-php">$unsei = ['大吉','中吉','小吉','吉','吉','吉','吉','凶','大凶'];
+
+$rand = rand(0,8);</code></pre>
+          </div>
+
+          <div class="mb-4">
+            例2)
+            <pre class="mb-4"><code class="lang-php">$randomNumber = rand(1, 100); // 1から100のランダムな数を生成
+if ($randomNumber &lt;= 23) { // 23%の確率で「大吉」
+    return '大吉';
+} elseif ($randomNumber &lt;= 33) { // 10%の確率で「中吉」
+    return '中吉';
+} elseif ($randomNumber &lt;= 46) { // 13%の確率で「小吉」
+    return '小吉';
+} elseif ($randomNumber &lt;= 70) { // 24%の確率で「吉」
+    return '吉';
+} elseif ($randomNumber &lt;= 89) { // 19%の確率で「末吉」
+    return '末吉';
+} elseif ($randomNumber &lt;= 98) { // 9%の確率で「凶」
+    return '凶';
+} else { // 2%の確率で「大凶」
+    return '大凶';
+}</code></pre>
+          </div>
+
+          <div class="mb-4">
+            例3)
+            <pre class="mb-4"><code class="lang-php">$fortunes = array(
+  "大吉" =&gt; 7,
+  "中吉" =&gt; 20,
+  "吉" =&gt; 30,
+  "小吉" =&gt; 25,
+  "末吉" =&gt; 10,
+  "凶" =&gt; 7,
+  "大凶"=&gt; 1
+);
+
+$rand_num = mt_rand(1,100);
+$sum = 0;
+$result = "";
+
+foreach ($fortunes as $fortune =&gt; $probability) {
+  $sum += $probability;
+  if($rand_num &lt;= $sum) {
+    $result = $fortune;
+    break;
+  }
+}</code></pre>
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="submission2">if文を使って、20歳以下の場合は必ず「大吉」になるようにする</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mb-4">
+            例1)
+            <pre class="mb-4"><code class="lang-php">if( isset($_REQUEST['name']) &amp;&amp; isset($_REQUEST['age']))) {
+  $unsei = ['大吉','中吉','小吉','吉','凶','大凶'];
+
+  $rand = rand(0,5);
+
+  echo $_REQUEST['name'],"さん&lt;br&gt;";
+  echo $_REQUEST['age'],"歳のあなたの運勢は&lt;br&gt;";
+    
+  if ($_REQUEST['age']&lt;=20) {
+      echo "大吉です";
+  }else {
+      echo $unsei[$rand], "です&lt;br&gt;";
+  }
+}</code></pre>
+          </div>
+
+
+          <div class="mb-4">
+            下記のように 20歳以下の判定が外に出ていると、入力がない時にNoticeと「大吉です」が表示されてしまう。
+            <pre class="mb-4"><code class="lang-php">if( isset($_REQUEST['name']) &amp;&amp; isset($_REQUEST['age']))) {
+  $unsei = ['大吉','中吉','小吉','吉','凶','大凶'];
+
+  $rand = rand(0,5);
+
+  echo $_REQUEST['name'],"さん&lt;br&gt;";
+  echo $_REQUEST['age'],"歳のあなたの運勢は&lt;br&gt;";
+    
+}
+if ($_REQUEST['age']&lt;=20) {
+    echo "大吉です";
+}else {
+    echo $unsei[$rand], "です&lt;br&gt;";
+}
+</code></pre>
+          </div>
+
+
+          <div class="mb-4">
+            20歳以下の判定は、下記のようにすると、20.5歳とかも大吉になってしまうので、 &lt;=20 とするのがよい。
+            <pre class="mb-4"><code class="lang-php">if ($_REQUEST['age']&lt;21) {
+    echo "大吉です";
+}else {
+    echo $unsei[$rand], "です&lt;br&gt;";
+}
+</code></pre>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="submission3">すごかったひと</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://bp2022.tama.net/~p222C0238/20240521/omikuji.html">https://bp2022.tama.net/~p222C0238/20240521/omikuji.html</a>
+        </div>
+
+      </div>
+
+      <h1 class="text-3xl font-bold text-center my-32" id="function">関数 (function)</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="function1">関数とは</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          関数とは、処理のかたまり、ひとまとまりのプログラムのことです。<br>
+関数は再利用でき、名前を付けて一度書いてしまえば次に使うときは名前に基づいて呼び出すだけなので、短い記述で繰り返し同じものを使うことができます。
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="function2">phpの関数</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          function 名前(){} のような書式で記述し、{} の中に処理を入れます。<br>
+          PHPでは通常、行の終わりにセミコロンを付けますが、関数の {} の後ろにセミコロンは不要です。
+
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/functions.user-defined.php" target="_blank">https://www.php.net/manual/ja/functions.user-defined.php</a>
+          </div>
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://qiita.com/chimayu/items/d4bf6eedbe37d392aa25" target="_blank">https://qiita.com/chimayu/items/d4bf6eedbe37d392aa25</a>
+          </div>
+
+          <div class="mt-4">
+          関数の定義
+          <pre><code class="lang-php">function functionName(){
+    // 何らかの
+    // 処理を
+    // 書く
+}</code></pre>
+          </div>
+
+          <div class="mt-4">
+            関数の呼び出し
+            <pre><code class="lang-php">functionName();  // この1行だけで↑の関数（処理のまとまり）を実行できる
+</code></pre>
+            </div>
+  
+
+
+            <div class="mt-4">
+              work01.php
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;?php
+    function hello() {
+      echo "hello1!&lt;br&gt;";
+      echo "hello2!&lt;br&gt;";
+      echo "hello3!&lt;br&gt;";
+      echo "hello4!&lt;br&gt;";
+    }
+    hello();
+    hello();
+  ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+  
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              work01.phpの実行例
+            </figcaption>
+            <img src="./06/06-01.png" />
+          </figure>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="function3">php関数の引数と返り値</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          関数において入力を受ける変数を引数、関数からの出力を返り値といいます。<br>
+          引数は丸カッコの中に書く事で、その下の {} の中で使用できるようになり、丸カッコに引数を書かないでその値を使用しようとするとエラーになります。<br>
+          返り値は俗に、戻り値、リターンなどと呼ばれることもあります。 return $val のように指定し、関数の作りによっては返り値がないものもあります。<br>
+
+          <div class="mt-4">
+          <pre><code class="lang-php">function functionName($num){ // ←この丸カッコの中の部分が引数
+    // 何らかの処理
+    $val = $num + 1; // ←ここで使用している$numが、丸カッコで受けたパラメータ
+    return $val; // ←この部分が返り値
+}</code></pre>
+          </div>
+
+
+          <div class="mt-4">
+            work02.php (引数は複数指定できる)
+            <pre><code class="lang-php">function tasu($a,$b) {
+  return $a + $b;
+}
+
+echo tasu(5,7);</code></pre>
+          </div>
+  
+
+          <div class="mt-4">
+            work03.php (引数には初期値を指定できる)
+            <pre><code class="lang-php">function tasu($a,$b=5) {
+  return $a + $b;
+}
+
+echo tasu(5);</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="function4">関数をつかっておみくじを書き換える</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl">phpのエラー出力は error_log</h3>
+
+          <div class="mt-4">
+          omikuji2.php
+          <pre data-line="15-19,25"><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;おみくじ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前:&lt;input name="name"&gt;&lt;br&gt;
+    年齢:&lt;input name="age"&gt;&lt;br&gt;
+    &lt;input type="submit" value="占う"&gt;
+  &lt;/form&gt;
+  &lt;?php
+  function uranau() {
+    $unsei = ['大吉','中吉','小吉','吉','凶','大凶'];
+    $rand = rand(0,5);
+    return $unsei[$rand];
+  }
+
+
+  if( isset($_REQUEST['name']) &amp;&amp; isset($_REQUEST['age'])  &amp;&amp; $_REQUEST['name'] != ''  &amp;&amp; $_REQUEST['age'] != '' ) {
+    echo $_REQUEST['name'],"さん&lt;br&gt;";
+    echo $_REQUEST['age'],"歳のあなたの今日の運勢は&lt;br&gt;";
+    echo uranau(), "です&lt;br&gt;";
+  }
+  ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">15-19行目</dt>
+            <dd>uranau関数を宣言</dd>
+          </dl>
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">25行目</dt>
+            <dd>uranau()関数を使って占い結果を表示</dd>
+          </dl>
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="jsfunction1">javascriptの関数</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          function 名前(){} のような書式で記述し、{} の中に処理を入れます。<br>
+          javascriptでは通常、行の終わりにセミコロンを付けますが、関数の {} の後ろにセミコロンは不要です。
+
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Functions" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Functions</a>
+          </div>
+
+          <div class="mt-4">
+          関数の定義
+          <pre><code class="lang-js">function functionName(){
+    // 何らかの
+    // 処理を
+    // 書く
+}</code></pre>
+          </div>
+
+          <div class="mt-4">
+            関数の呼び出し
+            <pre><code class="lang-js">functionName();  // この1行だけで↑の関数（処理のまとまり）を実行できる
+</code></pre>
+            </div>
+  
+
+
+            <div class="mt-4">
+              work04.html
+              <pre><code class="lang-js">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    function hello() {
+      document.write("hello1!&lt;br&gt;");
+      document.write("hello2!&lt;br&gt;");
+      document.write("hello3!&lt;br&gt;");
+      document.write("hello4!&lt;br&gt;");
+    }
+    hello();
+    hello();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+  
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+              work04.htmlの実行例
+            </figcaption>
+            <img src="./06/06-01.png" />
+          </figure>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="jsfunction2">javascript関数の引数と返り値</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          関数において入力を受ける変数を引数、関数からの出力を返り値といいます。<br>
+          引数は丸カッコの中に書く事で、その下の {} の中で使用できるようになり、丸カッコに引数を書かないでその値を使用しようとするとエラーになります。<br>
+          返り値は俗に、戻り値、リターンなどと呼ばれることもあります。 return val のように指定し、関数の作りによっては返り値がないものもあります。<br>
+
+          <div class="mt-4">
+          <pre><code class="lang-js">function functionName(num){ // ←この丸カッコの中の部分が引数
+    // 何らかの処理
+    val = num + 1; // ←ここで使用している$numが、丸カッコで受けたパラメータ
+    return val; // ←この部分が返り値
+}</code></pre>
+          </div>
+
+
+          <div class="mt-4">
+            work05.html (引数は複数指定できる)
+            <pre><code class="lang-js">function tasu(a,b) {
+  return a + b;
+}
+
+document.write( tasu(5,7) );</code></pre>
+          </div>
+  
+
+          <div class="mt-4">
+            work06.html (引数には初期値を指定できる)
+            <pre><code class="lang-js">function tasu(a,b=5) {
+  return a + b;
+}
+
+document.write( tasu(5) );</code></pre>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="jsfunction3">javascript関数の宣言方法のいろいろ</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mt-4">
+          変数に関数を入れられる
+          <pre><code class="lang-js">const functionName = function(num){ // ←この丸カッコの中の部分が引数
+    // 何らかの処理
+    val = num + 1; // ←ここで使用しているnumが、丸カッコで受けたパラメータ
+    return val; // ←この部分が返り値
+}</code></pre>
+          </div>
+
+
+          <div class="mt-4">
+            functionと書く代わりに => を使った書き方(アロー関数)
+            <pre><code class="lang-js">const functionName = (num) => { // ←この丸カッコの中の部分が引数
+      // 何らかの処理
+      val = num + 1; // ←ここで使用しているnumが、丸カッコで受けたパラメータ
+      return val; // ←この部分が返り値
+}</code></pre>
+            </div>
+  
+
+          <div class="mt-4">
+            work07.html (アロー関数を使った書き方)
+            <pre><code class="lang-js">const tasu = (a,b=50) =&gt; {
+  return a + b;
+}
+
+document.write( tasu(5,7) );</code></pre>
+          </div>
+  
+        </div>
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="jsfunction4">引数に変数を渡す</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mt-4">
+          引数に変数を入れられる
+          <pre><code class="lang-js">const tasu = (a,b=50) =&gt; {
+  return a + b;
+}
+
+let a = 20
+document.write( tasu(a) + '&lt;br&gt;');
+</code></pre>
+          </div>
+
+
+          <div class="mt-4">
+            関数の中で変数を書き換えるとどうなるか
+            <pre><code class="lang-php">const tasu = (a,b=50) =&gt; {
+  a = a + b;
+  return a;
+}
+
+let a = 20
+document.write( tasu(a) + '&lt;br&gt;');
+
+document.write( a + '&lt;br&gt;' );</code></pre>
+            </div>
+  
+ 
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="work">おみくじを javascript で、書き直してみる</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mt-4">
+          omikuji.html
+          <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;おみくじ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前:&lt;input name="name" id="name"&gt;&lt;br&gt;
+    年齢:&lt;input name="age" id="age"&gt;&lt;br&gt;
+    &lt;input type="submit" value="占う" id="button"&gt;
+    &lt;div id="output"&gt;&lt;/div&gt;
+  &lt;/form&gt;
+  &lt;script&gt;
+    const name=document.getElementById("name");
+    const age=document.getElementById("age");
+    const button=document.getElementById("button");
+    const output=document.getElementById("output");
+
+    function uranau() {
+      unsei = ['大吉','中吉','小吉','吉','凶','大凶'];
+      rand = Math.floor( Math.random() * 6 );
+      return unsei[rand];
+    }
+
+    function makeMessage(name,age,unsei) {
+      let msg = name + "さん&lt;br&gt;";
+      msg += age + "歳のあなたの今日の運勢は&lt;br&gt;";
+      msg += unsei + "です&lt;br&gt;";
+
+      return msg;
+    }
+
+    button.onclick = function(){
+      output.innerHTML=makeMessage(name.value,age.value,uranau());
+      return false;
+    }
+
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+            </div>
+  
+ 
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+</body>
+
+</html>
