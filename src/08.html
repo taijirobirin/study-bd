@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button>
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js">おみくじ</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js1">おみくじjavascript版</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js2">プログラムを別ファイルに分ける</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js3">データを別ファイルに分ける</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js4">JSONとは</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js5">fetch関数</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#js6">完成版</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#api">お天気API</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#api1">Open-Meteo</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#api2">JSONデータをVSCodeでみやすく</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#design">画面のデザインを考える</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#design1">tableタグ</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#design2">画面の見た目を指定するスタイルシート</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#design3">APIのパラメータを考える</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">外部との通信</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第8回 6月11日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded mb-4">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">おみくじのデータ部分を別ファイルにして、読み込んで使う</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">お天気API Open-Metro を使ってみる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">画面のデザインを考える</h3>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">自分のURL
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <div class="mb-2">自分の public_html の中の 20240611 フォルダの index.html を表示する場合</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-8 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240611</span>/index.html</h3>
+          <div class="mb-2">index.html は省略できるので、下記URLでもOK</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240611</span>/</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="js">おみくじ</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="js1">おみくじ javascript版</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <div class="mb-4">
+            <span class="font-bold">index.html</span>
+            <pre class="mb-4"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;おみくじ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="kekka"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+function Kuji(data) {
+  this.data=data;
+
+  this.pick = function(){
+    let ret = '';
+    let total = 0;
+    for(let i=0;i&lt;data.length;i++) {
+      total += data[i].ritsu;
+    }
+
+    const rand = Math.random() * total;
+    total=0;
+    for(let i=0;i&lt;data.length;i++) {
+      ret = data[i].name;
+      total += data[i].ritsu;
+      if(total &gt; rand) {
+        break;
+      }
+    }
+
+    return ret;
+  }
+}
+const kuji = new Kuji([
+  {name:'大吉',ritsu:5},
+  {name:'中吉',ritsu:10},
+  {name:'小吉',ritsu:30},
+  {name:'吉',ritsu:50},
+  {name:'凶',ritsu:20},
+  {name:'大凶',ritsu:5},
+]);
+  
+document.getElementById("kekka").innerHTML = kuji.pick();
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+               index.htmlの実行例
+            </figcaption>
+            <img src="./08/08-01.png" />
+          </figure>
+
+        </div>
+
+      </div>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="js2">プログラムを別ファイルに分ける</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mb-4">
+            <span class="font-bold">index.html</span>
+            <pre class="mb-4" data-line="12"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;おみくじ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="kekka"&gt;&lt;/div&gt;
+
+&lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              12行目で、プログラムの書かれた script.js を読み込読み込む
+          </div>
+
+
+          <div class="mb-4">
+            <span class="font-bold">script.js</span>
+            <pre class="mb-4"><code class="lang-js">function Kuji(data) {
+  this.data=data;
+
+  this.pick = function(){
+    let ret = '';
+    let total = 0;
+    for(let i=0;i&lt;data.length;i++) {
+      total += data[i].ritsu;
+    }
+
+    const rand = Math.random() * total;
+    total=0;
+    for(let i=0;i&lt;data.length;i++) {
+      ret = data[i].name;
+      total += data[i].ritsu;
+      if(total &gt; rand) {
+        break;
+      }
+    }
+
+    return ret;
+  }
+}
+const kuji = new Kuji(
+  [
+    {name:'大吉',ritsu:5},
+    {name:'中吉',ritsu:10},
+    {name:'小吉',ritsu:30},
+    {name:'吉',ritsu:50},
+    {name:'凶',ritsu:20},
+    {name:'大凶',ritsu:5},
+  ]
+);
+  
+document.getElementById("kekka").innerHTML = kuji.pick();
+</code></pre>
+          </div>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">VS Code のスクリーンショット</span><br>
+               public_html フォルダの中に 20240611 フォルダを作って、その中に index.html と script.js を作成
+            </figcaption>
+            <img src="./08/08-02.png" />
+          </figure>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="js3">データを別ファイルに分ける</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mb-4">
+            <span class="font-bold">script.js</span>
+            <pre class="mb-4" data-line="25-32"><code class="lang-js">function Kuji(data) {
+  this.data=data;
+
+  this.pick = function(){
+    let ret = '';
+    let total = 0;
+    for(let i=0;i&lt;data.length;i++) {
+      total += data[i].ritsu;
+    }
+
+    const rand = Math.random() * total;
+    total=0;
+    for(let i=0;i&lt;data.length;i++) {
+      ret = data[i].name;
+      total += data[i].ritsu;
+      if(total &gt; rand) {
+        break;
+      }
+    }
+
+    return ret;
+  }
+}
+const kuji = new Kuji(
+  [
+    {name:'大吉',ritsu:5},
+    {name:'中吉',ritsu:10},
+    {name:'小吉',ritsu:30},
+    {name:'吉',ritsu:50},
+    {name:'凶',ritsu:20},
+    {name:'大凶',ritsu:5},
+  ]
+);
+  
+document.getElementById("kekka").innerHTML = kuji.pick();
+</code></pre>
+          25〜32行目がデータの部分なので、ここも別ファイルに分けたい
+          </div>
+
+
+          <div class="mb-4">
+            <span class="font-bold">data.json</span>
+            <pre class="mb-4" data-line="25-32"><code class="lang-json">[
+  {"name":"大吉","ritsu":5},
+  {"name":"中吉","ritsu":10},
+  {"name":"小吉","ritsu":30},
+  {"name":"吉","ritsu":50},
+  {"name":"凶","ritsu":20},
+  {"name":"大凶","ritsu":5}
+]</code></pre>
+          javascriptのobjectと表記は似ているが、メンバー名を「"」(ダブルクォーテーション) で囲む必要がある。<br>
+          文字列も「"」(ダブルクォーテーション) で囲む必要がある。「'」(シングルクォーテーション) は使えない
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="js4">JSONとは</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl font-bold">JSON</h3>
+
+          <div>
+            JavaScript Object Notation（JSON、ジェイソン）はデータ記述言語の1つである。<br>
+            軽量なテキストベースのデータ交換用フォーマットでありプログラミング言語を問わず利用できる。<br>
+            名称と構文はJavaScriptにおけるオブジェクトの表記法に由来する。<br>
+            (wikipediaより)
+
+
+            <div class="py-5">
+              <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Glossary/JSON">https://developer.mozilla.org/ja/docs/Glossary/JSON</a>
+            </div>
+
+            <div class="py-5">
+              <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://ja.wikipedia.org/wiki/JavaScript_Object_Notation">https://ja.wikipedia.org/wiki/JavaScript_Object_Notation</a>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="js5">fetch関数</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <h3 class="text-xl font-bold">fetch関数</h3>
+
+          <div>
+            fetch() はグローバルのメソッドで、ネットワークからリソースを取得するプロセスを開始し、レスポンスが利用できるようになったら履行されるプロミスを返します。
+
+
+            <div class="py-5">
+              <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/API/fetch">https://developer.mozilla.org/ja/docs/Web/API/fetch</a>
+            </div>
+
+
+          </div>
+
+
+          <div class="mb-4">
+            <span class="font-bold">script.js</span>
+            <pre class="mb-4" data-line="1-3,40"><code class="lang-js">fetch('data.json')
+.then(response =&gt; response.json())
+.then(data =&gt; console.log(data));
+
+function Kuji(data) {
+  this.data=data;
+
+  this.pick = function(){
+    let ret = '';
+    let total = 0;
+    for(let i=0;i&lt;data.length;i++) {
+      total += data[i].ritsu;
+    }
+
+    const rand = Math.random() * total;
+    total=0;
+    for(let i=0;i&lt;data.length;i++) {
+      ret = data[i].name;
+      total += data[i].ritsu;
+      if(total &gt; rand) {
+        break;
+      }
+    }
+
+    return ret;
+  }
+}
+const kuji = new Kuji(
+  [
+    {name:'大吉',ritsu:5},
+    {name:'中吉',ritsu:10},
+    {name:'小吉',ritsu:30},
+    {name:'吉',ritsu:50},
+    {name:'凶',ritsu:20},
+    {name:'大凶',ritsu:5},
+  ]
+);
+  
+document.getElementById("kekka").innerHTML = kuji.pick();
+console.log("kuji");
+</code></pre>
+          1〜3行目で、data.jsonを読み込んで、console.log に出力<br>
+          40行目でも console.log に出力
+          </div>
+
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">VS Code のスクリーンショット</span>
+            </figcaption>
+            <img src="./08/08-03.png" />
+          </figure>
+
+          <figure class="mt-4 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">実行結果</span><br>
+               40行目の "kuji" の文字が先に出力されている
+            </figcaption>
+            <img src="./08/08-04.png" />
+          </figure>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="js6">完成版</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mb-4">
+            <span class="font-bold">script.js</span>
+            <pre class="mb-4" data-line="3,5-8"><code class="lang-js">fetch('data.json')
+.then(response =&gt; response.json())
+.then(data =&gt; draw(data));
+
+function draw(data) {
+  const kuji = new Kuji(data);
+  document.getElementById("kekka").innerHTML = kuji.pick();
+}
+
+function Kuji(data) {
+  this.data=data;
+
+  this.pick = function(){
+    let ret = '';
+    let total = 0;
+    for(let i=0;i&lt;data.length;i++) {
+      total += data[i].ritsu;
+    }
+
+    const rand = Math.random() * total;
+    total=0;
+    for(let i=0;i&lt;data.length;i++) {
+      ret = data[i].name;
+      total += data[i].ritsu;
+      if(total &gt; rand) {
+        break;
+      }
+    }
+
+    return ret;
+  }
+}
+</code></pre>
+          3行目で data.json を読み込み終わった後に、draw関数を実行<br>
+          5〜8行目で、draw関数を記述。
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <h1 class="text-3xl font-bold text-center my-32" id="api">お天気API</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="api1">Open-Meteo</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+          <h3 class="text-xl font-bold">APIキーもログインも不要！<br>
+            完全無料で使える天気予報API「Open-Meteo」を使ってみた！
+            </h3>
+
+          <div class="mt-8">
+            参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://paiza.hatenablog.com/entry/2021/11/04/130000" target="_blank">https://paiza.hatenablog.com/entry/2021/11/04/130000</a>
+          </div>
+
+          <div>
+            このサイトを参考に、天気予報APIを使って、JSONデータを取得して、画面に表示させたい。
+          </div>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">Opem-Metro のサイトにアクセスしてみる</span><br>
+               <a class="text-blue-600 break-words hover:underline" href="https://open-meteo.com" target="_blank">https://open-meteo.com</a><br>
+               Documentationをクリック
+              </figcaption>
+            <img src="./08/08-05.png" />
+          </figure>
+          
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">GoogleMapで緯度・軽度を取得してメモしておく</span>
+            </figcaption>
+            <img src="./08/08-06.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">緯度・軽度を入力。Timezoneは、Tokyoを選ぶ</span>
+            </figcaption>
+            <img src="./08/08-07.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">そのまま下の方へスクロールして、API URL の 「Open in new tab」 をクリック</span>
+            </figcaption>
+            <img src="./08/08-08.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">別タブで JSONデータを取得できる。<br>全部選んで内容をコピーしておく</span>
+            </figcaption>
+            <img src="./08/08-09.png" />
+          </figure>
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="api2">JSONデータをVSCodeでみやすく</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+    
+          
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">VS Code で tenki.json ファイルを作成して、コピーしておいたJSONデータを貼り付ける</span>
+            </figcaption>
+            <img src="./08/08-10.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">そのままだと人間には読みにくいので、右クリックから「ドキュメントのフォーマット」を実行</span>
+            </figcaption>
+            <img src="./08/08-11.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">読みやすくなった</span>
+            </figcaption>
+            <img src="./08/08-12.png" />
+          </figure>
+
+
+        </div>
+      </div>
+
+
+
+
+      <h1 class="text-3xl font-bold text-center my-32" id="design">画面のデザインを考える</h1>
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="design1">tableタグ</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">こんな画面にしたい</span>
+            </figcaption>
+            <img src="./08/08-13.png" />
+          </figure>
+
+
+          <div class="mt-4">
+          tenki.html
+          <pre data-line="12-42"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th&gt;6月11日&lt;/th&gt;
+        &lt;th&gt;6月12日&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td&gt;☔️&lt;/td&gt;
+        &lt;td&gt;🌤️&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td&gt;20°C&lt;/td&gt;
+        &lt;td&gt;22°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td&gt;16°C&lt;/td&gt;
+        &lt;td&gt;18°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td&gt;10mm&lt;/td&gt;
+        &lt;td&gt;0mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <dl class="flex">
+            <dt class="mr-2 font-bold whitespace-nowrap">12-42行目</dt>
+            <dd>tableタグで表を作成</dd>
+          </dl>
+
+          <div class="mt-8">
+            tableタグ： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/table" target="_blank">https://developer.mozilla.org/ja/docs/Web/HTML/Element/table</a>
+
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;table&gt;〜&lt;/table&gt;</dt>
+              <dd>表全体を囲むタグ</dd>
+            </dl>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;tr&gt;〜&lt;/tr&gt;</dt>
+              <dd>各行を囲むタグ</dd>
+            </dl>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;td&gt;〜&lt;/td&gt;</dt>
+              <dd>各行の中のマス(セル)を囲むタグ</dd>
+            </dl>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;th&gt;〜&lt;/th&gt;</dt>
+              <dd>各行の中の見出しのマス(セル)を囲むタグ</dd>
+            </dl>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;thead&gt;〜&lt;/thead&gt;</dt>
+              <dd>tableの中のヘッダー部分</dd>
+            </dl>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;tbody&gt;〜&lt;/tbody&gt;</dt>
+              <dd>tableの中の本体(body)部分</dd>
+            </dl>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">&lt;tfoot&gt;〜&lt;/tfoot&gt;</dt>
+              <dd>tableの中のフッター部分</dd>
+            </dl>
+
+          </div>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">tableタグの構造</span>
+            </figcaption>
+            <img src="./08/08-14.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">theadの中</span>
+            </figcaption>
+            <img src="./08/08-15.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">tbodyの中</span>
+            </figcaption>
+            <img src="./08/08-16.png" />
+          </figure>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <figcaption>
+               <span class="font-bold">スタイルを何も設定していないので味気ない見た目になってしまう</span>
+            </figcaption>
+            <img src="./08/08-17.png" />
+          </figure>
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="design2">画面の見た目を指定するスタイルシート</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          <div class="mt-4">
+            tenki.html
+            <pre data-line="7"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th&gt;6月11日&lt;/th&gt;
+        &lt;th&gt;6月12日&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td&gt;☔️&lt;/td&gt;
+        &lt;td&gt;🌤️&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td&gt;20°C&lt;/td&gt;
+        &lt;td&gt;22°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td&gt;16°C&lt;/td&gt;
+        &lt;td&gt;18°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td&gt;10mm&lt;/td&gt;
+        &lt;td&gt;0mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <dl class="flex">
+              <dt class="mr-2 font-bold whitespace-nowrap">7行目</dt>
+              <dd>スタイルシートのファイル style.css を読み込む</dd>
+            </dl>
+          </div>
+  
+
+          <div class="mt-4">
+            style.css
+            <pre><code class="lang-css">body {
+  text-align: center;
+  font-size:5vw;
+  min-height:100vh;
+  margin:0;
+}
+table {
+  border-collapse: collapse;
+  margin:0 auto;
+}
+table,tr,td,th {
+  border:1px solid #aaa;
+  padding:1vw 5vw;
+  text-align: center;
+}
+</code></pre>
+            body,tableのスタイルを指定して、見た目を良くする
+          </div>
+
+          <figure class="mt-8 inline-block max-w-full">
+            <img src="./08/08-13.png" />
+          </figure>
+
+
+        </div>
+      </div>
+
+
+      <div class="container p-5 mx-auto">
+        <h2 class="text-2xl font-bold" id="design3">APIのパラメータを考える</h2>
+        <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+
+          画面を生成するのに必要なデータが得られるようなパラメーターを考える
+
+          <figure class="mt-8 inline-block max-w-full">
+            <img src="./08/08-18.png" />
+          </figure>
+
+
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+</body>
+
+</html>
