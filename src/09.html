@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button>
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#last">前回</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#data">Open-Meteoで取得するデータを決める</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert">プログラムを書いてデータをHTMLに差し込む</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert1">APIからデータを取得できるか確認</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert2">プログラムからデータを差し込み易いように、各項目に idを設定</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert3">日付を差し込んでみる</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert4">関数を使ってシンプルに</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert5">天気、最高気温、最低気温、降水量も差し込む</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view">天気の情報をわかりやすく表示</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view1">データ取得前の表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view2">日付の書式を「○月○日」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view3">天気の表示を絵文字で</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock">時計が毎秒更新されるようにする</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock1">日時を表示する場所にidをセット 初期表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock2">現在の日時を表示する関数を作って、1秒に1回呼び出す</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock3">日付の表示を整える</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock4">10より小さい数字の時に頭に0をつける</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">外部APIより情報を取得して天気予報を表示する</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第9回 6月18日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded mb-4">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Open-Meteoで取得するデータを決める</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">プログラムを書いてデータをHTMLに差し込む</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">天気の情報をわかりやすく表示</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">時計が毎秒更新されるようにする</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">天気予報データを1時間に1回取得するようにする</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">天気に応じてスタイルを変更する</h3>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">自分のURL
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <div class="mb-2">自分の public_html の中の 20240618 フォルダの index.html を表示する場合</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-8 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/index.html</h3>
+          <div class="mb-2">index.html は省略できるので、下記URLでもOK</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="last">前回</h1>
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="last1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-last1" aria-expanded="false" aria-controls="accordion-last1">
+            <span>画面のイメージを考えた</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-last1" class="hidden" aria-labelledby="last1">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="container p-5 mx-auto">
+              <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+      
+                <div class="mt-4">
+                  tenki.html
+                  <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+      &lt;html lang="ja"&gt;
+      &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;天気予報&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+      
+        &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+      
+        &lt;table&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;&lt;/th&gt;
+              &lt;th&gt;6月11日&lt;/th&gt;
+              &lt;th&gt;6月12日&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;th&gt;天気&lt;/th&gt;
+              &lt;td&gt;☔️&lt;/td&gt;
+              &lt;td&gt;🌤️&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;th&gt;最高気温&lt;/th&gt;
+              &lt;td&gt;20°C&lt;/td&gt;
+              &lt;td&gt;22°C&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;th&gt;最低気温&lt;/th&gt;
+              &lt;td&gt;16°C&lt;/td&gt;
+              &lt;td&gt;18°C&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;th&gt;降水量&lt;/th&gt;
+              &lt;td&gt;10mm&lt;/td&gt;
+              &lt;td&gt;0mm&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      
+      &lt;/body&gt;
+      &lt;/html&gt;</code></pre>
+                </div>
+        
+      
+                <div class="mt-4">
+                  style.css
+                  <pre><code class="lang-css">body {
+        text-align: center;
+        font-size:5vw;
+        min-height:100vh;
+        margin:0;
+      }
+      table {
+        border-collapse: collapse;
+        margin:0 auto;
+      }
+      table,tr,td,th {
+        border:1px solid #aaa;
+        padding:1vw 5vw;
+        text-align: center;
+      }
+      </code></pre>
+                  body,tableのスタイルを指定して、見た目を良くする
+                </div>
+      
+                <figure class="mt-8 inline-block max-w-full">
+                  <img src="./08/08-13.png" />
+                </figure>
+      
+      
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="data">Open-Meteoで取得するデータを決める</h1>
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="data1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-data1" aria-expanded="false" aria-controls="accordion-data1">
+            <span>Open-Meteoで取得するデータを決める</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-data1" class="hidden" aria-labelledby="data1">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+          
+
+            <div class="py-5">
+              Open-Meteo を開いて、取得するデータを決める<br>
+              <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://open-meteo.com/">https://open-meteo.com/</a>
+            </div>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                緯度・経度・タイムゾーンを指定
+              </figcaption>
+              <img src="./09/09-01.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                日毎の天気コード、最高気温、最低気温、降水量合計にチェックを入れる
+              </figcaption>
+              <img src="./09/09-02.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                「Open in nre tab」をクリック
+              </figcaption>
+              <img src="./09/09-03.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                開いたtabの中のJSONデータをコピー
+              </figcaption>
+              <img src="./09/09-04.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                VSCodeで、tenki.jsonとして保存
+              </figcaption>
+              <img src="./09/09-05.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                右クリックで「ドキュメントのフォーマット」を選択
+              </figcaption>
+              <img src="./09/09-06.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                整形されてみやすくなる
+              </figcaption>
+              <img src="./09/09-07.png" />
+            </figure>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="insert">プログラムを書いてデータをHTMLに差し込む</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="insert1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-insert1" aria-expanded="false" aria-controls="accordion-insert1">
+            <span>APIからデータを取得できるか確認</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-insert1" class="hidden" aria-labelledby="insert1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4">
+              tenki.html
+              <pre data-line="8"><code class="lang-html">&lt;!DOCTYPE html&gt;
+  &lt;html lang="ja"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;天気予報&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="main.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;6月11日&lt;/th&gt;
+          &lt;th&gt;6月12日&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;th&gt;天気&lt;/th&gt;
+          &lt;td&gt;☔️&lt;/td&gt;
+          &lt;td&gt;🌤️&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th&gt;最高気温&lt;/th&gt;
+          &lt;td&gt;20°C&lt;/td&gt;
+          &lt;td&gt;22°C&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th&gt;最低気温&lt;/th&gt;
+          &lt;td&gt;16°C&lt;/td&gt;
+          &lt;td&gt;18°C&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th&gt;降水量&lt;/th&gt;
+          &lt;td&gt;10mm&lt;/td&gt;
+          &lt;td&gt;0mm&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+  &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">8行目</dt>
+                <dd>プログラムのファイル  main.js を読み込む</dd>
+              </dl>
+            </div>
+
+
+            <div class="mb-4">
+              <span class="font-bold">main.js</span>
+              <pre data-line="1" class="mb-4"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+  fetch(api)
+  .then(response =&gt; response.json())
+  .then(data =&gt; makePage(data));
+
+  function makePage(data) {
+    console.log(data);
+  }
+  </code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">1行目</dt>
+                <dd>APIのURLは、open-metroのAPI URL</dd>
+              </dl>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                API URL
+              </figcaption>
+              <img src="./09/09-08.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                ブラウザで見てみる
+              </figcaption>
+              <img src="./09/09-09.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                コンソールログを確認<br>
+                APIからデータを持ってこれているのがわかる
+              </figcaption>
+              <img src="./09/09-10.png" />
+            </figure>
+
+
+          </div>
+        </div>
+
+        <h2 id="insert2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-insert2" aria-expanded="false" aria-controls="accordion-insert2">
+            <span>プログラムからデータを差し込み易いように、各項目に idを設定</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-insert2" class="hidden" aria-labelledby="insert2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4 mb-4">
+              tenki.html
+              <pre data-line="18-19,25-26,30-31,35-36,40-41"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th id="day0"&gt;6月11日&lt;/th&gt;
+        &lt;th id="day1"&gt;6月12日&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td id="weathercode0"&gt;☔️&lt;/td&gt;
+        &lt;td id="weathercode1"&gt;🌤️&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td id="temperature_max0"&gt;20°C&lt;/td&gt;
+        &lt;td id="temperature_max1"&gt;22°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td id="temperature_min0"&gt;16°C&lt;/td&gt;
+        &lt;td id="temperature_min1"&gt;18°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td id="precipitation_sum0"&gt;10mm&lt;/td&gt;
+        &lt;td id="precipitation_sum1"&gt;0mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">18,19,25,26,30,31,35,36,40,41行目</dt>
+                <dd>データを差し込みたい場所にidを指定</dd>
+              </dl>
+            </div>
+
+          </div>
+        </div>
+
+        <h2 id="insert3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-insert3" aria-expanded="false" aria-controls="accordion-insert3">
+            <span>日付を差し込んでみる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-insert3" class="hidden" aria-labelledby="insert3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mb-4">
+              <span class="font-bold">main.js</span>
+              <pre data-line="8-9" class="mb-4"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+fetch(api)
+.then(response =&gt; response.json())
+.then(data =&gt; makePage(data));
+
+function makePage(data) {
+  document.getElementById('day0').innerHTML= data.daily.time[0];
+  document.getElementById('day1').innerHTML= data.daily.time[1];
+}
+  </code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">8-9行目</dt>
+                <dd>id=day0 と id=day1 の箇所に、APIからのデータを差し込む</dd>
+              </dl>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                日付が差し込めた<br>
+                （文字数が増えたので、レイアウトが崩れた）
+              </figcaption>
+              <img src="./09/09-11.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+        <h2 id="insert4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-insert4" aria-expanded="false" aria-controls="accordion-insert4">
+            <span>関数を使ってシンプルに</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-insert4" class="hidden" aria-labelledby="insert4">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mb-4">
+              <span class="font-bold">main.js</span>
+              <pre data-line="8,9,12-14" class="mb-4"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+fetch(api)
+.then(response => response.json())
+.then(data => makePage(data));
+                
+function makePage(data) {
+  setData('day0', data.daily.time[0]);
+  setData('day1', data.daily.time[1]);
+}
+
+function setData(id,data) {
+  document.getElementById(id).innerHTML = data;
+}
+  </code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">12-14行目</dt>
+                <dd>idとデータを指定すると、html内に差し込めるようにsetData 関数をつくる</dd>
+              </dl>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">8,9行目</dt>
+                <dd>setData 関数を使って書き換えた</dd>
+              </dl>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+        <h2 id="insert5">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-insert5" aria-expanded="false" aria-controls="accordion-insert5">
+            <span>天気、最高気温、最低気温、降水量も差し込む</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-insert5" class="hidden" aria-labelledby="insert5">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mb-4">
+              <span class="font-bold">main.js</span>
+              <pre data-line="11-12,14-15,17-18,20-21" class="mb-4"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+fetch(api)
+.then(response => response.json())
+.then(data => makePage(data));
+
+function makePage(data) {
+  setData('day0', data.daily.time[0]);
+  setData('day1', data.daily.time[1]);
+
+  setData('weathercode0', data.daily.weather_code[0]);
+  setData('weathercode1', data.daily.weather_code[1]);
+
+  setData('temperature_max0', data.daily.temperature_2m_max[0] + '°C');
+  setData('temperature_max1', data.daily.temperature_2m_max[1] + '°C');
+
+  setData('temperature_min0', data.daily.temperature_2m_min[0] + '°C');
+  setData('temperature_min1', data.daily.temperature_2m_min[1] + '°C');
+
+  setData('precipitation_sum0', data.daily.precipitation_sum[0] + 'mm');
+  setData('precipitation_sum1', data.daily.precipitation_sum[1] + 'mm');
+}
+
+function setData(id,data) {
+  document.getElementById(id).innerHTML = data;
+}
+  </code></pre>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                天気、最高気温、最低気温、降水量を差し込めた
+              </figcaption>
+              <img src="./09/09-12.png" />
+            </figure>
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="view">天気の情報をわかりやすく表示</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="view1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-view1" aria-expanded="false" aria-controls="accordion-view1">
+            <span>データ取得前の表示を「--」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-view1" class="hidden" aria-labelledby="view1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4">
+              tenki.html
+              <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th id="day0"&gt;----&lt;/th&gt;
+        &lt;th id="day1"&gt;----&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td id="weathercode0"&gt;--&lt;/td&gt;
+        &lt;td id="weathercode1"&gt;--&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td id="temperature_max0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_max1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td id="temperature_min0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_min1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td id="precipitation_sum0"&gt;--mm&lt;/td&gt;
+        &lt;td id="precipitation_sum1"&gt;--mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+
+          </div>
+        </div>
+
+        <h2 id="view2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-view2" aria-expanded="false" aria-controls="accordion-view2">
+            <span>日付の書式を「○月○日」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-view2" class="hidden" aria-labelledby="view2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4 mb-4">
+              日付を整える関数 dateFormat を作ってみる
+              <pre><code class="lang-js">function dateFormat(date) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  return month + '月' + day + '日';
+}
+</code></pre>
+            </div>
+
+            <div class="mt-8">
+              参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date</a>
+            </div>
+  
+
+            
+            <div class="mt-4 mb-4">
+              dateFormat を使って main.js を書き換える
+              <pre data-line="8-9"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+fetch(api)
+.then(response =&gt; response.json())
+.then(data =&gt; makePage(data));
+
+function makePage(data) {
+  setData('day0', dateFormat(data.daily.time[0]));
+  setData('day1', dateFormat(data.daily.time[1]));
+
+  setData('weathercode0', data.daily.weather_code[0]);
+  setData('weathercode1', data.daily.weather_code[1]);
+
+  setData('temperature_max0', data.daily.temperature_2m_max[0] + '°C');
+  setData('temperature_max1', data.daily.temperature_2m_max[1] + '°C');
+
+  setData('temperature_min0', data.daily.temperature_2m_min[0] + '°C');
+  setData('temperature_min1', data.daily.temperature_2m_min[1] + '°C');
+
+  setData('precipitation_sum0', data.daily.precipitation_sum[0] + 'mm');
+  setData('precipitation_sum1', data.daily.precipitation_sum[1] + 'mm');
+}
+
+function setData(id,data) {
+  document.getElementById(id).innerHTML = data;
+}
+
+function dateFormat(date) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  return month + '月' + day + '日';
+}
+
+</code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">8-9行目</dt>
+                <dd>dateFormat関数を使って日付を整形</dd>
+              </dl>
+            </div>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                日付の表示が変わった
+              </figcaption>
+              <img src="./09/09-13.png" />
+            </figure>
+
+
+          </div>
+        </div>
+
+        <h2 id="view3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-view3" aria-expanded="false" aria-controls="accordion-view3">
+            <span>天気の表示を絵文字で</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-view3" class="hidden" aria-labelledby="view3">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この部分を絵文字にしたい
+              </figcaption>
+              <img src="./09/09-14.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                 codeの意味は、APIのページの下の方に書かれていた
+              </figcaption>
+              <img src="./09/09-15.png" />
+            </figure>
+
+
+            <div class="mb-4">
+              <span class="font-bold">これを参考に、codeを絵文字に変換する関数 getWMO を作ってみる</span>
+              <pre class="mb-4"><code class="lang-js">function getWMO(w) {
+  if (w==0) {
+    return '☀️';
+  } else if (w==1) {
+    return '🌤';
+  } else if (w==2) {
+    return '⛅️';
+  } else if (w==3) {
+    return '☁️';
+  } else if (w==45) {
+    return '霧';
+  } else if (w==48) {
+    return '霧氷';
+  } else if (w==51) {
+    return '霧雨';
+  } else if (w==53) {
+    return '霧雨';
+  } else if (w==55) {
+    return '霧雨';
+  } else if (w==56) {
+    return '霧雨';
+  } else if (w==57) {
+    return '霧雨';
+  } else if (w==61) {
+    return '☔️';
+  } else if (w==63) {
+    return '☔️';
+  } else if (w==65) {
+    return '☔️';
+  } else if (w==66) {
+    return '氷雨';
+  } else if (w==67) {
+    return '氷雨';
+  } else if (w==71) {
+    return '❄️';
+  } else if (w==73) {
+    return '❄️';
+  } else if (w==75) {
+    return '❄️';
+  } else if (w==77) {
+    return '❄️';
+  } else if (w==80) {
+    return '☔️';
+  } else if (w==81) {
+    return '☔️';
+  } else if (w==82) {
+    return '☔️';
+  } else if (w==85) {
+    return '❄️';
+  } else if (w==86) {
+    return '❄️';
+  } else if (w==95) {
+    return '⚡️☔️';
+  } else if (w==96) {
+    return '⚡️☔️';
+  } else if (w==99) {
+    return '⚡️☔️';
+  } else {
+    return w;
+  }
+}
+</code></pre>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この関数をつかって、天気コードを変換するとわかりやすくなった
+              </figcaption>
+              <img src="./09/09-16.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="clock">時計が毎秒更新されるようにする</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="clock1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-clock1" aria-expanded="false" aria-controls="accordion-clock1">
+            <span>日時を表示する場所にidをセット 初期表示を「--」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-clock1" class="hidden" aria-labelledby="clock1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4">
+              tenki.html
+              <pre data-line="12"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div id="time"&gt;----年--月--日 --:--:--&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th id="day0"&gt;----&lt;/th&gt;
+        &lt;th id="day1"&gt;----&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td id="weathercode0"&gt;--&lt;/td&gt;
+        &lt;td id="weathercode1"&gt;--&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td id="temperature_max0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_max1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td id="temperature_min0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_min1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td id="precipitation_sum0"&gt;--mm&lt;/td&gt;
+        &lt;td id="precipitation_sum1"&gt;--mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+
+          </div>
+        </div>
+
+        <h2 id="clock2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-clock2" aria-expanded="false" aria-controls="accordion-clock2">
+            <span>現在の日時を表示する関数を作って、1秒に1回呼び出す</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-clock2" class="hidden" aria-labelledby="clock2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4 mb-4">
+              日付を表示する関数 updateScreen を作ってみる
+              <pre><code class="lang-js">function updateScreen() {
+  setData('time',new Date());
+}
+
+window.onload=updateScreen;
+</code></pre>
+            </div>
+
+           
+            <div class="mt-4 mb-4">
+              updateScreen を 1秒に1回呼ぶ
+              <pre data-line="8-9"><code class="lang-js">setInterval(updateScreen,1000);
+</code></pre>
+            </div>
+
+          </div>
+        </div>
+
+        <h2 id="clock3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-clock3" aria-expanded="false" aria-controls="accordion-clock3">
+            <span>日付の表示を整える</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-clock3" class="hidden" aria-labelledby="clock3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mb-4">
+              <span class="font-bold">dateFormat 関数を改良して、modeによって、日付だけの表示か、時分秒まで表示するか切り替えられるようにする</span>
+              <pre class="mb-4"><code class="lang-js">function dateFormat(date, mode) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  const hour = dateObject.getHours();
+  const minute = dateObject.getMinutes();
+  const second = dateObject.getSeconds();
+
+  if(mode == 1) {
+    return `${year}年${month}月${day}日 ${hour}:${minute}:${second}`;
+  } else {
+    return month + '月' + day + '日';
+  }
+}</code></pre>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この関数をつかって、日時を表示する
+              </figcaption>
+              <img src="./09/09-17.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+        <h2 id="clock4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-clock4" aria-expanded="false" aria-controls="accordion-clock4">
+            <span>10より小さい数字の時に頭に0をつける</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-clock4" class="hidden" aria-labelledby="clock4">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mb-4">
+              <span class="font-bold">10未満の数字の頭に 0 をつける関数 add0 を作成して dateFormat 関数の中で 時、分、秒 の頭に0をつける</span>
+              <p class="mt-4">add0関数</p>
+              <pre class="mb-4"><code class="lang-js">function add0 (val) {
+  if(val < 10) {
+    val = '0' + val;
+  }
+  return val;
+}</code></pre>
+
+<p class="mt-4">dateFormat関数の中で、時、分、秒 に add0関数をつかって 0 をつける</p>
+<pre class="mb-4"><code class="lang-js">function dateFormat(date, mode) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  const hour = add0(dateObject.getHours());
+  const minute = add0(dateObject.getMinutes());
+  const second = add0(dateObject.getSeconds());
+
+  if(mode == 1) {
+    return `${year}年${month}月${day}日 ${hour}:${minute}:${second}`;
+  } else {
+    return month + '月' + day + '日';
+  }
+}</code></pre>
+
+<p class="mt-4">日付を表示する updateScreen関数の中で、dateFormat関数を呼び出して日時を見やすくする</p>
+<pre class="mb-4"><code class="lang-js">function updateScreen() {
+  setData('time',dateFormat(new Date(),1));
+}
+window.onload=updateScreen;
+
+setInterval(updateScreen,1000);</code></pre>
+</div>
+
+
+          </div>
+        </div>
+
+
+        <div class="mt-8">
+          サンプルサイト： <a class="text-blue-600 break-words hover:underline" href="https://bp2022.tama.net/~p222C2222/20240618/" target="_blank">https://bp2022.tama.net/~p222C2222/20240618/</a>
+        </div>
+    
+
+      </div>
+
+
+    </section>
+
+<!--
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="interval">天気予報データを1時間に1回取得するようにする</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="interval1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-interval1" aria-expanded="false" aria-controls="accordion-interval1">
+            <span>データ取得前の表示を「--」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-interval1" class="hidden" aria-labelledby="interval1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4">
+              tenki.html
+              <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th id="day0"&gt;----&lt;/th&gt;
+        &lt;th id="day1"&gt;----&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td id="weathercode0"&gt;--&lt;/td&gt;
+        &lt;td id="weathercode1"&gt;--&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td id="temperature_max0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_max1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td id="temperature_min0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_min1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td id="precipitation_sum0"&gt;--mm&lt;/td&gt;
+        &lt;td id="precipitation_sum1"&gt;--mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+
+          </div>
+        </div>
+
+        <h2 id="interval2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-interval2" aria-expanded="false" aria-controls="accordion-interval2">
+            <span>日付の書式を「○月○日」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-interval2" class="hidden" aria-labelledby="interval2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4 mb-4">
+              日付を整える関数 dateFormat を作ってみる
+              <pre><code class="lang-js">function dateFormat(date) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  return month + '月' + day + '日';
+}
+</code></pre>
+            </div>
+
+            <div class="mt-8">
+              参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date</a>
+            </div>
+  
+
+            
+            <div class="mt-4 mb-4">
+              dateFormat を使って main.js を書き換える
+              <pre data-line="8-9"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+fetch(api)
+.then(response =&gt; response.json())
+.then(data =&gt; makePage(data));
+
+function makePage(data) {
+  setData('day0', dateFormat(data.daily.time[0]));
+  setData('day1', dateFormat(data.daily.time[1]));
+
+  setData('weathercode0', data.daily.weather_code[0]);
+  setData('weathercode1', data.daily.weather_code[1]);
+
+  setData('temperature_max0', data.daily.temperature_2m_max[0] + '°C');
+  setData('temperature_max1', data.daily.temperature_2m_max[1] + '°C');
+
+  setData('temperature_min0', data.daily.temperature_2m_min[0] + '°C');
+  setData('temperature_min1', data.daily.temperature_2m_min[1] + '°C');
+
+  setData('precipitation_sum0', data.daily.precipitation_sum[0] + 'mm');
+  setData('precipitation_sum1', data.daily.precipitation_sum[1] + 'mm');
+}
+
+function setData(id,data) {
+  document.getElementById(id).innerHTML = data;
+}
+
+function dateFormat(date) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  return month + '月' + day + '日';
+}
+
+</code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">8-9行目</dt>
+                <dd>dateFormat関数を使って日付を整形</dd>
+              </dl>
+            </div>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                日付の表示が変わった
+              </figcaption>
+              <img src="./09/09-13.png" />
+            </figure>
+
+
+          </div>
+        </div>
+
+        <h2 id="interval3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-interval3" aria-expanded="false" aria-controls="accordion-interval3">
+            <span>天気の表示を絵文字で</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-interval3" class="hidden" aria-labelledby="interval3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この部分を絵文字にしたい
+              </figcaption>
+              <img src="./09/09-14.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                 codeの意味は、APIのページの下の方に書かれていた
+              </figcaption>
+              <img src="./09/09-15.png" />
+            </figure>
+
+
+            <div class="mb-4">
+              <span class="font-bold">これを参考に、codeを絵文字に変換する関数 getWMO を作ってみる</span>
+              <pre class="mb-4"><code class="lang-js">function getWMO(w) {
+  if (w==0) {
+    return '☀️';
+  } else if (w==1) {
+    return '🌤';
+  } else if (w==2) {
+    return '⛅️';
+  } else if (w==3) {
+    return '☁️';
+  } else if (w==45) {
+    return '霧';
+  } else if (w==48) {
+    return '霧氷';
+  } else if (w==51) {
+    return '霧雨';
+  } else if (w==53) {
+    return '霧雨';
+  } else if (w==55) {
+    return '霧雨';
+  } else if (w==56) {
+    return '霧雨';
+  } else if (w==57) {
+    return '霧雨';
+  } else if (w==61) {
+    return '☔️';
+  } else if (w==63) {
+    return '☔️';
+  } else if (w==65) {
+    return '☔️';
+  } else if (w==66) {
+    return '氷雨';
+  } else if (w==67) {
+    return '氷雨';
+  } else if (w==71) {
+    return '❄️';
+  } else if (w==73) {
+    return '❄️';
+  } else if (w==75) {
+    return '❄️';
+  } else if (w==77) {
+    return '❄️';
+  } else if (w==80) {
+    return '☔️';
+  } else if (w==81) {
+    return '☔️';
+  } else if (w==82) {
+    return '☔️';
+  } else if (w==85) {
+    return '❄️';
+  } else if (w==86) {
+    return '❄️';
+  } else if (w==95) {
+    return '⚡️☔️';
+  } else if (w==96) {
+    return '⚡️☔️';
+  } else if (w==99) {
+    return '⚡️☔️';
+  } else {
+    return w;
+  }
+}
+</code></pre>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この関数をつかって、天気コードを変換するとわかりやすくなった
+              </figcaption>
+              <img src="./09/09-16.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+-->
+
+<!--
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="changestyle">天気に応じてスタイルを変更する</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="changestyle1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-changestyle1" aria-expanded="false" aria-controls="accordion-changestyle1">
+            <span>データ取得前の表示を「--」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-changestyle1" class="hidden" aria-labelledby="changestyle1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4">
+              tenki.html
+              <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;天気予報&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;2024年6月11日 16:50:00&lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th id="day0"&gt;----&lt;/th&gt;
+        &lt;th id="day1"&gt;----&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;天気&lt;/th&gt;
+        &lt;td id="weathercode0"&gt;--&lt;/td&gt;
+        &lt;td id="weathercode1"&gt;--&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最高気温&lt;/th&gt;
+        &lt;td id="temperature_max0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_max1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;最低気温&lt;/th&gt;
+        &lt;td id="temperature_min0"&gt;--°C&lt;/td&gt;
+        &lt;td id="temperature_min1"&gt;--°C&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th&gt;降水量&lt;/th&gt;
+        &lt;td id="precipitation_sum0"&gt;--mm&lt;/td&gt;
+        &lt;td id="precipitation_sum1"&gt;--mm&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+
+          </div>
+        </div>
+
+        <h2 id="changestyle2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-changestyle2" aria-expanded="false" aria-controls="accordion-changestyle2">
+            <span>日付の書式を「○月○日」に</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-changestyle2" class="hidden" aria-labelledby="changestyle2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-4 mb-4">
+              日付を整える関数 dateFormat を作ってみる
+              <pre><code class="lang-js">function dateFormat(date) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  return month + '月' + day + '日';
+}
+</code></pre>
+            </div>
+
+            <div class="mt-8">
+              参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date</a>
+            </div>
+  
+
+            
+            <div class="mt-4 mb-4">
+              dateFormat を使って main.js を書き換える
+              <pre data-line="8-9"><code class="lang-js">const api = 'https://api.open-meteo.com/v1/forecast?latitude=35.7&amp;longitude=139.6875&amp;daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&amp;timezone=Asia%2FTokyo';
+
+fetch(api)
+.then(response =&gt; response.json())
+.then(data =&gt; makePage(data));
+
+function makePage(data) {
+  setData('day0', dateFormat(data.daily.time[0]));
+  setData('day1', dateFormat(data.daily.time[1]));
+
+  setData('weathercode0', data.daily.weather_code[0]);
+  setData('weathercode1', data.daily.weather_code[1]);
+
+  setData('temperature_max0', data.daily.temperature_2m_max[0] + '°C');
+  setData('temperature_max1', data.daily.temperature_2m_max[1] + '°C');
+
+  setData('temperature_min0', data.daily.temperature_2m_min[0] + '°C');
+  setData('temperature_min1', data.daily.temperature_2m_min[1] + '°C');
+
+  setData('precipitation_sum0', data.daily.precipitation_sum[0] + 'mm');
+  setData('precipitation_sum1', data.daily.precipitation_sum[1] + 'mm');
+}
+
+function setData(id,data) {
+  document.getElementById(id).innerHTML = data;
+}
+
+function dateFormat(date) {
+  let dateObject = new Date(date);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  return month + '月' + day + '日';
+}
+
+</code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">8-9行目</dt>
+                <dd>dateFormat関数を使って日付を整形</dd>
+              </dl>
+            </div>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                日付の表示が変わった
+              </figcaption>
+              <img src="./09/09-13.png" />
+            </figure>
+
+
+          </div>
+        </div>
+
+        <h2 id="changestyle3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-changestyle3" aria-expanded="false" aria-controls="accordion-changestyle3">
+            <span>天気の表示を絵文字で</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-changestyle3" class="hidden" aria-labelledby="changestyle3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この部分を絵文字にしたい
+              </figcaption>
+              <img src="./09/09-14.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                 codeの意味は、APIのページの下の方に書かれていた
+              </figcaption>
+              <img src="./09/09-15.png" />
+            </figure>
+
+
+            <div class="mb-4">
+              <span class="font-bold">これを参考に、codeを絵文字に変換する関数 getWMO を作ってみる</span>
+              <pre class="mb-4"><code class="lang-js">function getWMO(w) {
+  if (w==0) {
+    return '☀️';
+  } else if (w==1) {
+    return '🌤';
+  } else if (w==2) {
+    return '⛅️';
+  } else if (w==3) {
+    return '☁️';
+  } else if (w==45) {
+    return '霧';
+  } else if (w==48) {
+    return '霧氷';
+  } else if (w==51) {
+    return '霧雨';
+  } else if (w==53) {
+    return '霧雨';
+  } else if (w==55) {
+    return '霧雨';
+  } else if (w==56) {
+    return '霧雨';
+  } else if (w==57) {
+    return '霧雨';
+  } else if (w==61) {
+    return '☔️';
+  } else if (w==63) {
+    return '☔️';
+  } else if (w==65) {
+    return '☔️';
+  } else if (w==66) {
+    return '氷雨';
+  } else if (w==67) {
+    return '氷雨';
+  } else if (w==71) {
+    return '❄️';
+  } else if (w==73) {
+    return '❄️';
+  } else if (w==75) {
+    return '❄️';
+  } else if (w==77) {
+    return '❄️';
+  } else if (w==80) {
+    return '☔️';
+  } else if (w==81) {
+    return '☔️';
+  } else if (w==82) {
+    return '☔️';
+  } else if (w==85) {
+    return '❄️';
+  } else if (w==86) {
+    return '❄️';
+  } else if (w==95) {
+    return '⚡️☔️';
+  } else if (w==96) {
+    return '⚡️☔️';
+  } else if (w==99) {
+    return '⚡️☔️';
+  } else {
+    return w;
+  }
+}
+</code></pre>
+            </div>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                この関数をつかって、天気コードを変換するとわかりやすくなった
+              </figcaption>
+              <img src="./09/09-16.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+-->
+
+</body>
+
+</html>

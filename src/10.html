@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <!--button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button-->
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#last">前回</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#data">Open-Meteoで取得するデータを決める</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert">プログラムを書いてデータをHTMLに差し込む</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert1">APIからデータを取得できるか確認</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert2">プログラムからデータを差し込み易いように、各項目に idを設定</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert3">日付を差し込んでみる</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert4">関数を使ってシンプルに</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert5">天気、最高気温、最低気温、降水量も差し込む</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view">天気の情報をわかりやすく表示</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view1">データ取得前の表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view2">日付の書式を「○月○日」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view3">天気の表示を絵文字で</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock">時計が毎秒更新されるようにする</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock1">日時を表示する場所にidをセット 初期表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock2">現在の日時を表示する関数を作って、1秒に1回呼び出す</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock3">日付の表示を整える</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock4">10より小さい数字の時に頭に0をつける</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">Gitによるソースコード管理</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第10回 6月25日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded mb-4">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Gitとは</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">GitHubにアカウントをつくる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">天気サイトをGitHubで公開</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">自分のPC上でソースを編集</h3>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">自分のURL
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <div class="mb-2">自分の public_html の中の 20240618 フォルダの index.html を表示する場合</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-8 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/index.html</h3>
+          <div class="mb-2">index.html は省略できるので、下記URLでもOK</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="git">Gitとは</h1>
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="git1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-git1" aria-expanded="false" aria-controls="accordion-git1">
+            <span>Gitとは</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-git1" class="hidden" aria-labelledby="git1">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="container p-5 mx-auto">
+              <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+      
+                <div class="mt-4">
+                  Git(ギット)とは、プログラムソースなどの変更履歴を管理する分散型のバージョン管理システムのことです。<br>
+                  もともとはLinuxの開発チームが使用して、徐々に世界中の技術者に広まっていきました。
+                </div>
+        
+              </div>
+      
+              <div class="border-4 border-gray-100 rounded px-5 py-5 mt-4">
+
+                <div class="mt-4">
+                  <h2 class="text-xl font-bold">Linus Torvalds（リーナス トーバルズ）</h2>
+                  Linuxを作ったすごい人(1991年 21歳)<br>
+                  Gitも作った (2005年)<br>
+
+                  <div class="py-2">
+                    Wikipedia<br>
+                    <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://en.wikipedia.org/wiki/Linus_Torvalds">https://en.wikipedia.org/wiki/Linus_Torvalds</a>
+                  </div>
+      
+                  <div class="py-2">
+                    Hatena Blog 記事<br>
+                    <a target="_blank" class="text-blue-600 break-words hover:underline" href="http://hyoshiok.hatenablog.com/entry/20140726/p1">http://hyoshiok.hatenablog.com/entry/20140726/p1</a>
+                  </div>
+
+                  <figure class="mt-8 inline-block max-w-full">
+                    <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/h/hyoshiok/20140728/20140728063449_original.jpg" />
+                  </figure>
+                </div>
+              </div>
+      
+              <div class="border-4 border-gray-100 rounded px-5 py-5 mt-4">
+                <div class="mt-4">
+                  <h2 class="text-xl font-bold">濱野 純（Gitメンテナ）</h2>
+
+                  <div class="py-2">
+                    小飼弾のアルファギークに逢いたい<br>
+                    <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://gihyo.jp/dev/serial/01/alpha-geek/0040">https://gihyo.jp/dev/serial/01/alpha-geek/0040</a>
+                  </div>
+      
+                  <div class="py-2">
+                    日経クロステック 記事<br>
+                    <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://xtech.nikkei.com/it/article/COLUMN/20130418/471890">https://xtech.nikkei.com/it/article/COLUMN/20130418/471890</a>
+                  </div>
+
+                  <div class="py-2">
+                    Wikipedia<br>
+                    <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://ja.wikipedia.org/wiki/濱野純">https://ja.wikipedia.org/wiki/濱野純</a>
+                  </div>
+
+                  <figure class="mt-8 inline-block max-w-full">
+                    <img src="https://gihyo.jp/assets/images/wdpress/serial/2007/alpha-geek/alpha-geek-0040-2.jpg" />
+                  </figure>
+                </div>
+      
+              </div>
+            </div>
+      
+          </div>
+        </div>
+        <h2 id="git2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-git2" aria-expanded="false" aria-controls="accordion-git2">
+            <span>GitHubとは</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-git2" class="hidden" aria-labelledby="git2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="container p-5 mx-auto">
+              <div class="border-4 border-gray-100 rounded px-5 py-5 ">
+      
+                <div class="mt-4">
+                  GitHub(ギットハブ)は、このGitの仕組みを利用して、世界中の人々が自分の作品(プログラムコードやデザインデータなど)を保存、公開することをできるようにしたウェブサービスの名称です。
+                </div>
+
+                
+                <div class="py-2">
+                  Six Apart ブログ<br>
+                  <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://blog.sixapart.jp/2014-03/mttips-02-what-is-git.html">https://blog.sixapart.jp/2014-03/mttips-02-what-is-git.html</a>
+                </div>
+
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section class="text-gray-600 body-font">
+
+      <h1 class="text-3xl font-bold text-center my-32" id="github">GitHubにアカウントをつくる</h1>
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="github1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-github1" aria-expanded="false" aria-controls="accordion-github1">
+            <span>GitHubにアカウントをつくる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-github1" class="hidden" aria-labelledby="github1">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+          
+
+            <div class="py-5">
+              GitHub<br>
+              <a target="_blank" class="text-blue-600 break-words hover:underline" href="https://github.co.jp">https://github.co.jp</a>
+            </div>
+
+            （何年か前の画面キャプチャなので、今はもう少しデザインが変わっているかもしれませんが、基本的な流れは同じです。）
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/01.png" />
+            </figure>
+            
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/02.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/03.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/04.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/05.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/06.png" />
+            </figure>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="tenki">天気サイトをGitHubで公開</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="tenki1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki1" aria-expanded="false" aria-controls="accordion-tenki1">
+            <span>新しいリポジトリを作成</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki1" class="hidden" aria-labelledby="tenki1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/07.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/08.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/09.png" />
+            </figure>
+  
+          </div>
+        </div>
+
+        <h2 id="tenki2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki2" aria-expanded="false" aria-controls="accordion-tenki2">
+            <span>サーバ上のファイルをリポジトリに登録</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki2" class="hidden" aria-labelledby="tenki2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/10.png" />
+            </figure>
+  
+          </div>
+        </div>
+
+        <h2 id="tenki3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki3" aria-expanded="false" aria-controls="accordion-tenki3">
+            <span>サーバ上に自分の情報を登録</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki3" class="hidden" aria-labelledby="tenki3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/11.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+        <h2 id="tenki4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki4" aria-expanded="false" aria-controls="accordion-tenki4">
+            <span>GitHubに送信</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki4" class="hidden" aria-labelledby="tenki4">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/12.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+
+
+        <h2 id="tenki5">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki5" aria-expanded="false" aria-controls="accordion-tenki5">
+            <span>GitHubに公開鍵を登録</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki5" class="hidden" aria-labelledby="tenki5">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/13.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/14.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/15.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/16.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/17.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/18.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/19.png" />
+            </figure>
+
+          </div>
+        </div>
+
+        <h2 id="tenki6">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki6" aria-expanded="false" aria-controls="accordion-tenki6">
+            <span>GitHubに再度送信</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki6" class="hidden" aria-labelledby="tenki6">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/20.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/21.png" />
+            </figure>
+
+          </div>
+        </div>
+
+        <h2 id="tenki7">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-tenki7" aria-expanded="false" aria-controls="accordion-tenki7">
+            <span>GitHubでページを公開</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-tenki7" class="hidden" aria-labelledby="tenki7">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                ブランチのページで Settings を押す
+              </figcaption>
+              <img src="./10/22.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/23.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/24.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/25.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/26.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>
+                お天気ページが公開された
+              </figcaption>
+              <img src="./10/27.png" />
+            </figure>
+          </div>
+        </div>
+
+      </div>
+
+
+    </section>
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="install">自分のPC上でソースを編集</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="install1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-install1" aria-expanded="false" aria-controls="accordion-install1">
+            <span>WindowsにGitをインストール</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-install1" class="hidden" aria-labelledby="install1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            （何年か前の画面キャプチャなので、今はもう少しデザインが変わっているかもしれませんが、基本的な流れは同じです。）
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/28.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/29.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/30.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/31.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/32.png" />
+            </figure>
+
+          </div>
+        </div>
+
+        <h2 id="install2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-install2" aria-expanded="false" aria-controls="accordion-install2">
+            <span>MacにGitをインストール</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-install2" class="hidden" aria-labelledby="install2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            （何年か前の画面キャプチャなので、今はもう少しデザインが変わっているかもしれませんが、基本的な流れは同じです。）
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/33.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/34.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/35.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/36.png" />
+            </figure>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./10/37.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+        <h2 id="install3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-install3" aria-expanded="false" aria-controls="accordion-install3">
+            <span>git clone</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-install3" class="hidden" aria-labelledby="install3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            GitHubからリポジトリを取得する
+          </div>
+        </div>
+
+        <h2 id="install4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-install4" aria-expanded="false" aria-controls="accordion-install4">
+            <span>git commit</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-install4" class="hidden" aria-labelledby="install4">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            変更を登録する
+          </div>
+        </div>
+
+        <h2 id="install5">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-install5" aria-expanded="false" aria-controls="accordion-install5">
+            <span>git push</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-install5" class="hidden" aria-labelledby="install5">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            GitHubへ変更を送信する
+          </div>
+        </div>
+
+        <h2 id="install6">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-install6" aria-expanded="false" aria-controls="accordion-install6">
+            <span>git pull</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-install6" class="hidden" aria-labelledby="install6">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            GitHubから最新の情報を取得する
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+</body>
+
+</html>
