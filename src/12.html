@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <!--button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button-->
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#last">前回</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#data">Open-Meteoで取得するデータを決める</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert">プログラムを書いてデータをHTMLに差し込む</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert1">APIからデータを取得できるか確認</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert2">プログラムからデータを差し込み易いように、各項目に idを設定</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert3">日付を差し込んでみる</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert4">関数を使ってシンプルに</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert5">天気、最高気温、最低気温、降水量も差し込む</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view">天気の情報をわかりやすく表示</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view1">データ取得前の表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view2">日付の書式を「○月○日」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view3">天気の表示を絵文字で</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock">時計が毎秒更新されるようにする</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock1">日時を表示する場所にidをセット 初期表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock2">現在の日時を表示する関数を作って、1秒に1回呼び出す</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock3">日付の表示を整える</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock4">10より小さい数字の時に頭に0をつける</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">HTMLのフォームとセキュリティ</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第12回 7月9日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded mb-4">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">HTMLフォームの基本</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">HTMLフォームを書いてみる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">PHPを利用したフォームの処理</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">HTMLフォームとセキュリティ</h3>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">自分のURL
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <div class="mb-2">自分の public_html の中の 20240618 フォルダの index.html を表示する場合</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-8 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/index.html</h3>
+          <div class="mb-2">index.html は省略できるので、下記URLでもOK</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/</h3>
+        </div>
+      </div>
+
+    </div>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter3">HTMLフォームの基本</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter1-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter1-1" aria-expanded="false" aria-controls="accordion-chapter1-1">
+            <span>フォームとは</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter1-1" class="hidden" aria-labelledby="chapter1-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold">&lt;form&gt;: フォーム要素</h3>
+
+              &lt;form&gt; は HTML の要素で、ウェブサーバーに情報を送信するための対話型コントロールを含む文書の区間を表します。
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/form" target="_blank">https://developer.mozilla.org/ja/docs/Web/HTML/Element/form</a>
+              </div>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">フォームの種類</h3>
+
+              テキスト入力、ラジオボタン、チェックボタン、セレクトボックスなどがあります。
+
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">データ送信</h3>
+
+              ユーザーが情報を送信する方法には、GETとPOSTの2種類があります。
+
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter1-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter1-2" aria-expanded="false" aria-controls="accordion-chapter1-2">
+            <span>GETとPOSTメソッドの違い</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter1-2" class="hidden" aria-labelledby="chapter1-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            HTMLフォームからデータを送信する際には、サーバーに送信する方法を指定する必要があります。最も一般的な方法はGETとPOSTであり、重要な違いがあります。<br>
+            <br>
+            GETメソッドは、検索やフィルタリングなどの単純な読み取り専用のアクションに使用され、フォームデータはクエリ文字列としてURLに追加されます。これにより、フォームデータはユーザーに表示され、ブックマークや共有ができます。<br>
+            <br>
+            一方、POSTメソッドは、サーバー上のデータを作成、更新、または削除するようなより複雑なアクションに使用され、フォームデータはHTTP POSTリクエストの本文で送信されます。これにより、フォームデータはURLに表示されず、ブックマークや共有することはできません。<br>
+            <br>
+            アプリケーションの具体的な要件に基づいて適切なメソッドを選択することが重要です。一般的に、単純な読み取り専用のアクションにはGETメソッドを、サーバー上のデータを変更するようなより複雑なアクションにはPOSTメソッドを使用します。<br>
+
+            <div class="mt-8 bg-gray-100 p-4 rounded">
+              GETの例： <a class="text-blue-600 break-words hover:underline" href="https://bp2022.tama.net/~p222C2222/20240528/omikuji2.php?name=やまもと&age=30" target="_blank">https://bp2022.tama.net/~p222C2222/20240528/omikuji2.php?name=やまもと&age=30</a><br>
+              URLの中に、フォームデータ（nameやage）が含まれている。<br>
+            </div>
+
+            
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter2">HTMLフォームを書いてみる</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter2-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-1" aria-expanded="false" aria-controls="accordion-chapter2-1">
+            <span>フォームは&lt;form&gt;タグ</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-1" class="hidden" aria-labelledby="chapter2-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              index.php
+              <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    &lt;input type="text" name="name"&gt;
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter2-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-2" aria-expanded="false" aria-controls="accordion-chapter2-2">
+            <span>ブラウザで見てみる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-2" class="hidden" aria-labelledby="chapter2-2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            https://bp2022.tama.net/~p222C2222/20240709/
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/1.png" />
+            </figure>
+
+            
+          </div>
+        </div>
+
+
+        <h2 id="chapter2-3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-3" aria-expanded="false" aria-controls="accordion-chapter2-3">
+            <span>GETの動作</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-3" class="hidden" aria-labelledby="chapter2-3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/2.png" />
+            </figure>
+          </div>
+        </div>
+
+        <h2 id="chapter2-3a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-3a" aria-expanded="false" aria-controls="accordion-chapter2-3a">
+            <span>POSTの動作</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-3a" class="hidden" aria-labelledby="chapter2-3a">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <section>
+              index.php
+              <pre data-line="10"><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="post"&gt;
+    &lt;input type="text" name="name"&gt;
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              <dl class="flex">
+                <dt class="mr-2 font-bold whitespace-nowrap">10行目</dt>
+                <dd>method="post" を追加</dd>
+              </dl>
+
+            </section>
+
+
+            
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/3.png" />
+            </figure>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <figcaption>再読み込みを押すと、フォームの内容を再度送信して良いか確認される。</figcaption>
+              <img src="./12/4.png" />
+            </figure>
+
+
+          </div>
+        </div>
+
+
+
+        <h2 id="chapter2-4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-4" aria-expanded="false" aria-controls="accordion-chapter2-4">
+            <span>ラジオボタン</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-4" class="hidden" aria-labelledby="chapter2-4">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            &lt;input type="radio"&gt;
+            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前：&lt;input type="text" name="name"&gt;&lt;br&gt;
+
+    好きな色：
+    &lt;input type="radio" name="color" value="赤" id="color1"&gt;
+    &lt;label for="color1"&gt;赤&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="青" id="color2"&gt;
+    &lt;label for="color2"&gt;青&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="黄" id="color3"&gt;
+    &lt;label for="color3"&gt;黄&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="その他" id="color4"&gt;
+    &lt;label for="color4"&gt;その他&lt;/label&gt;
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/5.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+
+
+        <h2 id="chapter2-4a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-4a" aria-expanded="false" aria-controls="accordion-chapter2-4a">
+            <span>チェックボックス</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-4a" class="hidden" aria-labelledby="chapter2-4a">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            &lt;input type="checkbox"&gt;<br>
+            <br>
+
+            追加部分
+            <pre><code class="language-html">&lt;input type="checkbox" name="agree" value="yes" id="agree"&gt;
+    &lt;label for="agree"&gt;
+      &lt;a href="https://www.google.com" target="_blank"&gt;利用規約&lt;/a&gt;
+      に同意します
+    &lt;/label&gt;&lt;br&gt;</code></pre>
+
+            <br>
+            全文<br>
+            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前：&lt;input type="text" name="name"&gt;&lt;br&gt;
+
+    好きな色：
+    &lt;input type="radio" name="color" value="赤" id="color1"&gt;
+    &lt;label for="color1"&gt;赤&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="青" id="color2"&gt;
+    &lt;label for="color2"&gt;青&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="黄" id="color3"&gt;
+    &lt;label for="color3"&gt;黄&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="その他" id="color4"&gt;
+    &lt;label for="color4"&gt;その他&lt;/label&gt;
+    &lt;br&gt;
+
+    &lt;input type="checkbox" name="agree" value="yes" id="agree"&gt;
+    &lt;label for="agree"&gt;
+      &lt;a href="https://www.google.com" target="_blank"&gt;利用規約&lt;/a&gt;
+      に同意します
+    &lt;/label&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/6.png" />
+            </figure>
+
+          </div>
+        </div>
+
+        
+
+
+        <h2 id="chapter2-5">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-5" aria-expanded="false" aria-controls="accordion-chapter2-5">
+            <span>input typeの種類</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-5" class="hidden" aria-labelledby="chapter2-5">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <div>
+              参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/input" target="_blank">https://developer.mozilla.org/ja/docs/Web/HTML/Element/input</a>
+            </div>
+            
+
+          </div>
+        </div>
+
+        <h2 id="chapter2-6">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-6" aria-expanded="false" aria-controls="accordion-chapter2-6">
+            <span>セレクトボックス</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-6" class="hidden" aria-labelledby="chapter2-6">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            &lt;select&gt;<br>
+            &nbsp;&nbsp; &lt;option&gt;XXX&lt;/option&gt;<br>
+            &nbsp;&nbsp; &lt;option&gt;XXX&lt;/option&gt;<br>
+            &nbsp;&nbsp; &lt;option&gt;XXX&lt;/option&gt;<br>
+            &lt;/select&gt;<br>
+
+            <br>
+
+            追加部分
+            <pre><code class="language-html">出身地：
+    &lt;select name="from"&gt;
+      &lt;option value=""&gt;選択してください&lt;/option&gt;
+      &lt;option value="北海道"&gt;北海道&lt;/option&gt;
+      &lt;option value="東北"&gt;東北&lt;/option&gt;
+      &lt;option value="関東"&gt;関東&lt;/option&gt;
+      &lt;option value="中部"&gt;中部&lt;/option&gt;
+      &lt;option value="近畿"&gt;近畿&lt;/option&gt;
+      &lt;option value="中国"&gt;中国&lt;/option&gt;
+      &lt;option value="四国"&gt;四国&lt;/option&gt;
+      &lt;option value="九州"&gt;九州&lt;/option&gt;
+      &lt;option value="その他"&gt;その他&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;br&gt;</code></pre>
+
+            <br>
+            全文<br>
+            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前：&lt;input type="text" name="name"&gt;&lt;br&gt;
+
+    好きな色：
+    &lt;input type="radio" name="color" value="赤" id="color1"&gt;
+    &lt;label for="color1"&gt;赤&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="青" id="color2"&gt;
+    &lt;label for="color2"&gt;青&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="黄" id="color3"&gt;
+    &lt;label for="color3"&gt;黄&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="その他" id="color4"&gt;
+    &lt;label for="color4"&gt;その他&lt;/label&gt;
+    &lt;br&gt;
+
+    出身地：
+    &lt;select name="from"&gt;
+      &lt;option value=""&gt;選択してください&lt;/option&gt;
+      &lt;option value="北海道"&gt;北海道&lt;/option&gt;
+      &lt;option value="東北"&gt;東北&lt;/option&gt;
+      &lt;option value="関東"&gt;関東&lt;/option&gt;
+      &lt;option value="中部"&gt;中部&lt;/option&gt;
+      &lt;option value="近畿"&gt;近畿&lt;/option&gt;
+      &lt;option value="中国"&gt;中国&lt;/option&gt;
+      &lt;option value="四国"&gt;四国&lt;/option&gt;
+      &lt;option value="九州"&gt;九州&lt;/option&gt;
+      &lt;option value="その他"&gt;その他&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;br&gt;
+
+    &lt;input type="checkbox" name="agree" value="yes" id="agree"&gt;
+    &lt;label for="agree"&gt;
+      &lt;a href="https://www.google.com" target="_blank"&gt;利用規約&lt;/a&gt;
+      に同意します
+    &lt;/label&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/7.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+        <h2 id="chapter2-7">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-7" aria-expanded="false" aria-controls="accordion-chapter2-7">
+            <span>テキストエリア</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-7" class="hidden" aria-labelledby="chapter2-7">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            &lt;textarea&gt;〜&lt;/textarea&gt;<br>
+
+            <br>
+            追加部分
+            <pre><code class="language-html">お問い合わせ内容：&lt;br&gt;
+    &lt;textarea name="content" cols="40" rows="5"&gt;&lt;/textarea&gt;&lt;br&gt;</code></pre>
+
+            <br>
+            全文<br>
+            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    名前：&lt;input type="text" name="name"&gt;&lt;br&gt;
+
+    好きな色：
+    &lt;input type="radio" name="color" value="赤" id="color1"&gt;
+    &lt;label for="color1"&gt;赤&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="青" id="color2"&gt;
+    &lt;label for="color2"&gt;青&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="黄" id="color3"&gt;
+    &lt;label for="color3"&gt;黄&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="その他" id="color4"&gt;
+    &lt;label for="color4"&gt;その他&lt;/label&gt;
+    &lt;br&gt;
+
+    出身地：
+    &lt;select name="from"&gt;
+      &lt;option value=""&gt;選択してください&lt;/option&gt;
+      &lt;option value="北海道"&gt;北海道&lt;/option&gt;
+      &lt;option value="東北"&gt;東北&lt;/option&gt;
+      &lt;option value="関東"&gt;関東&lt;/option&gt;
+      &lt;option value="中部"&gt;中部&lt;/option&gt;
+      &lt;option value="近畿"&gt;近畿&lt;/option&gt;
+      &lt;option value="中国"&gt;中国&lt;/option&gt;
+      &lt;option value="四国"&gt;四国&lt;/option&gt;
+      &lt;option value="九州"&gt;九州&lt;/option&gt;
+      &lt;option value="その他"&gt;その他&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;br&gt;
+
+    お問い合わせ内容：&lt;br&gt;
+    &lt;textarea name="content" cols="40" rows="5"&gt;&lt;/textarea&gt;&lt;br&gt;
+
+    &lt;input type="checkbox" name="agree" value="yes" id="agree"&gt;
+    &lt;label for="agree"&gt;
+      &lt;a href="https://www.google.com" target="_blank"&gt;利用規約&lt;/a&gt;
+      に同意します
+    &lt;/label&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/8.png" />
+            </figure>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter3">PHPを利用したフォームの処理</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter3-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-1" aria-expanded="false" aria-controls="accordion-chapter3-1">
+            <span>PHPを利用したフォーム処理の基礎</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-1" class="hidden" aria-labelledby="chapter3-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold">1.フォームからデータを取得</h3>
+
+              PHPの$_POSTまたは$_GET変数を使用して、フォームからデータを取得することができます。
+
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">2.フォームデータのバリデーション</h3>
+
+              入力されたデータが有効かどうかを確認することが重要です。
+
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">3.フォームデータの処理</h3>
+
+              データの処理には、データをデータベースに格納するか、ファイルに書き込む、メールを送信するなどの方法があります。
+
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-2" aria-expanded="false" aria-controls="accordion-chapter3-2">
+            <span>$_GET変数、$_POST変数</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-2" class="hidden" aria-labelledby="chapter3-2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <div class="mt-8 bg-gray-100 p-4 rounded">
+              $_GET： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/reserved.variables.get.php" target="_blank">https://www.php.net/manual/ja/reserved.variables.get.php</a><br>
+              $_POST： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/reserved.variables.post.php" target="_blank">https://www.php.net/manual/ja/reserved.variables.post.php</a><br>
+            </div>
+
+            GETの場合
+            <pre><code class="lang-php">入力内容：&lt;?php echo $_GET['name']; ?&gt;&lt;br&gt;</code></pre>
+                          
+            POSTの場合
+            <pre><code class="lang-php">入力内容：&lt;?php echo $_POST['name']; ?&gt;&lt;br&gt;</code></pre>
+
+            <br>
+            フォームの先頭に、入力した名前を表示するようにしてみる
+            <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+    入力内容：&lt;?php echo $_GET['name']; ?&gt;&lt;br&gt;
+
+
+    名前：&lt;input type="text" name="name"&gt;&lt;br&gt;
+
+    好きな色：
+    &lt;input type="radio" name="color" value="赤" id="color1"&gt;
+    &lt;label for="color1"&gt;赤&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="青" id="color2"&gt;
+    &lt;label for="color2"&gt;青&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="黄" id="color3"&gt;
+    &lt;label for="color3"&gt;黄&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="その他" id="color4"&gt;
+    &lt;label for="color4"&gt;その他&lt;/label&gt;
+    &lt;br&gt;
+
+    出身地：
+    &lt;select name="from"&gt;
+      &lt;option value=""&gt;選択してください&lt;/option&gt;
+      &lt;option value="北海道"&gt;北海道&lt;/option&gt;
+      &lt;option value="東北"&gt;東北&lt;/option&gt;
+      &lt;option value="関東"&gt;関東&lt;/option&gt;
+      &lt;option value="中部"&gt;中部&lt;/option&gt;
+      &lt;option value="近畿"&gt;近畿&lt;/option&gt;
+      &lt;option value="中国"&gt;中国&lt;/option&gt;
+      &lt;option value="四国"&gt;四国&lt;/option&gt;
+      &lt;option value="九州"&gt;九州&lt;/option&gt;
+      &lt;option value="その他"&gt;その他&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;br&gt;
+
+    お問い合わせ内容：&lt;br&gt;
+    &lt;textarea name="content" cols="40" rows="5"&gt;&lt;/textarea&gt;&lt;br&gt;
+
+    &lt;input type="checkbox" name="agree" value="yes" id="agree"&gt;
+    &lt;label for="agree"&gt;
+      &lt;a href="https://www.google.com" target="_blank"&gt;利用規約&lt;/a&gt;
+      に同意します
+    &lt;/label&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/9.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+        <h2 id="chapter3-3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-3" aria-expanded="false" aria-controls="accordion-chapter3-3">
+            <span>入力が無い場合</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-3" class="hidden" aria-labelledby="chapter3-3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            「送信」を押さないで、単にURLを開くと、$_GETで受け取る情報が無いので メッセージが表示される
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./12/10.png" />
+            </figure>
+
+            if 文で、入力があるときだけ表示するようにする
+            <pre><code class="lang-php">&lt;?php if(isset($_GET['name'])): ?&gt;
+  入力内容：&lt;?php echo $_GET['name']; ?&gt;&lt;br&gt;
+&lt;?php endif; ?&gt;</code></pre>
+
+            <br>
+            php の if文は if(...){ 〜 } と if(...): 〜 endif; の書き方がある
+            <pre><code class="lang-php">&lt;?php if(isset($_GET['name'])){ ?&gt;
+  入力内容：&lt;?php echo $_GET['name']; ?&gt;&lt;br&gt;
+&lt;?php } ?&gt;</code></pre>
+
+            <br>
+            変数に値があるかチェックするための isset関数がphpにはあるので下記のコードで $_GET['name'] に値があるかをチェックできる
+            <pre><code class="lang-php">isset($_GET['name'])</code></pre>
+            
+            <div class="mt-8">
+              参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.isset.php" target="_blank">https://www.php.net/manual/ja/function.isset.php</a>
+            </div>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-3a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-3a" aria-expanded="false" aria-controls="accordion-chapter3-3a">
+            <span>入力内容のチェック</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-3a" class="hidden" aria-labelledby="chapter3-3a">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <section>
+              例えば、名前欄に
+              <pre data-line="10"><code class="lang-html">&lt;script&gt;alert("OK")&lt;/script&gt;</code></pre>
+              や
+              <pre data-line="10"><code class="lang-html">&lt;a href="https://warui.site.com/"&gt;いますぐ見てね!&lt;/a&gt;</code></pre>
+              などと入力されたときに、<br>
+              
+              そのまま php で表示してしまうと、ブラウザでそのままプログラムが実行されたり、リンクが表示されたりして危険。
+
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./12/11.png" />
+              </figure>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./12/12.png" />
+              </figure>
+
+              <br>
+              そこで、 php の htmlspecialchars()関数
+              <div class="mt-8">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.htmlspecialchars.php" target="_blank">https://www.php.net/manual/ja/function.htmlspecialchars.php</a>
+              </div>
+              echoで表示するときに、htmlspecialchars()関数で囲むことで、「<」や「>」などを変換してくれる
+              <pre data-line="10"><code class="lang-html">入力内容：&lt;?php echo $_GET['name']; ?&gt;&lt;br&gt;</code></pre>
+              ↓
+              <pre data-line="10"><code class="lang-html">入力内容：&lt;?php echo htmlspecialchars($_GET['name']); ?&gt;&lt;br&gt;</code></pre>
+              <figure class="mt-4 inline-block max-w-full">
+                <figcaption>javascriptとして実行されないようになった</figcaption>
+                <img src="./12/13.png" />
+              </figure>
+
+              <div class="bg-yellow-200 rounded p-8">
+                htmlではタグを書くための「&lt;」や「&gt;」は、そのままでは表示できないので、それらの文字を表示するためにHTMLエンティティという表記方法を使う。「&lt;」は「&amp;lt;」、「&gt;」は「&amp;gt;」など。<br>
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/ja/docs/Glossary/Entity" target="_blank">https://developer.mozilla.org/ja/docs/Glossary/Entity</a>
+              </div>
+              <figure class="mt-4 inline-block max-w-full">
+                <figcaption>ブラウザでソースを確認すると、「&lt;」や「&gt;」が「&amp;lt;」「&amp;gt;」に変換されているのがわかる</figcaption>
+                <img src="./12/14.png" />
+              </figure>
+      
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-4" aria-expanded="false" aria-controls="accordion-chapter3-4">
+            <span>サーバ上のコマンドを実行する</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-4" class="hidden" aria-labelledby="chapter3-4">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <section>
+              system関数
+
+              <div class="mt-8">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.system.php" target="_blank">https://www.php.net/manual/ja/function.system.php</a>
+              </div>
+              <br>
+              入力内容を表示していた部分を、プログラムの実行結果を表示するようにしてみる
+              <pre data-line="10"><code class="lang-html">入力内容：&lt;?php echo htmlspecialchars($_GET['name']); ?&gt;&lt;br&gt;</code></pre>
+              ↓
+              <pre data-line="10"><code class="lang-html">&lt;pre&gt;&lt;?php system($_GET['name']); ?&gt;&lt;/pre&gt;</code></pre>
+              
+              <figure class="mt-4 inline-block max-w-full">
+                <figcaption>名前に「ls -al」と入力して、「送信」ボタンを押すと、サーバ上で 「ls -al」が実行されて、その結果を表示できてしまう。</figcaption>
+                <img src="./12/15.png" />
+              </figure>
+
+              「ls -al ../」や「pwd」などで、サーバの中身を探れてしまう。
+
+              <div class="bg-yellow-200 rounded p-8">
+                phpのプログラムを実行できるサーバにftpなどでファイルを置ける権限がもらえると、sshでサーバにアクセスできなくても、サーバ上のコマンドを実行できてしまう。
+              </div>
+      
+            </section>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+
+
+
+  </body>
+
+</html>
