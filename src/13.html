@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <!--button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button-->
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#last">前回</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#data">Open-Meteoで取得するデータを決める</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert">プログラムを書いてデータをHTMLに差し込む</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert1">APIからデータを取得できるか確認</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert2">プログラムからデータを差し込み易いように、各項目に idを設定</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert3">日付を差し込んでみる</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert4">関数を使ってシンプルに</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert5">天気、最高気温、最低気温、降水量も差し込む</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view">天気の情報をわかりやすく表示</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view1">データ取得前の表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view2">日付の書式を「○月○日」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view3">天気の表示を絵文字で</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock">時計が毎秒更新されるようにする</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock1">日時を表示する場所にidをセット 初期表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock2">現在の日時を表示する関数を作って、1秒に1回呼び出す</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock3">日付の表示を整える</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock4">10より小さい数字の時に頭に0をつける</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">phpを使って問い合わせフォームを作成する</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第13回 7月16日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded mb-4">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">メールを送信してみる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">入力フォームをつくる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">確認画面をつくる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">ありがとう画面とファイル構成</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">もどるボタン</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">CSRF対策</h3>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">自分のURL
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <div class="mb-2">自分の public_html の中の 20240618 フォルダの index.html を表示する場合</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-8 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/index.html</h3>
+          <div class="mb-2">index.html は省略できるので、下記URLでもOK</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/</h3>
+        </div>
+      </div>
+
+    </div>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter1">メールを送信してみる</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter1-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter1-1" aria-expanded="false" aria-controls="accordion-chapter1-1">
+            <span>メールを送信してみる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter1-1" class="hidden" aria-labelledby="chapter1-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold">phpの mb_send_mail() 関数を利用して、まず、メールを送信してみます。</h3>
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.mb-send-mail.php" target="_blank">https://www.php.net/manual/ja/function.mb-send-mail.php</a>
+              </div>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">public_htmlの中に、20240716フォルダを作り、その中に、mail.php ファイルを作成</h3>
+
+              mail.php
+
+              <pre><code class="lang-php">&lt;?php
+
+  $to = "yamamoto_t@obirin.ac.jp";
+  $subject = "タイトル";
+  $header="From: yamamoto_t@obirin.ac.jp";
+  $body = "本文\n"
+        . "本文\n"
+        . "本文\n"
+    ;
+
+  mb_send_mail($to,$subject,$body,$header);
+
+?&gt;
+メール送信しました。</code></pre>
+(メールアドレスは、自分のアドレスに変更してください)
+            </section>
+
+            <section class="mt-8">
+              ブラウザで https://bp2022.tama.net/~pXXXCXXXX/20240716/mail.php を開いてみる。 (URLは各自のものに読み替えてください)
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./13/01.png" />
+              </figure>
+  
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter1-3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter1-3" aria-expanded="false" aria-controls="accordion-chapter1-3">
+            <span>届いたメールを確認</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter1-3" class="hidden" aria-labelledby="chapter1-3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              Gmailで見ると、Googleから注意メッセージが表示されてる
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./13/02.png" />
+              </figure>
+              「問題ない」を押しておく
+            </section>
+
+          </div>
+        </div>
+
+
+        <h2 id="chapter1-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter1-2" aria-expanded="false" aria-controls="accordion-chapter1-2">
+            <span>なりすましメールを防ぐSPF</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter1-2" class="hidden" aria-labelledby="chapter1-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                プログラムを見たとおり、 簡単にどんなメールアドレスからでも、 誰宛にでもメールを送信できてしまうので、なりすましメールは簡単に送信できてしまう。
+              </p>
+              <p>
+                それでは困るので、SPF(Sender Policy Framework)という仕組みが考案された。
+              </p>
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">SPFとは何か</h4>
+                <p>
+                  SPFとは、送信元が偽装されたメールを送信するのを防止するための技術です。
+                </p>
+                <p>
+                  SPFは、メールの送信元が正当なものであるかどうかを確認するために、受信側のメールサーバーがDNSを参照して認証します。
+                </p>
+                <p>
+                  SPFを設定することで、送信元を偽装したメールを受信するリスクを減らすことができます。
+                </p>
+              </div>
+            </section>
+
+            <section class="mt-8">
+              例えば、obirin.ac.jp のSPF設定は、
+              <pre><code class="lang-php">v=spf1 include:_spf.google.com ip4:202.232.240.24 ip4:113.130.22.192/28 include:spf.bmv.jp include:us2.alcent.jp ip4:202.228.204.77 ip4:114.179.13.209 include:webcas.net ~all</code></pre>
+              となっている。
+              
+              <p>
+                ここには、メールを送信する元になるIPアドレスが列記されていて、ここに書かれていないIPアドレスからのメールはなりすましの可能性があると判断される。
+              </p>
+              <p>
+                bp2022.tama.net サーバのIPアドレスは、 49.212.135.209 なので、SPFレコードに含まれていないので、Googleが注意メッセージを出していた。
+              </p>
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">SPFレコードの調べ方</h4>
+                <p>
+                  SPFは、DNSの仕組みを使っているので、nslookupコマンドで調べられる例えば、obirin.ac.jp ドメインを調べたい場合は下記のコマンド
+                </p>
+                <pre><code class="lang-php">nslookup -type=TXT obirin.ac.jp</code></pre>
+              </div>
+            </section>
+
+            <section class="mt-8">
+              mail.php の差出人を指定する部分
+              <pre><code class="lang-php">$header="From: yamamoto_t@obirin.ac.jp";</code></pre>
+              を
+              <pre><code class="lang-php">$header="From: yamamoto_t@bp2022.tama.net";</code></pre>
+              に変えて、もう一度メールを送信すると、届いたメールには注意メッセージが表示されない（はず）
+
+              <p class="mt-8">
+                bp2022.tama.net ドメインのSPFレコードには、 49.212.135.209 を登録してあるので、Googleが正しい送信元だと判断した。
+              </p>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./13/03.png" />
+              </figure>
+
+            </section>
+            
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter2">入力フォームをつくる</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter2-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-1" aria-expanded="false" aria-controls="accordion-chapter2-1">
+            <span>入力フォームをつくる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-1" class="hidden" aria-labelledby="chapter2-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              index.php
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;MAIL FORM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="POST" action="mail.php"&gt;
+    名前:&lt;input type="text" name="name" required&gt;&lt;br&gt;
+    e-mail:&lt;input type="email" name="email" required&gt;&lt;br&gt;
+    件名:&lt;input type="text" name="title" required&gt;&lt;br&gt;
+    &lt;textarea name="msg" required&gt;&lt;/textarea&gt;
+    &lt;br&gt;
+    &lt;input type="submit" name="send" value="送信"&gt;
+
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+
+            <section class="mt-8">
+              ブラウザで見てみる<br>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./13/04.png" />
+              </figure>
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter2-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-2" aria-expanded="false" aria-controls="accordion-chapter2-2">
+            <span>フォームから入力された内容でメールを送信するようにmail.phpを修正</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-2" class="hidden" aria-labelledby="chapter2-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              mail.php
+              <pre><code class="lang-php">&lt;?php
+
+if( isset($_POST['email']) &amp;&amp; $_POST['email'] !== '' ){
+
+  $to = $_POST['email'];
+  $subject = $_POST['title'];
+  $header="From: yamamoto_t@bp2022.tama.net";
+  $body = "お問合せ\n"
+    .$_POST['name'] . "\n"
+    .$_POST['msg'] . "\n"
+    ;
+
+  mb_send_mail($to,$subject,$body,$header);
+
+}
+
+?&gt;
+送信しました。</code></pre>
+              メールの件名や、本文は、入力フォームから入力された内容を $_POST変数で取得して使用。
+            </section>
+
+            <section class="mt-8">
+              下記のif文で囲むことで、emailアドレスがフォームから入力されたときだけ、メールを送信するようにしてある。(emailアドレスが空の場合はメールを送信しない)
+              <pre><code class="lang-php">if( isset($_POST['email']) &amp;&amp; $_POST['email'] !== '' ){
+
+}</code></pre>
+
+            </section>
+
+            
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter3">確認画面をつくる</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter3-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-1" aria-expanded="false" aria-controls="accordion-chapter3-1">
+            <span>ボタンを変更</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-1" class="hidden" aria-labelledby="chapter3-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                フォーム入力内容の誤りを防ぐために、確認画面を作成することをお勧めします。確認画面では、ユーザが入力した内容を表示して確認できます。また、確認画面から送信ボタンを押すことで、フォームの送信を完了することができます。 (byAI)
+              </p>
+
+              <h3 class="text-lg font-bold mt-8">「送信」ボタンを「確認画面へ」に変更</h3>
+
+              <p class="mt-8">
+                index.php
+                <pre><code class="lang-php">&lt;input type="submit" name="send" value="送信"&gt;</code></pre>
+                の部分を
+                <pre><code class="lang-php">&lt;input type="submit" name="confirm" value="確認画面へ"&gt;</code></pre>
+                に変更
+              </p>
+
+              <h3 class="text-lg font-bold mt-8">mail.phpの中で押されたボタンに応じた処理に分ける</h3>
+
+              <figure class="mt-4 inline-block max-w-full">
+                <figcaption>mail.php</figcaption>
+                <img src="./13/05.png" />
+              </figure>
+
+              <pre><code class="lang-php">&lt;?php
+
+if( isset($_POST['email']) &amp;&amp; $_POST['email'] !== '' ){
+
+  if( isset($_POST['send'])){
+
+    $to = $_POST['email'];
+    $subject = $_POST['title'];
+    $header="From: yamamoto_t@bp2022.tama.net";
+    $body = "お問合せ\n"
+      .$_POST['name'] . "\n"
+      .$_POST['msg'] . "\n"
+      ;
+
+    mb_send_mail($to,$subject,$body,$header);
+
+    include "thanks.php";
+  } else if( isset($_POST['confirm'])){
+    include "confirm.php";
+  } else if( isset($_POST['back'])){
+    include "index.php";
+  }
+}
+?&gt;</code></pre>
+
+
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-2" aria-expanded="false" aria-controls="accordion-chapter3-2">
+            <span>確認画面をつくる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-2" class="hidden" aria-labelledby="chapter3-2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              confirm.php
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;MAIL FORM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="POST" action="mail.php"&gt;
+    名前: 
+    &lt;?php
+      if( isset($_REQUEST['name']) ):
+        echo htmlspecialchars($_REQUEST['name']);
+      endif;
+      ?&gt;
+    &lt;br&gt;
+    e-mail:
+    &lt;?php
+      if( isset($_REQUEST['email']) ):
+        echo htmlspecialchars($_REQUEST['email']);
+      endif;
+      ?&gt;
+    &lt;br&gt;
+    件名:
+    &lt;?php
+      if( isset($_REQUEST['title']) ):
+        echo htmlspecialchars($_REQUEST['title']);
+      endif;
+      ?&gt;
+    &lt;br&gt;
+    &lt;?php
+      if( isset($_REQUEST['msg']) ):
+        echo nl2br(htmlspecialchars($_REQUEST['msg']));
+      endif;
+      ?&gt;
+    &lt;br&gt;
+    &lt;input type="submit" name="back" value="もどる"&gt;
+    &lt;input type="submit" name="send" value="送信"&gt;
+
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+            <div class="mt-8 bg-gray-100 p-4 rounded">
+              <h4 class="text-lg font-bold">nl2br関数</h4>
+              改行文字の前に、HTMLの改行タグを挿入する<br>
+              <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.nl2br.php" target="_blank">https://www.php.net/manual/ja/function.nl2br.php</a><br>
+            </div>
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-2a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-2a" aria-expanded="false" aria-controls="accordion-chapter3-2a">
+            <span>ブラウザで確認</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-2a" class="hidden" aria-labelledby="chapter3-2a">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+             
+              <figure class="mt-4 max-w-full">
+                <img src="./13/06.png" />
+              </figure>
+              入力して「確認画面へ」<br>
+              
+              <figure class="mt-4 max-w-full">
+                <img src="./13/07.png" />
+              </figure>
+              確認画面から「送信」を押すと<br>
+  
+              <figure class="mt-4 max-w-full">
+                <img src="./13/08.png" />
+              </figure>
+              真っ白な画面になる<br>
+
+              <p class="mt-8">
+                確認画面では、入力した内容が画面には表示されているが、フォームの中には存在していないので、「送信」ボタンを押しても、サーバに email などの内容が送信されずに、真っ白な画面になって、メールも送信されない
+              </p>
+
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-3" aria-expanded="false" aria-controls="accordion-chapter3-3">
+            <span>確認画面でのhidden要素</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-3" class="hidden" aria-labelledby="chapter3-3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              入力画面で入力した内容をフォームとして、確認画面でも保持する必要があるので
+              <pre><code class="lang-php">&lt;input type="hidden" name="〜" value="〜"&gt;</code></pre>
+              を使う
+            </section>
+
+            <section class="mt-8">
+              confirm.phpの
+              <pre><code class="lang-php">    名前: 
+    &lt;?php
+      if( isset($_REQUEST['name']) ):
+        echo htmlspecialchars($_REQUEST['name']);
+      endif;
+      ?&gt;
+    &lt;br&gt;</code></pre>
+              を
+              <pre><code class="lang-php">名前: 
+    &lt;?php
+      if( isset($_REQUEST['name']) ):
+        echo htmlspecialchars($_REQUEST['name']);
+        ?&gt;
+        &lt;input type="hidden" name="name" value="&lt;?php echo htmlspecialchars($_REQUEST['name']); ?&gt;"&gt;
+      &lt;?php
+      endif;
+      ?&gt;</code></pre>
+              に書き換える。
+            </section>
+
+            <section class="mt-8">
+              名前だけでなく、e-mail、件名、本文も同様に書くべきだが、同じようなことを何度も書くのは面倒だし、間違いやすいので関数にする
+            </section>
+
+            <section class="mt-8">
+              mail.php に下記の関数を記述しておく
+              <pre><code class="lang-php">function makeConfirm ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo nl2br(htmlspecialchars($_REQUEST[$name]));
+    echo '&lt;input type="hidden" name="' . $name . '" value="' . htmlspecialchars($_REQUEST[$name]). '"&gt;';
+  }
+}</code></pre>
+            </section>
+
+            <section class="mt-8">
+              confirm.phpは、下記のように makeConfirm()関数を使って書き換える
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;MAIL FORM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="POST" action="mail.php"&gt;
+    名前: 
+    &lt;?php makeConfirm('name') ?&gt;
+    &lt;br&gt;
+    e-mail:
+    &lt;?php makeConfirm('email') ?&gt;
+    &lt;br&gt;
+    件名:
+    &lt;?php makeConfirm('title') ?&gt;
+    &lt;br&gt;
+    &lt;?php makeConfirm('msg') ?&gt;
+    &lt;br&gt;
+    &lt;input type="submit" name="back" value="もどる"&gt;
+    &lt;input type="submit" name="send" value="送信"&gt;
+
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-3a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-3a" aria-expanded="false" aria-controls="accordion-chapter3-3a">
+            <span>ブラウザで確認</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-3a" class="hidden" aria-labelledby="chapter3-3a">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <figure class="mt-4 max-w-full">
+              <img src="./13/06.png" />
+            </figure>
+            入力して「確認画面へ」<br>
+            
+            <figure class="mt-4 max-w-full">
+              <img src="./13/07.png" />
+            </figure>
+            確認画面から「送信」を押すと<br>
+
+            <figure class="mt-4 max-w-full">
+              <img src="./13/09.png" />
+            </figure>
+            Warningが出るが、メールは届くようになった<br>
+
+            <p class="mt-8">
+              まだ、thanks.php を作っていないので、送信後に表示する画面がないので、Warningが出ている
+            </p>
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </section>
+
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter6">ありがとう画面とファイル構成</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter6-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter6-1" aria-expanded="false" aria-controls="accordion-chapter6-1">
+            <span>ありがとう画面をつくる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter6-1" class="hidden" aria-labelledby="chapter6-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              thanks.phpをつくる
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;MAIL FORM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  　送信しました。
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter6-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter6-2" aria-expanded="false" aria-controls="accordion-chapter6-2">
+            <span>ファイルの構成を変更</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter6-2" class="hidden" aria-labelledby="chapter6-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                index.php は、入力画面なので、 input.php に名前を変更
+              </p>
+
+              <p class="mt-8">
+                mail.php を index.php と名前変更して、全体の処理を管理させる
+              </p>
+
+              <p class="mt-8">
+                index.php(旧 mail.php)
+                <pre><code class="lang-php">&lt;?php
+
+if( isset($_POST['email']) &amp;&amp; $_POST['email'] !== '' ){
+
+  if( isset($_POST['send'])){
+
+    $to = $_POST['email'];
+    $subject = $_POST['title'];
+    $header="From: yamamoto_t@bp2022.tama.net";
+    $body = "お問合せ\n"
+      .$_POST['name'] . "\n"
+      .$_POST['msg'] . "\n"
+      ;
+
+    mb_send_mail($to,$subject,$body,$header);
+
+    include "thanks.php";
+  } else if( isset($_POST['confirm'])){
+    include "confirm.php";
+  } else if( isset($_POST['back'])){
+    include "input.php";
+  }
+} else {
+  include "input.php";
+}
+
+function makeConfirm ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo nl2br(htmlspecialchars($_REQUEST[$name]));
+    echo '&lt;input type="hidden" name="' . $name . '" value="' . htmlspecialchars($_REQUEST[$name]). '"&gt;';
+  }
+}
+?&gt;</code></pre>
+                何も入力がない場合や「もどる」ボタンを押したときに、input.phpを表示するようにする
+              </p>
+
+
+
+            </section>
+
+            <section class="mt-8">
+              ファイル名の変更に伴って、フォームの送信先をindex.phpになるように、input.php と confirm.php を変更
+              <pre><code class="lang-php">&lt;form method="POST" action="index.php"&gt;</code></pre>
+
+            </section>
+
+            
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter4">もどるボタン</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter4-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter4-1" aria-expanded="false" aria-controls="accordion-chapter4-1">
+            <span>もどるボタンを押した時の動作</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter4-1" class="hidden" aria-labelledby="chapter4-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                今は、もどるボタンを押したときに、入力内容が消えてしまうので、入力内容がもともとフォームに入っている状態にしたい
+              </p>
+
+              <p class="mt-8">
+                index.php に makeBackform関数を作って、それを使って、 input.phpの中で入力内容を表示させる。
+              </p>
+
+              <p class="mt-8">
+                index.phpに追記
+                <pre><code class="lang-php">function makeBackform ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo htmlspecialchars($_REQUEST[$name]);
+  }
+}</code></pre>
+              </p>
+
+              <p class="mt-8">
+                input.php
+                <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;MAIL FORM&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="POST" action="index.php"&gt;
+    名前:&lt;input type="text" name="name" required value="&lt;?php makeBackform('name'); ?&gt;"&gt;&lt;br&gt;
+    e-mail:&lt;input type="email" name="email" required value="&lt;?php makeBackform('email'); ?&gt;"&gt;&lt;br&gt;
+    件名:&lt;input type="text" name="title" required value="&lt;?php makeBackform('title'); ?&gt;"&gt;&lt;br&gt;
+    &lt;textarea name="msg" required&gt;&lt;?php makeBackform('msg'); ?&gt;&lt;/textarea&gt;
+    &lt;br&gt;
+    
+    &lt;input type="submit" name="confirm" value="確認画面へ"&gt;
+
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </p>
+
+
+
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter4-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter4-2" aria-expanded="false" aria-controls="accordion-chapter4-2">
+            <span>ブラウザで確認</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter4-2" class="hidden" aria-labelledby="chapter4-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <figure class="mt-4 max-w-full">
+              <img src="./13/06.png" />
+            </figure>
+            入力して「確認画面へ」<br>
+            
+            <figure class="mt-4 max-w-full">
+              <img src="./13/07.png" />
+            </figure>
+            確認画面から「もどる」を押すと<br>
+
+            <figure class="mt-4 max-w-full">
+              <img src="./13/06.png" />
+            </figure>
+            入力内容が保持されるようになった
+            <p class="mt-8">
+              ひとまず完成
+            </p>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter5">CSRF対策</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter5-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter5-1" aria-expanded="false" aria-controls="accordion-chapter5-1">
+            <span>CSRF攻撃に対する対策</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter5-1" class="hidden" aria-labelledby="chapter5-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+
+              CSRF（クロスサイトリクエストフォージェリ）攻撃に対する対策が必要です。CSRF攻撃は、ユーザが意図しない操作を行うという危険な攻撃手法です。これを防ぐために、フォームにCSRFトークンを埋め込む必要があります。(byAI)
+
+            </section>
+
+            <section class="mt-8">
+              <div class="mt-8">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://magazine.techacademy.jp/magazine/19300" target="_blank">https://magazine.techacademy.jp/magazine/19300</a>
+              </div>
+  
+            </section>
+
+  
+          </div>
+        </div>
+
+        <h2 id="chapter5-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter5-2" aria-expanded="false" aria-controls="accordion-chapter5-2">
+            <span>CSRF対策の実装</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter5-2" class="hidden" aria-labelledby="chapter5-2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <p>
+              セッションでcsrfトークンを保持して、意図しない送信を防ぐ
+            </p>
+
+            <section class="mt-8">
+              index.phpの先頭に記述<br>
+              (「&lt;?php」 のすぐ次の行に書く)
+              <pre><code class="lang-php">session_start();</code></pre>
+            </section>
+                          
+            <section class="mt-8">
+              index.phpに makeCsrf() 関数を記述
+              <pre><code class="lang-php">function makeCsrf() {
+  $toke_byte = openssl_random_pseudo_bytes(16);
+  $csrf_token = bin2hex($toke_byte);
+  $_SESSION['csrf_token'] = $csrf_token;
+  echo $csrf_token;
+}</code></pre>
+            </section>
+
+            <section class="mt-8">
+              index.php のメール送信処理時に、csrfトークンをチェックする<br>
+              (メール送信処理を下記の条件で囲んで、最後にsessionを破棄する)
+              <pre><code class="lang-php">if( isset($_POST['csrf']) &amp;&amp; isset($_SESSION['csrf_token']) 
+    &amp;&amp; $_POST['csrf'] === $_SESSION['csrf_token'] ){
+
+（いままでのメール送信処理がここに入る）
+
+      session_destroy();
+}</code></pre>
+            </section>
+
+            <section class="mt-8">
+              修正した index.php
+              <pre data-line="2,8-9,22-23,46-51"><code class="lang-php">&lt;?php
+session_start();
+
+if( isset($_POST['email']) &amp;&amp; $_POST['email'] !== '' ){
+
+  if( isset($_POST['send'])){
+
+    if( isset($_POST['csrf']) &amp;&amp; isset($_SESSION['csrf_token']) 
+    &amp;&amp; $_POST['csrf'] === $_SESSION['csrf_token'] ){
+
+      $to = $_POST['email'];
+      $subject = $_POST['title'];
+      $header="From: yamamoto_t@bp2022.tama.net";
+      $body = "お問合せ\n"
+        .$_POST['name'] . "\n"
+        .$_POST['msg'] . "\n"
+        ;
+
+      mb_send_mail($to,$subject,$body,$header);
+
+      include "thanks.php";
+      session_destroy();
+    }
+  } else if( isset($_POST['confirm'])){
+    include "confirm.php";
+  } else if( isset($_POST['back'])){
+    include "input.php";
+  }
+} else {
+  include "input.php";
+}
+
+function makeConfirm ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo nl2br(htmlspecialchars($_REQUEST[$name]));
+    echo '&lt;input type="hidden" name="' . $name . '" value="' . htmlspecialchars($_REQUEST[$name]). '"&gt;';
+  }
+}
+
+function makeBackform ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo htmlspecialchars($_REQUEST[$name]);
+  }
+}
+
+function makeCsrf() {
+  $toke_byte = openssl_random_pseudo_bytes(16);
+  $csrf_token = bin2hex($toke_byte);
+  $_SESSION['csrf_token'] = $csrf_token;
+  echo $csrf_token;
+}
+
+
+?&gt;</code></pre>
+            </section>
+
+
+            <section class="mt-8">
+              confirm.php のフォームに csrfトークンを差し込むためにフォームの中に下記を追加
+              <pre><code class="lang-php">&lt;input type="hidden" name="csrf" value="&lt;?php makeCsrf(); ?&gt;"&gt;</code></pre>
+            </section>
+
+
+
+          </div>
+        </div>
+
+
+        <h2 id="chapter5-4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter5-4" aria-expanded="false" aria-controls="accordion-chapter5-4">
+            <span>他にも実装すると良い機能</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter5-4" class="hidden" aria-labelledby="chapter5-4">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <section>
+              <h3 class="text-lg font-bold">バリデーション</h3>
+
+              <div class="mt-4">
+                お問い合わせフォームで入力されたデータは、必ずバリデーションが必要です。バリデーションは、入力されたデータが妥当であるかどうかを確認する処理です。バリデーションエラーがあった場合は、エラーメッセージを画面に表示してユーザに再入力を促します。(byAI)
+              </div>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">エラーメッセージを表示する</h3>
+
+              <div class="mt-4">
+                フォームのバリデーションエラーをユーザに分かりやすく表示してあげることが重要です。エラーメッセージを表示する位置やスタイルにも留意しましょう。(byAI)
+              </div>
+            </section>
+
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </body>
+
+</html>

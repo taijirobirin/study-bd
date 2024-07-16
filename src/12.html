@@ -110,9 +110,6 @@
         <div class="px-8 py-6 border-gray-200 border-opacity-60">
           <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">PHPを利用したフォームの処理</h3>
         </div>
-        <div class="px-8 py-6 border-gray-200 border-opacity-60">
-          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">HTMLフォームとセキュリティ</h3>
-        </div>
       </div>
 
       <div class="bg-gray-100 rounded">
@@ -133,7 +130,7 @@
     <section class="text-gray-600 body-font">
 
     
-      <h1 class="text-3xl font-bold text-center my-32" id="chapter3">HTMLフォームの基本</h1>
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter1">HTMLフォームの基本</h1>
 
 
       <div class="container p-5 mx-auto" data-accordion="open">
@@ -968,6 +965,99 @@
     </section>
 
 
+    <section>
+      <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="post"&gt;
+
+  
+
+  &lt;?php if(isset($_POST['name'])): ?&gt;
+  入力内容：&lt;?php echo htmlspecialchars($_POST['name']); ?&gt;&lt;br&gt;
+  &lt;?php endif; ?&gt;
+  &lt;?php if(isset($_POST['color'])): ?&gt;
+    入力好きな色：&lt;?php echo htmlspecialchars($_POST['color']); ?&gt;&lt;br&gt;
+  &lt;?php endif; ?&gt;
+
+  &lt;?php if(isset($_POST['gender'])): ?&gt;
+    性別：
+    &lt;?php 
+      $gender = $_POST['gender']; 
+      foreach($gender as $value){
+        echo htmlspecialchars($value) . ' ';
+      }
+    ?&gt;
+    &lt;br&gt;
+  &lt;?php endif; ?&gt;
+
+
+
+
+    名前：&lt;input type="text" name="name" value="&lt;?php if(isset($_POST['name'])): ?&gt;&lt;?php echo htmlspecialchars($_POST['name']); ?&gt;&lt;?php endif; ?&gt;"&gt;&lt;br&gt;
+
+    好きな色：
+    
+    &lt;label&gt;&lt;input type="radio" name="color" value="赤" &lt;?php if(isset($_POST['color']) &amp;&amp; $_POST['color']=='赤'){echo 'checked';} ?&gt;&gt;赤&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="青" id="color2"  &lt;?php if(isset($_POST['color']) &amp;&amp; $_POST['color']=='青'){echo 'checked';} ?&gt;&gt;
+    &lt;label for="color2"&gt;青&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="黄" id="color3" &lt;?php if(isset($_POST['color']) &amp;&amp; $_POST['color']=='黄'){echo 'checked';} ?&gt;&gt;
+    &lt;label for="color3"&gt;黄&lt;/label&gt;
+
+    &lt;input type="radio" name="color" value="その他" id="color4" &lt;?php if(isset($_POST['color']) &amp;&amp; $_POST['color']=='その他'){echo 'checked';} ?&gt;&gt;
+    &lt;label for="color4"&gt;その他&lt;/label&gt;
+    &lt;br&gt;
+
+    性別：
+    &lt;input type="checkbox" name="gender[]" value="女" id="gender1" &lt;?php if(isset($_POST['gender']) &amp;&amp; in_array("女", $_POST['gender'])){echo 'checked';} ?&gt; &gt;
+    &lt;label for="gender1"&gt;女&lt;/label&gt;
+
+    &lt;input type="checkbox" name="gender[]" value="男" id="gender2" &lt;?php if(isset($_POST['gender']) &amp;&amp; in_array("男", $_POST['gender'])){echo 'checked';} ?&gt;&gt;
+    &lt;label for="gender2"&gt;男&lt;/label&gt;
+
+    &lt;input type="checkbox" name="gender[]" value="その他" id="gender3" &lt;?php if(isset($_POST['gender']) &amp;&amp; in_array("その他", $_POST['gender'])){echo 'checked';} ?&gt;&gt;
+    &lt;label for="gender3"&gt;その他&lt;/label&gt;
+
+    &lt;br&gt;
+
+    出身地：
+    &lt;select name="from"&gt;
+      &lt;option value=""&gt;選択してください&lt;/option&gt;
+      &lt;option value="北海道"&gt;北海道&lt;/option&gt;
+      &lt;option value="東北"&gt;東北&lt;/option&gt;
+      &lt;option value="関東"&gt;関東&lt;/option&gt;
+      &lt;option value="中部"&gt;中部&lt;/option&gt;
+      &lt;option value="近畿"&gt;近畿&lt;/option&gt;
+      &lt;option value="中国"&gt;中国&lt;/option&gt;
+      &lt;option value="四国"&gt;四国&lt;/option&gt;
+      &lt;option value="九州"&gt;九州&lt;/option&gt;
+      &lt;option value="その他"&gt;その他&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;br&gt;
+
+    お問い合わせ内容：&lt;br&gt;
+    &lt;textarea name="content" cols="40" rows="5"&gt;&lt;/textarea&gt;&lt;br&gt;
+
+    &lt;input type="checkbox" name="agree" value="yes" id="agree"&gt;
+    &lt;label for="agree"&gt;
+      &lt;a href="https://www.google.com" target="_blank"&gt;利用規約&lt;/a&gt;
+      に同意します
+    &lt;/label&gt;&lt;br&gt;
+    
+
+
+    &lt;input type="submit" value="送信"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </section>
 
 
 
