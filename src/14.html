@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="./output.css" rel="stylesheet">
+  <link href="./prism.css" rel="stylesheet">
+  <script src="prism.js"></script>
+  <script src="main.js"></script>
+  <title>ビジネス プログラミング 2024</title>
+</head>
+
+<body>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <header class="text-white body-font bg-green-600">
+    <!--button
+      class="fixed bottom-0 left-1 text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      type="button" data-drawer-target="drawer-menu" data-drawer-show="drawer-menu"
+      aria-controls="drawer-menu">
+      MENU
+    </button-->
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+      <a href="index.html" class="flex title-font font-medium items-center text-white mb-0">
+        <span class="text-xl">ビジネス プログラミング 2024</span>
+      </a>
+      <div>
+        山本泰二郎 ( <a href="mailto:yamamoto_t@obirin.ac.jp" class="hover:underline">yamamoto_t@obirin.ac.jp</a> )
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- drawer component -->
+  <div id="drawer-menu"
+    class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+    tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label"
+      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">MENU</h5>
+    <button type="button" data-drawer-hide="drawer-menu" aria-controls="drawer-menu"
+      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+      </svg>
+      <span class="sr-only">Close menu</span>
+    </button>
+
+    <nav class="bg-white rounded shadow">
+      <ul class="mb-20">
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#last">前回</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#data">Open-Meteoで取得するデータを決める</a>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert">プログラムを書いてデータをHTMLに差し込む</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert1">APIからデータを取得できるか確認</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert2">プログラムからデータを差し込み易いように、各項目に idを設定</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert3">日付を差し込んでみる</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert4">関数を使ってシンプルに</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#insert5">天気、最高気温、最低気温、降水量も差し込む</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view">天気の情報をわかりやすく表示</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view1">データ取得前の表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view2">日付の書式を「○月○日」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#view3">天気の表示を絵文字で</a></li>
+          </ul>
+        </li>
+        <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock">時計が毎秒更新されるようにする</a>
+          <ul class="ml-2">
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock1">日時を表示する場所にidをセット 初期表示を「--」に</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock2">現在の日時を表示する関数を作って、1秒に1回呼び出す</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock3">日付の表示を整える</a></li>
+            <li><a data-drawer-hide="drawer-menu" aria-controls="drawer-menu" class="hover:bg-green-100 p-2 block" href="#clock4">10より小さい数字の時に頭に0をつける</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+
+
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900">課題「アンケートと集計」</h1>
+        <h2 class="text-xs tracking-widest font-medium title-font mb-1">第14回 7月23日(火) 5限 (16:50〜18:30) J402</h2>
+      </div>
+
+
+      <div class="bg-gray-100 rounded mb-4">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">今日の内容
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">全体構想</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">出身地を入力するアンケートをつくる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">アンケートの回答を保存する</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">保存した回答を集計するプログラムをつくる</h3>
+        </div>
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">Chart.js を使って、集計結果をグラフで表示する</h3>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 rounded">
+        <h2 class="text-2xl text-center sm:text-2xl text-gray-900 font-medium title-font m-0 pt-6 pb-2 border-b-2">自分のURL
+        </h2>
+
+        <div class="px-8 py-6 border-gray-200 border-opacity-60">
+          <div class="mb-2">自分の public_html の中の 20240618 フォルダの index.html を表示する場合</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-8 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/index.html</h3>
+          <div class="mb-2">index.html は省略できるので、下記URLでもOK</div>
+          <h3 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2 break-words">https://bp2022.tama.net/~<span class="bg-yellow-100">p222C2222</span>/<span class="bg-green-100">20240618</span>/</h3>
+        </div>
+      </div>
+
+    </div>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter1">全体構想</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter1-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter1-1" aria-expanded="false" aria-controls="accordion-chapter1-1">
+            <span>全体構想を考える</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter1-1" class="hidden" aria-labelledby="chapter1-1">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">1</span>出身地を入力するアンケートをつくる</h3>
+              <p class="pl-8 mt-4">
+                入力画面は、先週の問い合わせフォームを改良して作れそうだ。<br>
+                自由入力では無く、選択式の解答欄にしたい。
+              </p>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/01.png" />
+              </figure>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">2</span>アンケートの回答を保存する</h3>
+              <p class="pl-8 mt-4">
+                一般的にはデータベースに保存して、データベースの機能を使って集計すると思うが、授業ではデータベースを扱っていないので、別の方法を考える。<br>
+                各回答をファイルとして保存して、それを元に集計するようにしよう。<br>
+                ファイルの保存方法について調べる。<br>
+                ファイル名が重複しないよう、ファイル名の付け方を考える。phpの tempnam()関数か hrtime()を使ってはどうか。
+              </p>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">3</span>保存した回答を集計するプログラムをつくる</h3>
+              <p class="pl-8 mt-4">
+                保存した回答ファイルを全部開いて、中身を集計する。<br>
+                集計結果をjson形式で出力する
+              </p>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">4</span>Chart.js を使って、集計結果をグラフで表示する</h3>
+              <p class="pl-8 mt-4">
+                Chart.jsの公式サイトから使い方を学ぶ<br>
+                Getting Started の内容をコピーして動かしてみる<br>
+                感じを掴めたら、アンケートの集計結果を表示してみる<br>
+                集計結果の表示のために、fetch() で、集計結果のjsonを取得<br>
+              </p>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/02.png" />
+              </figure>
+
+            </section>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter2">出身地を入力するアンケートをつくる</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter2-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-1" aria-expanded="false" aria-controls="accordion-chapter2-1">
+            <span>&lt;select&gt;タグで選択式メニューを表示</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-1" class="hidden" aria-labelledby="chapter2-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/03.png" />
+              </figure>
+
+              <pre><code class="lang-html">&lt;select name="from"&gt;
+  &lt;option value=""&gt;選択してください&lt;/option&gt;
+  &lt;option value="北海道"&gt;北海道&lt;/option&gt;
+  &lt;option value="青森県"&gt;青森県&lt;/option&gt;
+  &lt;option value="秋田県"&gt;秋田県&lt;/option&gt;
+  &lt;option value="岩手県"&gt;岩手県&lt;/option&gt;
+  &lt;option value="山形県"&gt;山形県&lt;/option&gt;
+  &lt;option value="東京都" selected&gt;東京都&lt;/option&gt;
+  &lt;option value="神奈川県"&gt;神奈川県&lt;/option&gt;
+  .
+  .
+  .
+&lt;/select&gt;</code></pre>
+              <p>
+                &lt;option&gt;タグに selected属性を入れておくと、そこが選択された状態になる
+              </p>
+            </section>
+
+
+            <section class="mt-8">
+              <p class="mb-8">
+                「もどる」ボタンで戻ったときに、選択された状態にしておきたいので、 index.php の中に、 makeSelect()関数を作って、それを使って input.php で表示するようにする。
+              </p>
+              
+              index.php
+              <pre><code class="lang-php">function makeSelect ($name, $value) {
+  if( isset($_REQUEST[$name]) ){
+    if ( $_REQUEST[$name] === $value ) {
+      echo "&lt;option value=\"$value\" selected&gt;$value&lt;/option&gt;";
+    } else {
+      echo "&lt;option value=\"$value\"&gt;$value&lt;/option&gt;";
+    }
+  } else {
+    echo "&lt;option value=\"$value\"&gt;$value&lt;/option&gt;";
+
+  }
+}</code></pre>
+
+input.php
+<pre><code class="lang-php">&lt;select name="from"&gt;
+  &lt;option value=""&gt;選択してください&lt;/option&gt;
+  &lt;?php makeSelect("from","北海道"); ?&gt;
+  &lt;?php makeSelect("from","青森県"); ?&gt;
+  &lt;?php makeSelect("from","秋田県"); ?&gt;
+  &lt;?php makeSelect("from","岩手県"); ?&gt;
+  &lt;?php makeSelect("from","山形県"); ?&gt;
+  &lt;?php makeSelect("from","東京都"); ?&gt;
+  &lt;?php makeSelect("from","神奈川県"); ?&gt;
+  .
+  .
+  .
+&lt;/select&gt;</code></pre>
+
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter2-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter2-2" aria-expanded="false" aria-controls="accordion-chapter2-2">
+            <span>入力フォームを作成する</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter2-2" class="hidden" aria-labelledby="chapter2-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                      
+
+            <section>
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">1</span>先週の問い合わせフォームのフォルダをコピーする</h3>
+              <p class="pl-8 mt-4">
+                VS Code上でフォルダーをコピーして、 20240723フォルダーをつくる<br>
+                または、sshで接続して、下記のコマンドでフォルダーをコピー
+              </p>
+
+              <pre><code class="lang-bash">cd public_html
+cp -a 20240716 20240723</code></pre>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">2</span>index.php (途中)</h3>
+
+              <pre><code class="lang-php">&lt;?php
+session_start();
+
+if( isset($_POST['from']) &amp;&amp; $_POST['from'] !== '' ){
+
+  if( isset($_POST['send'])){
+
+    if( isset($_POST['csrf']) &amp;&amp; isset($_SESSION['csrf_token']) 
+    &amp;&amp; $_POST['csrf'] === $_SESSION['csrf_token'] ){
+
+      // メール送信の部分は削除しました
+      // 回答をファイルに書き込む処理を書く予定です
+
+      include "thanks.php";
+      session_destroy();
+    }
+  } else if( isset($_POST['confirm'])){
+    include "confirm.php";
+  } else if( isset($_POST['back'])){
+    include "input.php";
+  }
+} else {
+  include "input.php";
+}
+
+function makeConfirm ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo nl2br(htmlspecialchars($_REQUEST[$name]));
+    echo '&lt;input type="hidden" name="' . $name . '" value="' . htmlspecialchars($_REQUEST[$name]). '"&gt;';
+  }
+}
+
+function makeBackform ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo htmlspecialchars($_REQUEST[$name]);
+  }
+}
+
+function makeCsrf() {
+  $toke_byte = openssl_random_pseudo_bytes(16);
+  $csrf_token = bin2hex($toke_byte);
+  $_SESSION['csrf_token'] = $csrf_token;
+  echo $csrf_token;
+}
+
+// 今回追加した関数
+function makeSelect ($name, $value) {
+  if( isset($_REQUEST[$name]) ){
+    if ( $_REQUEST[$name] === $value ) {
+      echo "&lt;option value=\"$value\" selected&gt;$value&lt;/option&gt;";
+    } else {
+      echo "&lt;option value=\"$value\"&gt;$value&lt;/option&gt;";
+    }
+  } else {
+    echo "&lt;option value=\"$value\"&gt;$value&lt;/option&gt;";
+
+  }
+}
+?&gt;</code></pre>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">3</span>input.php 完成形</h3>
+
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;アンケート&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="POST" action="index.php"&gt;
+  &lt;select name="from"&gt;
+      &lt;option value=""&gt;選択してください&lt;/option&gt;
+      &lt;?php makeSelect("from","北海道"); ?&gt;
+      &lt;?php makeSelect("from","青森県"); ?&gt;
+      &lt;?php makeSelect("from","秋田県"); ?&gt;
+      &lt;?php makeSelect("from","岩手県"); ?&gt;
+      &lt;?php makeSelect("from","山形県"); ?&gt;
+      &lt;?php makeSelect("from","宮城県"); ?&gt;
+      &lt;?php makeSelect("from","福島県"); ?&gt;
+      &lt;?php makeSelect("from","新潟県"); ?&gt;
+      &lt;?php makeSelect("from","富山県"); ?&gt;
+      &lt;?php makeSelect("from","石川県"); ?&gt;
+      &lt;?php makeSelect("from","福井県"); ?&gt;
+      &lt;?php makeSelect("from","長野県"); ?&gt;
+      &lt;?php makeSelect("from","群馬県"); ?&gt;
+      &lt;?php makeSelect("from","栃木県"); ?&gt;
+      &lt;?php makeSelect("from","茨城県"); ?&gt;
+      &lt;?php makeSelect("from","千葉県"); ?&gt;
+      &lt;?php makeSelect("from","埼玉県"); ?&gt;
+      &lt;?php makeSelect("from","東京都"); ?&gt;
+      &lt;?php makeSelect("from","神奈川県"); ?&gt;
+      &lt;?php makeSelect("from","山梨県"); ?&gt;
+      &lt;?php makeSelect("from","静岡県"); ?&gt;
+      &lt;?php makeSelect("from","愛知県"); ?&gt;
+      &lt;?php makeSelect("from","岐阜県"); ?&gt;
+      &lt;?php makeSelect("from","三重県"); ?&gt;
+      &lt;?php makeSelect("from","滋賀県"); ?&gt;
+      &lt;?php makeSelect("from","京都府"); ?&gt;
+      &lt;?php makeSelect("from","大阪府"); ?&gt;
+      &lt;?php makeSelect("from","奈良県"); ?&gt;
+      &lt;?php makeSelect("from","和歌山県"); ?&gt;
+      &lt;?php makeSelect("from","兵庫県"); ?&gt;
+      &lt;?php makeSelect("from","鳥取県"); ?&gt;
+      &lt;?php makeSelect("from","島根県"); ?&gt;
+      &lt;?php makeSelect("from","岡山県"); ?&gt;
+      &lt;?php makeSelect("from","広島県"); ?&gt;
+      &lt;?php makeSelect("from","山口県"); ?&gt;
+      &lt;?php makeSelect("from","香川県"); ?&gt;
+      &lt;?php makeSelect("from","徳島県"); ?&gt;
+      &lt;?php makeSelect("from","高知県"); ?&gt;
+      &lt;?php makeSelect("from","愛媛県"); ?&gt;
+      &lt;?php makeSelect("from","福岡県"); ?&gt;
+      &lt;?php makeSelect("from","大分県"); ?&gt;
+      &lt;?php makeSelect("from","宮崎県"); ?&gt;
+      &lt;?php makeSelect("from","熊本県"); ?&gt;
+      &lt;?php makeSelect("from","鹿児島県"); ?&gt;
+      &lt;?php makeSelect("from","佐賀県"); ?&gt;
+      &lt;?php makeSelect("from","長崎県"); ?&gt;
+      &lt;?php makeSelect("from","沖縄県"); ?&gt;
+      &lt;?php makeSelect("from","国外"); ?&gt;
+      &lt;?php makeSelect("from","その他"); ?&gt;
+    &lt;/select&gt;
+    &lt;br&gt;
+    
+    &lt;br&gt;
+    &lt;input type="submit" name="confirm" value="確認画面へ"&gt;
+
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+            
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">4</span>confirm.php 完成形</h3>
+
+              <pre><code class="lang-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;アンケート&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method="POST" action="index.php"&gt;
+  &lt;input type="hidden" name="csrf" value="&lt;?php makeCsrf(); ?&gt;"&gt;
+    出身地: 
+    &lt;?php makeConfirm('from') ?&gt;
+    &lt;br&gt;
+
+    &lt;br&gt;
+    &lt;input type="submit" name="back" value="もどる"&gt;
+    &lt;input type="submit" name="send" value="送信"&gt;
+
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">5</span>thanks.php 完成形</h3>
+
+              <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;アンケート&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  登録しました。
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter3">アンケートの回答を保存する</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter3-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-1" aria-expanded="false" aria-controls="accordion-chapter3-1">
+            <span>回答を保存するファイル名を考える</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-1" class="hidden" aria-labelledby="chapter3-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                回答を保存するファイル名が重複しないようにするために、ファイル名の付け方を考える。<br>
+                使えそうな関数は下記の2つ。
+              </p>
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">hrtime関数</h4>
+                システムの高精度な時刻を取得する<br>
+                <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.hrtime.php" target="_blank">https://www.php.net/manual/ja/function.hrtime.php</a><br>
+              </div>
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">tempnam関数</h4>
+                一意なファイル名を生成する<br>
+                <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.tempnam.php" target="_blank">https://www.php.net/manual/ja/function.tempnam.php</a><br>
+              </div>
+            </section>
+  
+            <section class="mt-8">
+              hrtime関数を使ったテストコード
+              <pre><code class="lang-php">&lt;?php
+echo hrtime(true),"\n";
+?&gt;</code></pre>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/06.png" />
+              </figure>
+            </section>
+  
+            <section class="mt-8">
+              tempnam関数を使ったテストコード
+              <pre><code class="lang-php">&lt;?php
+echo tempnam(".","data"),"\n";
+?&gt;</code></pre>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/07.png" />
+              </figure>
+            </section>
+  
+            <section class="mt-8">
+              <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400 border rounded">
+                <thead class="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <td></td>
+                    <th class="border p-2">hrtime()</th>
+                    <th class="border p-2">tempnam()</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th class="border p-2">メリット</th>
+                    <td class="border p-2">ファイル名でファイルが作られた順番に並べられる</td>
+                    <td class="border p-2">確実に被らないファイル名</td>
+                  </tr>
+                  <tr>
+                    <th class="border p-2">デメリット</th>
+                    <td class="border p-2">本当に同時に送信された場合にファイル名が重複する可能性がある</td>
+                    <td class="border p-2">ファイル名がランダムなので、ファイル名でソートしても作られた順番には並ばない</td>
+                  </tr>
+                  </tbody>
+              </table>
+
+            </section>
+
+            <section class="mt-8">
+              hrtimeを使ったファイル名生成テスト
+              <pre><code class="lang-php">&lt;?php
+$file =  'data/' . hrtime(true) . '.json';
+echo $file,"\n";
+?&gt;</code></pre>
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/08.png" />
+              </figure>
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-2" aria-expanded="false" aria-controls="accordion-chapter3-2">
+            <span>回答を保存する data フォルダを作る</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-2" class="hidden" aria-labelledby="chapter3-2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                VS Code でフォルダを作っても良いが、phpからファイルを書き込めないので、 chmod コマンドで、書き込めるようにアクセス権を設定する
+              </p>
+              <pre><code class="lang-bash">cd public_html
+cd 20240723
+mkdir data
+chmod 777 data</code></pre>
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-2a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-2a" aria-expanded="false" aria-controls="accordion-chapter3-2a">
+            <span>ファイルを書き込む関数 file_put_contents</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-2a" class="hidden" aria-labelledby="chapter3-2a">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">file_put_contents関数</h4>
+                データをファイルに書き込む<br>
+                <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.file-put-contents.php" target="_blank">https://www.php.net/manual/ja/function.file-put-contents.php</a><br>
+              </div>
+            </section>
+
+            <section class="mt-8">
+              <p>
+                ファイルを書き込むテスト
+              </p>
+              <pre><code class="lang-php">&lt;?php
+   $file =  'data/' . hrtime(true) . '.json';
+   file_put_contents($file, '文字', LOCK_EX);
+?&gt;</code></pre>
+            </section>
+
+            <section class="mt-8">
+              data フォルダの中に、'文字' が書き込まれたファイルができる
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/09.png" />
+              </figure>
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter3-3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-3" aria-expanded="false" aria-controls="accordion-chapter3-3">
+            <span>フォームに入力された情報をファイルに保存するためにJSON形式にする関数 json_encode</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-3" class="hidden" aria-labelledby="chapter3-3">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">json_encode関数</h4>
+                値を JSON 形式にして返す<br>
+                <a class="text-blue-600 break-words hover:underline" href="https://www.php.net/manual/ja/function.json-encode.php" target="_blank">https://www.php.net/manual/ja/function.json-encode.php</a><br>
+              </div>
+            </section>
+
+
+            <section class="mt-8">
+              jsonに変換するテスト
+              <pre><code class="lang-php">&lt;?php
+   $arr = array('a' =&gt; '日本語', 'b' =&gt; 2, 'c' =&gt; 3, 'd' =&gt; 4, 'e' =&gt; 5);
+   echo json_encode($arr, JSON_UNESCAPED_UNICODE),"\n";
+?&gt;</code></pre>
+
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/10.png" />
+              </figure>
+
+            </section>
+
+
+
+
+          </div>
+        </div>
+
+
+        <h2 id="chapter3-4">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-4" aria-expanded="false" aria-controls="accordion-chapter3-4">
+            <span>回答をファイルに書き込む処理</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-4" class="hidden" aria-labelledby="chapter3-4">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <pre><code class="lang-php">// ファイル名をhtrime関数で作成
+$file =  'data/' . hrtime(true) . '.json';
+
+// $_POST の内容をファイルに書き込むためのデータをjson_encode関数で作成
+$data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
+
+// ファイルに書き込む
+file_put_contents($file, $data, LOCK_EX);</code></pre>
+             
+            </section>
+
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold">input.php 完成形</h3>
+              <pre><code class="lang-php">&lt;?php
+session_start();
+
+if( isset($_POST['from']) &amp;&amp; $_POST['from'] !== '' ){
+
+  if( isset($_POST['send'])){
+
+    if( isset($_POST['csrf']) &amp;&amp; isset($_SESSION['csrf_token']) 
+    &amp;&amp; $_POST['csrf'] === $_SESSION['csrf_token'] ){
+
+      // メール送信の部分は削除しました
+
+      // ファイル名をhtrime関数で作成
+      $file =  'data/' . hrtime(true) . '.json';
+
+      // $_POST の内容をファイルに書き込むためのデータをjson_encode関数で作成
+      $data = json_encode($_POST, JSON_UNESCAPED_UNICODE);
+
+      // ファイルに書き込む
+      file_put_contents($file, $data, LOCK_EX);
+
+      include "thanks.php";
+      session_destroy();
+    }
+  } else if( isset($_POST['confirm'])){
+    include "confirm.php";
+  } else if( isset($_POST['back'])){
+    include "input.php";
+  }
+} else {
+  include "input.php";
+}
+
+function makeConfirm ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo nl2br(htmlspecialchars($_REQUEST[$name]));
+    echo '&lt;input type="hidden" name="' . $name . '" value="' . htmlspecialchars($_REQUEST[$name]). '"&gt;';
+  }
+}
+
+function makeBackform ($name) {
+  if( isset($_REQUEST[$name]) ){
+    echo htmlspecialchars($_REQUEST[$name]);
+  }
+}
+
+function makeCsrf() {
+  $toke_byte = openssl_random_pseudo_bytes(16);
+  $csrf_token = bin2hex($toke_byte);
+  $_SESSION['csrf_token'] = $csrf_token;
+  echo $csrf_token;
+}
+
+// 今回追加した関数
+function makeSelect ($name, $value) {
+  if( isset($_REQUEST[$name]) ){
+    if ( $_REQUEST[$name] === $value ) {
+      echo "&lt;option value=\"$value\" selected&gt;$value&lt;/option&gt;";
+    } else {
+      echo "&lt;option value=\"$value\"&gt;$value&lt;/option&gt;";
+    }
+  } else {
+    echo "&lt;option value=\"$value\"&gt;$value&lt;/option&gt;";
+
+  }
+}
+?&gt;</code></pre>
+
+            </section>
+
+
+
+
+          </div>
+        </div>
+
+
+
+        <h2 id="chapter3-3a">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter3-3a" aria-expanded="false" aria-controls="accordion-chapter3-3a">
+            <span>アンケートに回答してファイルが書き込まれることを確認</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter3-3a" class="hidden" aria-labelledby="chapter3-3a">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+
+            <figure class="mt-4 max-w-full">
+              <img src="./14/11.png" />
+            </figure>
+            dataフォルダ内に json形式で、フォームから送信した内容が保存されている<br>
+            
+            <figure class="mt-4 max-w-full">
+              <img src="./14/12.png" />
+            </figure>
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </section>
+
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter6">保存した回答を集計するプログラムをつくる</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter6-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter6-1" aria-expanded="false" aria-controls="accordion-chapter6-1">
+            <span>回答を集計して、JSON形式で出力</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter6-1" class="hidden" aria-labelledby="chapter6-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">1</span>dataフォルダ内のファイルを順番に全部読み込む</h3>
+              <div class="mt-8">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.sejuku.net/blog/51615" target="_blank">https://www.sejuku.net/blog/51615</a>
+              </div>
+              <pre><code class="lang-php">&lt;?php
+$dir = "data";
+
+// 既知のディレクトリをオープンし、その内容を読み込みます。
+if (is_dir($dir)) {
+    if ($dh = opendir($dir)) {
+        while (($file = readdir($dh)) !== false) {
+            echo "filename: $file &lt;br&gt;". "\n";
+        }
+        closedir($dh);
+    }
+}
+?&gt;</code></pre>
+
+              <figure class="mt-4 inline-block max-w-full">
+                <img src="./14/14.png" />
+              </figure>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">2</span>ファイルかどうか is_file で判定</h3>
+              <p class="pl-8 mt-4">
+                ファイルもフォルダも readdir で取得されるので、is_file でファイルかどうかを判定する
+              </p>
+
+              <pre><code class="lang-php">if (is_file($dir . $file)) {
+ .
+ .
+ .
+}</code></pre>
+            </section>
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">3</span>集計結果を入れる変数を用意</h3>
+
+              <pre><code class="lang-php">$from = array(
+  '北海道' =&gt; 0,
+  '青森県' =&gt; 0,
+  '秋田県' =&gt; 0,
+  '岩手県' =&gt; 0,
+  '山形県' =&gt; 0,
+  '宮城県' =&gt; 0,
+  '福島県' =&gt; 0,
+  '新潟県' =&gt; 0,
+  '富山県' =&gt; 0,
+  '石川県' =&gt; 0,
+  '福井県' =&gt; 0,
+  '長野県' =&gt; 0,
+  '群馬県' =&gt; 0,
+  '栃木県' =&gt; 0,
+  '茨城県' =&gt; 0,
+  '千葉県' =&gt; 0,
+  '埼玉県' =&gt; 0,
+  '東京都' =&gt; 0,
+  '神奈川県' =&gt; 0,
+  '山梨県' =&gt; 0,
+  '静岡県' =&gt; 0,
+  '愛知県' =&gt; 0,
+  '岐阜県' =&gt; 0,
+  '三重県' =&gt; 0,
+  '滋賀県' =&gt; 0,
+  '京都府' =&gt; 0,
+  '大阪府' =&gt; 0,
+  '奈良県' =&gt; 0,
+  '和歌山県' =&gt; 0,
+  '兵庫県' =&gt; 0,
+  '鳥取県' =&gt; 0,
+  '島根県' =&gt; 0,
+  '岡山県' =&gt; 0,
+  '広島県' =&gt; 0,
+  '山口県' =&gt; 0,
+  '香川県' =&gt; 0,
+  '徳島県' =&gt; 0,
+  '高知県' =&gt; 0,
+  '愛媛県' =&gt; 0,
+  '福岡県' =&gt; 0,
+  '大分県' =&gt; 0,
+  '宮崎県' =&gt; 0,
+  '熊本県' =&gt; 0,
+  '鹿児島県' =&gt; 0,
+  '佐賀県' =&gt; 0,
+  '長崎県' =&gt; 0,
+  '沖縄県' =&gt; 0,
+  '国外' =&gt; 0,
+  'その他' =&gt; 0,
+);</code></pre>
+            </section>
+
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">4</span>JSON形式のデータを読んで変数に入れる</h3>
+              <pre><code class="lang-php">$json = file_get_contents($dir . $file);
+$arr = json_decode($json,TRUE);</code></pre>
+            </section>
+
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">5</span>$arr変数の中から from の値を読み取って $from のカウントを増やす</h3>
+              <pre><code class="lang-php">$from[$arr['from']]++;</code></pre>
+            </section>
+
+
+            <section class="mt-8">
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">6</span>JSON形式で出力</h3>
+              <pre><code class="lang-php">header("Content-Type: application/json; charset=utf-8");
+echo json_encode( $obj, JSON_UNESCAPED_UNICODE);</code></pre>
+            </section>
+
+
+          </div>
+        </div>
+
+        <h2 id="chapter6-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter6-2" aria-expanded="false" aria-controls="accordion-chapter6-2">
+            <span>完成形</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter6-2" class="hidden" aria-labelledby="chapter6-2">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold">calc.php 完成形</h3>
+              <pre><code class="lang-php">&lt;?php
+$dir = "data/";
+
+$from = array(
+  '北海道' =&gt; 0,
+  '青森県' =&gt; 0,
+  '秋田県' =&gt; 0,
+  '岩手県' =&gt; 0,
+  '山形県' =&gt; 0,
+  '宮城県' =&gt; 0,
+  '福島県' =&gt; 0,
+  '新潟県' =&gt; 0,
+  '富山県' =&gt; 0,
+  '石川県' =&gt; 0,
+  '福井県' =&gt; 0,
+  '長野県' =&gt; 0,
+  '群馬県' =&gt; 0,
+  '栃木県' =&gt; 0,
+  '茨城県' =&gt; 0,
+  '千葉県' =&gt; 0,
+  '埼玉県' =&gt; 0,
+  '東京都' =&gt; 0,
+  '神奈川県' =&gt; 0,
+  '山梨県' =&gt; 0,
+  '静岡県' =&gt; 0,
+  '愛知県' =&gt; 0,
+  '岐阜県' =&gt; 0,
+  '三重県' =&gt; 0,
+  '滋賀県' =&gt; 0,
+  '京都府' =&gt; 0,
+  '大阪府' =&gt; 0,
+  '奈良県' =&gt; 0,
+  '和歌山県' =&gt; 0,
+  '兵庫県' =&gt; 0,
+  '鳥取県' =&gt; 0,
+  '島根県' =&gt; 0,
+  '岡山県' =&gt; 0,
+  '広島県' =&gt; 0,
+  '山口県' =&gt; 0,
+  '香川県' =&gt; 0,
+  '徳島県' =&gt; 0,
+  '高知県' =&gt; 0,
+  '愛媛県' =&gt; 0,
+  '福岡県' =&gt; 0,
+  '大分県' =&gt; 0,
+  '宮崎県' =&gt; 0,
+  '熊本県' =&gt; 0,
+  '鹿児島県' =&gt; 0,
+  '佐賀県' =&gt; 0,
+  '長崎県' =&gt; 0,
+  '沖縄県' =&gt; 0,
+  '国外' =&gt; 0,
+  'その他' =&gt; 0,
+);
+
+
+if (is_dir($dir)) {
+  if ($dh = opendir($dir)) {
+      while (($file = readdir($dh)) !== false) {
+        if (is_file($dir . $file)) {
+          $json = file_get_contents($dir . $file);
+          $arr = json_decode($json,TRUE);
+
+          if( isset($arr['from'])) {
+            $from[$arr['from']]++;
+          }
+        }
+      }
+      closedir($dh);
+  }
+}
+
+$obj = array('from' =&gt; $from);
+
+header("Content-Type: application/json; charset=utf-8");
+echo json_encode( $obj, JSON_UNESCAPED_UNICODE);</code></pre>
+
+            </section>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./14/13.png" />
+            </figure>
+
+            
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+
+    <section class="text-gray-600 body-font">
+
+    
+      <h1 class="text-3xl font-bold text-center my-32" id="chapter4">Chart.js を使って、集計結果をグラフで表示する</h1>
+
+
+      <div class="container p-5 mx-auto" data-accordion="open">
+        <h2 id="chapter4-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter4-1" aria-expanded="false" aria-controls="accordion-chapter4-1">
+            <span>Chart.js を使ってみる</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter4-1" class="hidden" aria-labelledby="chapter4-1">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <p>
+                Chart.js というグラフを生成する javascriptのライブラリがあります。<br>
+                これを使って、グラフを書きます。
+              </p>
+
+              <div class="mt-8">
+                参考サイト： <a class="text-blue-600 break-words hover:underline" href="https://www.chartjs.org/docs/latest/getting-started/" target="_blank">https://www.chartjs.org/docs/latest/getting-started/</a>
+              </div>
+
+              <p class="mt-8">
+                Chart.js の Getting Started ページのサンプルをhtmlの雛形に入れてみる
+              </p>
+
+              <p class="mt-8">
+                <h3 class="text-lg font-bold">chart.html</h3>
+                <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;集計&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;canvas id="myChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+  
+  &lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+  
+  &lt;script&gt;
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </p>
+
+              <figure class="mt-4 inline-block max-w-full">
+                <figcaption>グラフが表示された</figcaption>
+                <img src="./14/15.png" />
+              </figure>
+
+
+            </section>
+
+          </div>
+        </div>
+
+        <h2 id="chapter4-2">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter4-2" aria-expanded="false" aria-controls="accordion-chapter4-2">
+            <span>calc.phpの出力をjavascriptで読み込んでチャートを作る</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter4-2" class="hidden" aria-labelledby="chapter4-2">
+
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <section>
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">1</span>OpenAIのAPIを呼び出した時の fetch() を思い出す</h3>
+              <pre><code class="lang-js">fetch('calc.php', {
+  method: "GET",
+  cache: "no-cache",
+})
+.then(response =&gt; response.json())
+.then(data =&gt; console.log(data));</code></pre>
+              <figure class="mt-4 max-w-full">
+                <img src="./14/16.png" />
+              </figure>
+            </section>
+
+
+            <section>
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">2</span>console.log の代わりに、チャートを表示する関数(makeChart)に data を渡す</h3>
+              <pre><code class="lang-js">fetch('calc.php', {
+  method: "GET",
+  cache: "no-cache",
+})
+.then(response =&gt; response.json())
+.then(data =&gt; makeChart(data));
+
+function makeChart(data) {
+  .
+  .
+  .
+}</code></pre>
+              <figure class="mt-4 max-w-full">
+                <img src="./14/17.png" />
+              </figure>
+            </section>
+            
+
+            <section>
+              <h3 class="text-lg font-bold"><span class="bg-gray-200 inline-block border rounded-full w-8 h-8 mr-4 text-center">3</span>オブジェクトの key だけ、value だけ取り出す</h3>
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">Object.keys()</h4>
+                オブジェクトの key だけ取り出す<br>
+                <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys</a><br>
+              </div>
+
+              <div class="mt-8 bg-gray-100 p-4 rounded">
+                <h4 class="text-lg font-bold">Object.values()</h4>
+                オブジェクトの value だけ取り出す<br>
+                <a class="text-blue-600 break-words hover:underline" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values</a><br>
+              </div>
+
+              <div class="mt-8">
+                チャートを表示する関数(makeChart)で、渡された data の keys と values を当てはめる
+              <pre><code class="lang-js">function makeChart(data) {
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(data.from),
+      datasets: [{
+        label: '# of Votes',
+        data: Object.values(data.from),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}</code></pre>
+              </div>
+            </section>
+            
+          </div>
+        </div>
+
+
+
+        <h2 id="chapter4-3">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-chapter4-3" aria-expanded="false" aria-controls="accordion-chapter4-3">
+            <span>完成形</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-chapter4-3" class="hidden-no" aria-labelledby="chapter4-3">
+
+          <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+
+            <section>
+              <h3 class="text-lg font-bold">chart.html 完成形</h3>
+              <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;集計&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div&gt;
+    &lt;canvas id="myChart"&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+  
+  &lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+  
+  &lt;script&gt;
+    const ctx = document.getElementById('myChart');
+  
+    fetch('calc.php', {
+      method: "GET",
+      cache: "no-cache",
+    })
+    .then(response =&gt; response.json())
+    .then(data =&gt; makeChart(data));
+
+
+  function makeChart(data) {
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(data.from),
+        datasets: [{
+          label: '# of Votes',
+          data: Object.values(data.from),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+
+  &lt;/script&gt;
+   
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            </section>
+
+            <figure class="mt-4 inline-block max-w-full">
+              <img src="./14/18.png" />
+            </figure>
+            
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+  </body>
+
+</html>
